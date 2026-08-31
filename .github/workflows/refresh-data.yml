@@ -11,9 +11,8 @@
 # that is only read when something has already gone wrong; weekly would let
 # the fallback drift a week behind, which is the rot this job exists to stop.
 #
-# NOTE: this repository has no git remote yet. Until it is pushed to GitHub,
-# nothing here runs — see the "local schedule" section of README.md for the
-# launchd/cron alternative.
+# A launchd/cron alternative for running this outside CI is documented in the
+# "local schedule" section of README.md.
 
 name: Refresh leaderboard snapshot
 
@@ -38,9 +37,9 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: "20"
           cache: npm
