@@ -5,7 +5,7 @@
         "id": "openrouter-weekly-tokens",
         "name": "Tokens processed — week of 2026-08-24",
         "url": "https://openrouter.ai/rankings",
-        "updatedAt": "2026-08-31T08:56:03.302Z",
+        "updatedAt": "2026-08-31T08:53:00.705Z",
         "entries": [
           {
             "rank": 1,
@@ -64,8 +64,8 @@
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-08-31T08:56:03.302Z",
-    "capturedAt": "2026-08-31T09:13:50.052Z"
+    "upstreamUpdatedAt": "2026-08-31T08:53:00.705Z",
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   },
   "arc-prize": {
     "boards": [
@@ -626,7 +626,7 @@
       }
     ],
     "upstreamUpdatedAt": "2026-08-21T19:53:15.900Z",
-    "capturedAt": "2026-08-31T09:13:50.052Z"
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   },
   "epoch-eci": {
     "boards": [
@@ -634,7 +634,7 @@
         "id": "epoch-eci",
         "name": "Epoch Capabilities Index — top 25",
         "url": "https://epoch.ai/data/ai-benchmarking-dashboard",
-        "updatedAt": "2026-08-31T09:13:33.861Z",
+        "updatedAt": "2026-08-31T09:28:28.967Z",
         "entries": [
           {
             "rank": 1,
@@ -890,7 +890,7 @@
       }
     ],
     "upstreamUpdatedAt": null,
-    "capturedAt": "2026-08-31T09:13:35.777Z"
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   },
   "design-arena": {
     "boards": [
@@ -1772,7 +1772,7 @@
       }
     ],
     "upstreamUpdatedAt": "2026-08-31T08:05:43.547Z",
-    "capturedAt": "2026-08-31T09:13:50.052Z"
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   },
   "terminal-bench": {
     "boards": [
@@ -1886,7 +1886,7 @@
       }
     ],
     "upstreamUpdatedAt": "2026-08-29T01:40:34.831Z",
-    "capturedAt": "2026-08-31T09:13:50.052Z"
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   },
   "swe-bench": {
     "boards": [
@@ -2182,7 +2182,7 @@
       }
     ],
     "upstreamUpdatedAt": "2026-02-26T00:00:00.000Z",
-    "capturedAt": "2026-08-31T09:13:50.052Z"
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   },
   "arena": {
     "boards": [
@@ -5638,7 +5638,7 @@
       }
     ],
     "upstreamUpdatedAt": "2026-08-30T00:00:00.000Z",
-    "capturedAt": "2026-08-31T09:13:50.052Z"
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   },
   "scale-swe-bench-pro": {
     "boards": [
@@ -5894,6 +5894,6 @@
       }
     ],
     "upstreamUpdatedAt": "2026-07-09T18:05:36.000Z",
-    "capturedAt": "2026-08-31T09:13:50.052Z"
+    "capturedAt": "2026-08-31T09:28:31.180Z"
   }
 }
