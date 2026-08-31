@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* surfaces — near-black, very slightly cool, so the lilac accent reads as
+   * light on it. */
+  --color-bg: #08080a;
+  --color-surface: #101014;
+  --color-surface-2: #17171d;
+  --color-border: #24242c;
+  --color-border-strong: #34343f;
+
+  /* text — every tier below clears 4.5:1 on surface-2, the darkest ground
+   * any of them is actually painted on. */
+  --color-fg: #ececf1;
+  --color-fg-muted: #a6a6b6;
+  --color-fg-subtle: #84849a;
+
+  /* accents.
+   * accent is the brand and marks what is interactive or primary; it is not
+   * a status colour. It is a lilac at 272°, S 74% / L 71%: light and soft
+   * next to the near-black ground, but held at 2.46:1 against `fg` so an
+   * accent link still separates from body text rather than reading as a
+   * faintly tinted white. It clears 6.92:1 on bg, 6.17:1 on surface-2.
+   *
+   * `bad` stays at ~2° because it now has to hold apart from p-deepseek's
+   * 323° orchid rather than from the old pink accent; the badge word still
+   * carries the meaning and colour only reinforces it.
+   *
+   * There is deliberately no second violet in the palette. The old `purple`
+   * tone (265°) sat 7° from this accent and carried `preview` in the same
+   * status column that `flagship` marks with the accent; it has been retired
+   * and `preview` moved to `cyan`, which is 90° away. */
+  --color-accent: #b97eec;
+  --color-accent-dim: #372546;
+  --color-good: #2fd48f;
+  --color-warn: #e8a020;
+  --color-bad: #f4635e;
+  --color-cyan: #3fd0d6;
+
+  /* provider hues (charts, badges, language dots).
+   * Chosen as a set: every one is at least 50° of hue from the accent so a
+   * vendor dot is never mistaken for the brand, and neighbouring hues are
+   * pulled apart on saturation and lightness instead. All clear 3:1 on
+   * surface-2 as non-text indicators (worst is 6.33:1), and 4.5:1 where the
+   * hue is also used as text. */
+  --color-p-anthropic: #dda87f; /* 26°  pale clay      */
+  --color-p-openai: #4ade80; /*    142° leaf green   */
+  --color-p-google: #8ab4f8; /*     217° pale blue    */
+  --color-p-meta: #2aa5f0; /*       203° vivid sky   */
+  --color-p-xai: #d5d8df; /*        near-neutral     */
+  /* Was #6a6cfb at 239° — 33° from the lilac accent and 22° from p-google,
+   * i.e. a third blue crowding a band that already held two. Moved into the
+   * region the old pink accent vacated: 51° from the accent, 39° from `bad`. */
+  --color-p-deepseek: #e378ba; /*   323° orchid       */
+  --color-p-alibaba: #ff6f3d; /*    15°  vermilion    */
+  --color-p-mistral: #ffbc38; /*    40°  amber        */
+  /* extra hues so providers outside the named list do not all collapse to one
+   * colour. p-other was #c08bff at 267°, 5° from the lilac accent — it had to
+   * move, and once the accent occupies 232°-312° the only gap left on the
+   * wheel with real clearance on both sides is 69°-142°. So p-other is now a
+   * deep grass green at 105°, 36° off the olive below it and 37° off OpenAI's
+   * leaf green above it, and separated from both again on lightness: 44%
+   * against olive's 51% and leaf's 58%. Dropping the pool to two instead was
+   * tried and rejected — it collapsed Z.ai and Moonshot AI onto one hue, which
+   * is the exact thing this pool exists to prevent. */
+  --color-p-other: #51ae32; /*      105° grass green  */
+  --color-p-other-2: #33dbc2; /*    171° teal         */
+  --color-p-other-3: #a7b84a; /*    69°  olive        */
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { color-scheme: dark; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent-dim);
+  color: var(--color-fg);
+}
+
+/* Keyboard focus.
+ * The lilac ring alone would go weak over a strongly shaded heat cell, so a
+ * dark inner ring is painted into the outline's offset gap. The ring is then
+ * accent-on-near-black (6.92:1) wherever it lands. Even measured directly
+ * against the strongest heat cell the ring holds 3.25:1 — up from 2.89:1
+ * under the old pink, because the heat ramp was retuned alongside it. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-bg);
+}
+
+/* Scrollbars inside scrollable tables and lists. Lilac-tinted to match the
+ * accent, dark enough that a thumb never competes with the content beside it. */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #392947 transparent;
+}
+.scroll-thin::-webkit-scrollbar { height: 8px; width: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #392947; border-radius: 4px; }
+.scroll-thin::-webkit-scrollbar-thumb:hover { background: #64388a; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+
+/**
+ * Snapshot (non-live) leaderboard bars.
+ *
+ * A live bar is solid accent; this one is hatched. The distinction survives
+ * with colour removed entirely — which matters, because "these numbers were
+ * fetched today" and "these numbers came out of a committed snapshot" is not
+ * a difference a reader may be left to infer from a hue.
+ */
+.bar-snapshot {
+  background-color: rgba(232, 160, 32, 0.18);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(232, 160, 32, 0.95) 0 3px,
+    rgba(232, 160, 32, 0) 3px 7px
+  );
 }

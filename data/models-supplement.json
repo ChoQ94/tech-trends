@@ -1,0 +1,111 @@
+[
+  {
+    "id": "claude-mythos-5",
+    "name": "Claude Mythos 5",
+    "provider": "Anthropic",
+    "family": "Claude Mythos",
+    "releaseDate": "2026-06-09",
+    "status": "unclassified",
+    "contextWindow": 1000000,
+    "maxOutput": 128000,
+    "modality": [
+      "text",
+      "image"
+    ],
+    "pricing": {
+      "input": 10,
+      "output": 50,
+      "unit": "USD per 1M tokens"
+    },
+    "openWeights": false,
+    "url": "https://anthropic.com/glasswing",
+    "notes": "Not listed by OpenRouter: limited release through Project Glasswing only. Shares Claude Fable 5's capabilities without the safety classifiers; limited release through Project Glasswing only.",
+    "provenance": "manual",
+    "retiresOn": null
+  },
+  {
+    "id": "gpt-5-6-cyber",
+    "name": "GPT-5.6 Cyber",
+    "provider": "OpenAI",
+    "family": "GPT",
+    "releaseDate": "2026-08-10",
+    "status": "unclassified",
+    "contextWindow": null,
+    "maxOutput": null,
+    "modality": [
+      "text",
+      "image"
+    ],
+    "pricing": {
+      "input": 12.5,
+      "output": 75,
+      "unit": "USD per 1M tokens"
+    },
+    "openWeights": false,
+    "url": "https://developers.openai.com/api/docs/models",
+    "notes": "Not listed by OpenRouter: cybersecurity-specialised GPT-5.6 variant, short-context tier only. Cybersecurity-specialized GPT-5.6 variant, offered on the short-context tier only.",
+    "provenance": "manual",
+    "retiresOn": null
+  },
+  {
+    "id": "gemini-3-1-deep-think",
+    "name": "Gemini 3.1 Deep Think",
+    "provider": "Google",
+    "family": "Gemini",
+    "releaseDate": "2026-02-12",
+    "status": "unclassified",
+    "contextWindow": null,
+    "maxOutput": null,
+    "modality": [
+      "text",
+      "image"
+    ],
+    "pricing": null,
+    "openWeights": false,
+    "url": "https://deepmind.google/models/gemini/deep-think/",
+    "notes": "Not listed by OpenRouter: available to Google AI Ultra subscribers and select API customers only. Google is not otherwise represented at the top of this catalog because of it. Google's most capable reasoning mode, built on Gemini 3.1 Pro; available to Google AI Ultra subscribers and to select API customers only.",
+    "provenance": "manual",
+    "retiresOn": null
+  },
+  {
+    "id": "muse-spark-1-0",
+    "name": "Muse Spark",
+    "provider": "Meta",
+    "family": "Muse Spark",
+    "releaseDate": "2026-04-08",
+    "status": "unclassified",
+    "contextWindow": null,
+    "maxOutput": null,
+    "modality": [
+      "text",
+      "image",
+      "audio",
+      "video"
+    ],
+    "pricing": null,
+    "openWeights": false,
+    "url": "https://developer.meta.com/ai/models/muse-spark/",
+    "notes": "Not listed by OpenRouter: superseded by Muse Spark 1.1 and 1.2, which are listed. Meta's first proprietary closed-weight model, marking the strategic move away from open-weight Llama.",
+    "provenance": "manual",
+    "retiresOn": null
+  },
+  {
+    "id": "magistral-medium-1-2",
+    "name": "Magistral Medium 1.2",
+    "provider": "Mistral",
+    "family": "Magistral",
+    "releaseDate": null,
+    "status": "deprecated",
+    "contextWindow": null,
+    "maxOutput": null,
+    "modality": [
+      "text"
+    ],
+    "pricing": null,
+    "openWeights": false,
+    "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+    "notes": "Not listed by OpenRouter: retired on July 31, 2026; the standalone Magistral reasoning line was folded into Mistral Medium 3.5. Retired on July 31, 2026; the standalone Magistral reasoning line was folded into Mistral Medium 3.5.",
+    "provenance": "manual",
+    "retiresOn": "2026-07-31"
+  }
+]

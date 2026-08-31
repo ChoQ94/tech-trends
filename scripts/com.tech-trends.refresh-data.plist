@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  TEMPLATE — not installed, and not usable until the placeholders are filled.
+
+  A launchd agent that runs `scripts/refresh-data.mjs` once a day, for the case
+  this repository has no git remote and so the GitHub Actions workflow cannot
+  run. See "Enabling the schedule locally" in README.md for the two commands
+  that fill in the placeholders and load it.
+
+  Placeholders: __NODE__  absolute path to the node binary (`command -v node`)
+                __REPO__  absolute path to this repository
+                __HOME__  your home directory
+
+  This refreshes the committed fallback snapshot only. It does not touch the
+  live page data, which Next re-fetches hourly by itself.
+
+  Unlike the GitHub Actions workflow, this does NOT commit. It leaves the
+  refreshed data/leaderboards-snapshot.json as an uncommitted change for you to
+  review and commit — a background job that writes to your git history without
+  asking is not a thing to install on a laptop.
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.tech-trends.refresh-data</string>
+
+    <!-- node is invoked directly: a launchd agent gets a minimal PATH and
+         will not find a version-manager shim such as nvm or fnm. -->
+    <key>ProgramArguments</key>
+    <array>
+      <string>__NODE__</string>
+      <string>__REPO__/scripts/refresh-data.mjs</string>
+    </array>
+
+    <!-- The script resolves the repository from its own location, so this is
+         belt-and-braces rather than load-bearing. -->
+    <key>WorkingDirectory</key>
+    <string>__REPO__</string>
+
+    <!-- 05:27 local time, daily. If the machine is asleep at that moment,
+         launchd runs the job once when it next wakes. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>5</integer>
+      <key>Minute</key>
+      <integer>27</integer>
+    </dict>
+
+    <!-- Don't fire on login/reload; a schedule that also runs whenever you
+         reboot makes the per-source report meaningless as a daily signal. -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- The whole value of this job is the per-source report it prints, so
+         keep it. Both streams go to one file, in order. -->
+    <key>StandardOutPath</key>
+    <string>__HOME__/Library/Logs/tech-trends-refresh-data.log</string>
+    <key>StandardErrorPath</key>
+    <string>__HOME__/Library/Logs/tech-trends-refresh-data.log</string>
+  </dict>
+</plist>

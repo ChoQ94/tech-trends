@@ -1,0 +1,939 @@
+{
+  "updatedAt": "2026-08-31",
+  "sources": [
+    {
+      "name": "Arena (formerly LMArena)",
+      "url": "https://arena.ai/leaderboard/text"
+    },
+    {
+      "name": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/leaderboards/models"
+    },
+    {
+      "name": "Google DeepMind - Gemini 3.7 Flash model card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "name": "Google DeepMind - Gemini 3.1 Deep Think",
+      "url": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "name": "Anthropic - Introducing Claude Opus 5",
+      "url": "https://www.anthropic.com/news/claude-opus-5"
+    },
+    {
+      "name": "ARC Prize (independent verification)",
+      "url": "https://arcprize.org/leaderboard"
+    },
+    {
+      "name": "Artificial Analysis - GPT-5.6 analysis",
+      "url": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "frontiercode-1-1",
+      "name": "FrontierCode 1.1",
+      "description": "Held-out competitive and real-world code generation tasks used in Google's current model cards.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "deepswe-v1-1",
+      "name": "DeepSWE v1.1",
+      "description": "Agentic software-engineering benchmark that has largely displaced SWE-bench Verified in 2026 vendor reporting.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "terminal-bench-2-1",
+      "name": "Terminal-Bench 2.1",
+      "description": "Command-line agent tasks in a real terminal; the widely reported, now near-saturated version.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "saturated",
+      "supersededBy": "terminal-bench-3-0",
+      "statusNote": "Near-saturated and two versions behind: Terminal-Bench went 2.1 to 3.0 (2026-07-30) to 4.0 (2026-08-28) in under four months, so 2.1 scores are continuity only, not a live signal."
+    },
+    {
+      "id": "terminal-bench-3-0",
+      "name": "Terminal-Bench 3.0",
+      "description": "Much harder successor to Terminal-Bench 2.1, where frontier models still score under 25%.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "saturated",
+      "supersededBy": "terminal-bench-4-0",
+      "statusNote": "Superseded by Terminal-Bench 4.0, released 2026-08-28, which is not itself in this dataset yet. Note also that 3.0 shipped first as Frontier-Bench v0.1 and was renamed, so older model cards report the same benchmark under that name."
+    },
+    {
+      "id": "automationbench",
+      "name": "AutomationBench",
+      "description": "End-to-end business workflow automation tasks executed by tool-using agents.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "osworld-2-0",
+      "name": "OSWorld 2.0",
+      "description": "Computer-use benchmark measuring real desktop GUI task completion.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "gdpval-aa-v2",
+      "name": "GDPval-AA v2",
+      "description": "Elo-rated head-to-head evaluation on economically valuable knowledge work.",
+      "unit": "Elo",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "code-arena-webdev",
+      "name": "Code Arena (Web Development)",
+      "description": "Human-preference Elo for web development coding tasks.",
+      "unit": "Elo",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "hle-verified",
+      "name": "HLE-Verified",
+      "description": "Verified subset of Humanity's Last Exam, a very hard closed-ended academic exam.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current",
+      "statusNote": "The verified rebuild of Humanity's Last Exam, after roughly 30% of the original chemistry and biology answer keys were judged wrong; original-HLE scores are not comparable to these."
+    },
+    {
+      "id": "agents-last-exam",
+      "name": "Agent's Last Exam",
+      "description": "Long-horizon agentic reasoning benchmark, the agent-era counterpart to HLE.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "gdm-mrcr-v2",
+      "name": "GDM-MRCR v2",
+      "description": "Multi-round coreference resolution stress test for very long context windows.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "lvbench",
+      "name": "LVBench",
+      "description": "Long-form video understanding benchmark.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "charxiv",
+      "name": "CharXiv",
+      "description": "Chart and figure understanding drawn from arXiv papers (no-tools setting).",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "harvey-lab-aa",
+      "name": "Harvey LAB-AA",
+      "description": "Legal analysis benchmark built with Harvey.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "labbench2",
+      "name": "LABBench2",
+      "description": "Laboratory and life-sciences reasoning benchmark.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "biomysterybench",
+      "name": "BioMysteryBench",
+      "description": "Biological reasoning puzzles; the human-solvable split is reported here.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "arc-agi-2",
+      "name": "ARC-AGI-2",
+      "description": "Abstract reasoning benchmark from the ARC Prize Foundation; now near-saturated, with frontier models above 84%.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "saturated",
+      "supersededBy": "arc-agi-3",
+      "statusNote": "Saturated: on ARC Prize's own semi-private leaderboard (generated 2026-08-21) the top ten span 92.5% down to 84.6%, against a human panel reference of 100%."
+    },
+    {
+      "id": "imo-2025",
+      "name": "IMO 2025",
+      "description": "International Mathematical Olympiad 2025 problem set.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "ipho-2025",
+      "name": "IPhO 2025",
+      "description": "International Physics Olympiad 2025 problem set.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "icho-2025",
+      "name": "IChO 2025",
+      "description": "International Chemistry Olympiad 2025 problem set.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "codeforces-elo",
+      "name": "Codeforces",
+      "description": "Competitive programming rating on Codeforces problems.",
+      "unit": "Elo",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "arc-agi-3",
+      "name": "ARC-AGI-3",
+      "description": "Interactive successor to ARC-AGI-2 where frontier models still score under one third; the current ARC Prize frontier.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "name": "AA Coding Agent Index v1.1",
+      "description": "Artificial Analysis composite of DeepSWE, Terminal-Bench 2.1 and SWE-Atlas-QnA.",
+      "unit": "index",
+      "higherIsBetter": true,
+      "status": "current"
+    },
+    {
+      "id": "aa-briefcase-rubric",
+      "name": "AA-Briefcase (rubric)",
+      "description": "Artificial Analysis rubric score for long-form analytical business deliverables.",
+      "unit": "%",
+      "higherIsBetter": true,
+      "status": "current"
+    }
+  ],
+  "scores": [
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "frontiercode-1-1",
+      "score": 43.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "frontiercode-1-1",
+      "score": 34.4,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "frontiercode-1-1",
+      "score": 42.7,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "frontiercode-1-1",
+      "score": 41.3,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "deepswe-v1-1",
+      "score": 65.3,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "deepswe-v1-1",
+      "score": 48.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "deepswe-v1-1",
+      "score": 53.8,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "deepswe-v1-1",
+      "score": 69.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "muse-spark-1-2",
+      "benchmarkId": "deepswe-v1-1",
+      "score": 54.9,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "code-arena-webdev",
+      "score": 1588,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "code-arena-webdev",
+      "score": 1538,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "code-arena-webdev",
+      "score": 1541,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "code-arena-webdev",
+      "score": 1523,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "muse-spark-1-2",
+      "benchmarkId": "code-arena-webdev",
+      "score": 1535,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "terminal-bench-2-1",
+      "score": 85.8,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "terminal-bench-2-1",
+      "score": 78.0,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "terminal-bench-2-1",
+      "score": 80.4,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "terminal-bench-2-1",
+      "score": 87.4,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "muse-spark-1-2",
+      "benchmarkId": "terminal-bench-2-1",
+      "score": 82.9,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "terminal-bench-3-0",
+      "score": 14.9,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "terminal-bench-3-0",
+      "score": 5.4,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "terminal-bench-3-0",
+      "score": 14.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "terminal-bench-3-0",
+      "score": 20.8,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "automationbench",
+      "score": 30.4,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "automationbench",
+      "score": 17.0,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "automationbench",
+      "score": 10.7,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "automationbench",
+      "score": 23.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "gdpval-aa-v2",
+      "score": 1525,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "gdpval-aa-v2",
+      "score": 1422,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "gdpval-aa-v2",
+      "score": 1598,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "gdpval-aa-v2",
+      "score": 1578,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "muse-spark-1-2",
+      "benchmarkId": "gdpval-aa-v2",
+      "score": 1628,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "harvey-lab-aa",
+      "score": 90.7,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "harvey-lab-aa",
+      "score": 85.1,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "harvey-lab-aa",
+      "score": 90.1,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "harvey-lab-aa",
+      "score": 85.2,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "charxiv",
+      "score": 84.5,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "charxiv",
+      "score": 85.2,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "charxiv",
+      "score": 77.0,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "charxiv",
+      "score": 85.9,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "lvbench",
+      "score": 85.4,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "lvbench",
+      "score": 84.2,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "lvbench",
+      "score": 68.5,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "lvbench",
+      "score": 78.9,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "gdm-mrcr-v2",
+      "score": 97.0,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "gdm-mrcr-v2",
+      "score": 91.8,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "gdm-mrcr-v2",
+      "score": 81.5,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "gdm-mrcr-v2",
+      "score": 93.5,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "osworld-2-0",
+      "score": 47.9,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "osworld-2-0",
+      "score": 33.8,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "osworld-2-0",
+      "score": 50.2,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "agents-last-exam",
+      "score": 26.3,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "agents-last-exam",
+      "score": 24.2,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "agents-last-exam",
+      "score": 33.3,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "agents-last-exam",
+      "score": 28.0,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "hle-verified",
+      "score": 53.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "hle-verified",
+      "score": 51.2,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "hle-verified",
+      "score": 31.0,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "hle-verified",
+      "score": 51.1,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "biomysterybench",
+      "score": 87.1,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "biomysterybench",
+      "score": 80.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "biomysterybench",
+      "score": 87.5,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "biomysterybench",
+      "score": 83.8,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-7-flash",
+      "benchmarkId": "labbench2",
+      "score": 82.1,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-6-flash",
+      "benchmarkId": "labbench2",
+      "score": 76.1,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "benchmarkId": "labbench2",
+      "score": 80.1,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "labbench2",
+      "score": 81.2,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    },
+    {
+      "modelId": "gemini-3-1-deep-think",
+      "benchmarkId": "arc-agi-2",
+      "score": 84.6,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "modelId": "gemini-3-1-deep-think",
+      "benchmarkId": "imo-2025",
+      "score": 81.5,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "modelId": "gemini-3-1-deep-think",
+      "benchmarkId": "ipho-2025",
+      "score": 87.7,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "modelId": "gemini-3-1-deep-think",
+      "benchmarkId": "icho-2025",
+      "score": 82.8,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "modelId": "gemini-3-1-deep-think",
+      "benchmarkId": "codeforces-elo",
+      "score": 3455,
+      "source": "vendor",
+      "sourceUrl": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "modelId": "claude-opus-5",
+      "benchmarkId": "arc-agi-2",
+      "score": 90.4,
+      "source": "independent",
+      "sourceUrl": "https://arcprize.org/results/anthropic-claude-opus-5"
+    },
+    {
+      "modelId": "claude-opus-5",
+      "benchmarkId": "arc-agi-3",
+      "score": 30.16,
+      "source": "independent",
+      "sourceUrl": "https://arcprize.org/results/anthropic-claude-opus-5"
+    },
+    {
+      "modelId": "gpt-5-6-sol",
+      "benchmarkId": "aa-coding-agent-index",
+      "score": 80,
+      "source": "independent",
+      "sourceUrl": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+    },
+    {
+      "modelId": "gpt-5-6-terra",
+      "benchmarkId": "aa-coding-agent-index",
+      "score": 77,
+      "source": "independent",
+      "sourceUrl": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+    },
+    {
+      "modelId": "gpt-5-6-luna",
+      "benchmarkId": "aa-coding-agent-index",
+      "score": 75,
+      "source": "independent",
+      "sourceUrl": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+    },
+    {
+      "modelId": "gpt-5-6-sol",
+      "benchmarkId": "aa-briefcase-rubric",
+      "score": 42,
+      "source": "independent",
+      "sourceUrl": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+    },
+    {
+      "modelId": "claude-fable-5",
+      "benchmarkId": "aa-briefcase-rubric",
+      "score": 56,
+      "source": "independent",
+      "sourceUrl": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+    }
+  ],
+  "leaderboards": [
+    {
+      "id": "arena-text",
+      "name": "Arena (Text)",
+      "url": "https://arena.ai/leaderboard/text",
+      "updatedAt": "2026-08-27",
+      "entries": [
+        {
+          "rank": 1,
+          "modelId": "claude-fable-5",
+          "modelName": "claude-fable-5",
+          "score": 1507
+        },
+        {
+          "rank": 2,
+          "modelId": "claude-opus-4-6",
+          "modelName": "claude-opus-4-6-high",
+          "score": 1505
+        },
+        {
+          "rank": 3,
+          "modelId": "claude-opus-4-7",
+          "modelName": "claude-opus-4-7-high",
+          "score": 1502
+        },
+        {
+          "rank": 4,
+          "modelId": "muse-spark-1-2",
+          "modelName": "muse-spark-1.2 (xHigh)",
+          "score": 1498
+        },
+        {
+          "rank": 5,
+          "modelId": "claude-opus-4-6",
+          "modelName": "claude-opus-4-6",
+          "score": 1497
+        },
+        {
+          "rank": 6,
+          "modelId": "claude-opus-4-7",
+          "modelName": "claude-opus-4-7",
+          "score": 1494
+        },
+        {
+          "rank": 7,
+          "modelId": "claude-opus-5",
+          "modelName": "claude-opus-5-high",
+          "score": 1492
+        },
+        {
+          "rank": 8,
+          "modelId": "muse-spark-1-1",
+          "modelName": "muse-spark-1.1",
+          "score": 1490
+        },
+        {
+          "rank": 9,
+          "modelId": "gemini-3-7-flash",
+          "modelName": "gemini-3.7-flash-high",
+          "score": 1490
+        },
+        {
+          "rank": 10,
+          "modelId": "kimi-k3",
+          "modelName": "kimi-k3-max",
+          "score": 1489
+        }
+      ]
+    },
+    {
+      "id": "artificial-analysis-intelligence",
+      "name": "Artificial Analysis Intelligence Index",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "updatedAt": null,
+      "entries": [
+        {
+          "rank": 1,
+          "modelId": "claude-opus-5",
+          "modelName": "Claude Opus 5 (max)",
+          "score": 63
+        },
+        {
+          "rank": 2,
+          "modelId": "claude-opus-5",
+          "modelName": "Claude Opus 5 (xhigh)",
+          "score": 63
+        },
+        {
+          "rank": 3,
+          "modelId": "claude-fable-5",
+          "modelName": "Claude Fable 5 (with fallback)",
+          "score": 62
+        },
+        {
+          "rank": 4,
+          "modelId": "claude-opus-5",
+          "modelName": "Claude Opus 5 (high)",
+          "score": 61
+        },
+        {
+          "rank": 5,
+          "modelId": "gpt-5-6-sol",
+          "modelName": "GPT-5.6 Sol (max)",
+          "score": 61
+        },
+        {
+          "rank": 6,
+          "modelId": "grok-4-6",
+          "modelName": "Grok 4.6 (high)",
+          "score": 61
+        },
+        {
+          "rank": 7,
+          "modelId": "grok-4-6",
+          "modelName": "Grok 4.6 (xhigh)",
+          "score": 60
+        },
+        {
+          "rank": 8,
+          "modelId": "kimi-k3",
+          "modelName": "Kimi K3 (max)",
+          "score": 60
+        },
+        {
+          "rank": 9,
+          "modelId": "glm-5-3",
+          "modelName": "GLM-5.3 (max)",
+          "score": 60
+        },
+        {
+          "rank": 10,
+          "modelId": "gpt-5-6-sol",
+          "modelName": "GPT-5.6 Sol (xhigh)",
+          "score": 59
+        },
+        {
+          "rank": 11,
+          "modelId": "grok-4-6",
+          "modelName": "Grok 4.6 (medium)",
+          "score": 59
+        },
+        {
+          "rank": 12,
+          "modelId": "claude-opus-5",
+          "modelName": "Claude Opus 5 (medium)",
+          "score": 59
+        }
+      ]
+    }
+  ]
+}

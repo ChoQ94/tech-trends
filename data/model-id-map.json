@@ -1,0 +1,274 @@
+{
+  "generatedAt": "2026-08-31",
+  "endpoint": "https://openrouter.ai/api/v1/models",
+  "note": "Generated once, by hand, and committed. Every id here was produced by pointing src/lib/model-match.ts at the live OpenRouter listing and reviewing all 45 results; nothing was matched fuzzily at runtime. It exists so that data/benchmarks.json (79 scores and 2 leaderboards keyed by the old ids) and the eight live leaderboard fetchers keep resolving after the catalog moved to OpenRouter slugs. Delete an entry only if you are also willing to lose those joins.",
+  "entries": [
+    {
+      "oldId": "claude-fable-5",
+      "oldName": "Claude Fable 5",
+      "openRouterId": "anthropic/claude-fable-5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-haiku-4-5",
+      "oldName": "Claude Haiku 4.5",
+      "openRouterId": "anthropic/claude-haiku-4.5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-sonnet-5",
+      "oldName": "Claude Sonnet 5",
+      "openRouterId": "anthropic/claude-sonnet-5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-opus-5",
+      "oldName": "Claude Opus 5",
+      "openRouterId": "anthropic/claude-opus-5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-opus-4-5",
+      "oldName": "Claude Opus 4.5",
+      "openRouterId": "anthropic/claude-opus-4.5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-opus-4-6",
+      "oldName": "Claude Opus 4.6",
+      "openRouterId": "anthropic/claude-opus-4.6",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-sonnet-4-6",
+      "oldName": "Claude Sonnet 4.6",
+      "openRouterId": "anthropic/claude-sonnet-4.6",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-opus-4-7",
+      "oldName": "Claude Opus 4.7",
+      "openRouterId": "anthropic/claude-opus-4.7",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-opus-4-8",
+      "oldName": "Claude Opus 4.8",
+      "openRouterId": "anthropic/claude-opus-4.8",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-sonnet-4",
+      "oldName": "Claude Sonnet 4",
+      "openRouterId": "anthropic/claude-sonnet-4",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "claude-opus-4-1",
+      "oldName": "Claude Opus 4.1",
+      "openRouterId": "anthropic/claude-opus-4.1",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gpt-5-6-sol",
+      "oldName": "GPT-5.6 Sol",
+      "openRouterId": "openai/gpt-5.6-sol",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gpt-5-6-terra",
+      "oldName": "GPT-5.6 Terra",
+      "openRouterId": "openai/gpt-5.6-terra",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gpt-5-6-luna",
+      "oldName": "GPT-5.6 Luna",
+      "openRouterId": "openai/gpt-5.6-luna",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gpt-5-4",
+      "oldName": "GPT-5.4",
+      "openRouterId": "openai/gpt-5.4",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gpt-5-5",
+      "oldName": "GPT-5.5",
+      "openRouterId": "openai/gpt-5.5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gpt-5-5-pro",
+      "oldName": "GPT-5.5 Pro",
+      "openRouterId": "openai/gpt-5.5-pro",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gemini-3-5-flash",
+      "oldName": "Gemini 3.5 Flash",
+      "openRouterId": "google/gemini-3.5-flash",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gemini-3-6-flash",
+      "oldName": "Gemini 3.6 Flash",
+      "openRouterId": "google/gemini-3.6-flash",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gemini-3-5-flash-lite",
+      "oldName": "Gemini 3.5 Flash-Lite",
+      "openRouterId": "google/gemini-3.5-flash-lite",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gemini-3-7-flash",
+      "oldName": "Gemini 3.7 Flash",
+      "openRouterId": "google/gemini-3.7-flash",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "gemini-3-1-pro",
+      "oldName": "Gemini 3.1 Pro",
+      "openRouterId": "google/gemini-3.1-pro-preview",
+      "matchedBy": "slug/id~trimmed"
+    },
+    {
+      "oldId": "gemini-2-5-pro",
+      "oldName": "Gemini 2.5 Pro",
+      "openRouterId": "google/gemini-2.5-pro",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "muse-spark-1-2",
+      "oldName": "Muse Spark 1.2",
+      "openRouterId": "meta/muse-spark-1.2",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "llama-4-maverick",
+      "oldName": "Llama 4 Maverick",
+      "openRouterId": "meta-llama/llama-4-maverick",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "muse-spark-1-1",
+      "oldName": "Muse Spark 1.1",
+      "openRouterId": "meta/muse-spark-1.1",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "grok-4-6",
+      "oldName": "Grok 4.6",
+      "openRouterId": "x-ai/grok-4.6",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "grok-4-5",
+      "oldName": "Grok 4.5",
+      "openRouterId": "x-ai/grok-4.5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "deepseek-v4-pro",
+      "oldName": "DeepSeek-V4-Pro",
+      "openRouterId": "deepseek/deepseek-v4-pro",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "deepseek-v4-flash",
+      "oldName": "DeepSeek-V4-Flash",
+      "openRouterId": "deepseek/deepseek-v4-flash",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "deepseek-chat-v3",
+      "oldName": "DeepSeek Chat (V3 era)",
+      "openRouterId": "deepseek/deepseek-chat",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "qwen3-8-max",
+      "oldName": "Qwen3.8-Max",
+      "openRouterId": "qwen/qwen3.8-max",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "qwen3-8-flash",
+      "oldName": "Qwen3.8-Flash",
+      "openRouterId": "qwen/qwen3.8-flash",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "qwen3-7-plus",
+      "oldName": "Qwen3.7-Plus",
+      "openRouterId": "qwen/qwen3.7-plus",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "mistral-medium-3-5",
+      "oldName": "Mistral Medium 3.5",
+      "openRouterId": "mistralai/mistral-medium-3-5",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "mistral-large-3",
+      "oldName": "Mistral Large 3",
+      "openRouterId": "mistralai/mistral-large-2512",
+      "matchedBy": "slug/id~trimmed"
+    },
+    {
+      "oldId": "mistral-small-4",
+      "oldName": "Mistral Small 4",
+      "openRouterId": "mistralai/mistral-small-2603",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "kimi-k3",
+      "oldName": "Kimi K3",
+      "openRouterId": "moonshotai/kimi-k3",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "glm-5-3",
+      "oldName": "GLM-5.3",
+      "openRouterId": "z-ai/glm-5.3",
+      "matchedBy": "slug/id"
+    },
+    {
+      "oldId": "glm-5-3-flash",
+      "oldName": "GLM-5.3-Flash",
+      "openRouterId": "z-ai/glm-5.3-flash",
+      "matchedBy": "slug/id"
+    }
+  ],
+  "unmatched": [
+    {
+      "oldId": "claude-mythos-5",
+      "oldName": "Claude Mythos 5",
+      "reason": "OpenRouter does not list this model; kept in data/models-supplement.json instead."
+    },
+    {
+      "oldId": "gpt-5-6-cyber",
+      "oldName": "GPT-5.6 Cyber",
+      "reason": "OpenRouter does not list this model; kept in data/models-supplement.json instead."
+    },
+    {
+      "oldId": "gemini-3-1-deep-think",
+      "oldName": "Gemini 3.1 Deep Think",
+      "reason": "OpenRouter does not list this model; kept in data/models-supplement.json instead."
+    },
+    {
+      "oldId": "muse-spark-1-0",
+      "oldName": "Muse Spark",
+      "reason": "OpenRouter does not list this model; kept in data/models-supplement.json instead."
+    },
+    {
+      "oldId": "magistral-medium-1-2",
+      "oldName": "Magistral Medium 1.2",
+      "reason": "OpenRouter does not list this model; kept in data/models-supplement.json instead."
+    }
+  ]
+}

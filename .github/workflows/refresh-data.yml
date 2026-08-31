@@ -1,0 +1,126 @@
+# Refreshes data/leaderboards-snapshot.json — the committed last-known-good
+# fallback the leaderboards page serves (labelled "stale") when a live fetch
+# fails. It does NOT refresh what visitors see: the pages fetch every board
+# live and Next re-fetches them hourly on its own.
+#
+# Cadence: daily. The snapshot is a safety net, so it needs to be recent, not
+# current — currency is the live path's job. Daily bounds how old the fallback
+# can ever be at 24 hours, which is inside every upstream's own publishing
+# cadence, and produces at most one commit a day. Hourly would mean 24 commits
+# a day of churn and 24x the traffic to eight third-party sites for a file
+# that is only read when something has already gone wrong; weekly would let
+# the fallback drift a week behind, which is the rot this job exists to stop.
+#
+# NOTE: this repository has no git remote yet. Until it is pushed to GitHub,
+# nothing here runs — see the "local schedule" section of README.md for the
+# launchd/cron alternative.
+
+name: Refresh leaderboard snapshot
+
+on:
+  schedule:
+    # 05:27 UTC daily. Deliberately off the hour: GitHub's scheduled runners
+    # are heavily congested at :00 and queue jobs for a long time.
+    - cron: "27 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# One refresh at a time. Two overlapping runs would race on the same commit.
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Refresh the snapshot
+        id: refresh
+        # A broken scraper must not fail this job — the whole point of the
+        # snapshot is that one source going down is survivable, and a red X
+        # every morning would train everyone to ignore it. The exit code is
+        # captured and acted on below instead of aborting the step, so the
+        # commit still happens for the sources that did work.
+        run: |
+          set +e
+          npm run refresh-data > refresh.log 2>&1
+          code=$?
+          set -e
+          cat refresh.log
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      # The per-source report is the whole point of the run: it is how a human
+      # sees which scraper broke. Put it somewhere readable without digging
+      # through step logs.
+      - name: Publish the report
+        if: always()
+        run: |
+          [ -f refresh.log ] || exit 0
+          # Four backticks: a scraper's error message can quote upstream markup,
+          # which may itself contain a three-backtick run.
+          {
+            echo '## Leaderboard snapshot refresh'
+            echo
+            echo '````'
+            cat refresh.log
+            echo '````'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the snapshot if it changed
+        id: commit
+        if: steps.refresh.outputs.code != '2'
+        run: |
+          # --quiet exits 1 when there is a difference. No diff means every
+          # source returned what we already had, and an empty commit would be
+          # pure noise in the history.
+          if git diff --quiet -- data/leaderboards-snapshot.json; then
+            echo "No change to data/leaderboards-snapshot.json; nothing to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Stage only the snapshot. Anything else the run happened to touch is
+          # a build artefact and has no business in a data commit.
+          git add data/leaderboards-snapshot.json
+          git commit \
+            -m "chore(data): refresh leaderboard fallback snapshot" \
+            -m "Automated by .github/workflows/refresh-data.yml. Only sources that returned live data were rewritten; failed sources kept their previous entry. See the workflow run summary for the per-source report."
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      # Visibility without failure. `::warning::` puts a yellow banner on the
+      # run and on the Actions list, so a scraper that has quietly broken is
+      # noticeable without the job going red every day.
+      - name: Flag a degraded run
+        if: steps.refresh.outputs.code == '1'
+        run: |
+          echo "::warning title=Leaderboard source failed::At least one source did not \
+          return live data. Its snapshot entry was kept as-is. See the run summary for \
+          which source and why — a source that fails on consecutive days has a broken \
+          fetcher in src/lib/fetchers/."
+
+      # A total outage is different in kind: nothing was written and the
+      # fallback is now a day older with no new data behind it. That is worth
+      # a red X.
+      - name: Fail on a total outage
+        if: steps.refresh.outputs.code == '2'
+        run: |
+          echo "::error title=Refresh failed outright::No source returned usable data, or \
+          the refresh could not run at all. data/leaderboards-snapshot.json was left \
+          untouched. See the run summary."
+          exit 1

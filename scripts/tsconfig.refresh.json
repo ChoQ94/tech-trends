@@ -1,0 +1,18 @@
+{
+  "//": "Used only by scripts/refresh-data.mjs. Compiles src/lib/leaderboards.ts and everything it imports down to CommonJS in a temp directory, so the fetchers can run under plain Node. `--outDir` is supplied on the command line.",
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "incremental": false,
+    "declaration": false,
+    "sourceMap": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": "..",
+    "plugins": [],
+    "noEmitOnError": false
+  },
+  "//include": "Emptied on purpose: `extends` would otherwise inherit the root config's whole-project glob and compile every page and component too.",
+  "include": [],
+  "files": ["./next-fetch-types.d.ts", "../src/lib/leaderboards.ts"]
+}
