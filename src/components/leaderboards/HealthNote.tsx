@@ -12,7 +12,7 @@ const HEALTH_TONE: Record<SourceHealth, BadgeTone> = {
 };
 
 export const HEALTH_TITLE: Record<SourceHealth, string> = {
-  live: "Fetched successfully for this page load.",
+  live: "Fetched successfully the last time this page was rebuilt.",
   stale: "The live fetch failed. These numbers come from a snapshot committed to the repo.",
   unavailable: "The live fetch failed and no snapshot is committed, so there is nothing to show.",
 };

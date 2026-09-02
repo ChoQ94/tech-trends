@@ -4,6 +4,22 @@ const SEARCH_ENDPOINT = "https://api.github.com/search/repositories";
 const PER_PAGE = 30;
 
 /**
+ * Six hours, matching src/lib/cache.ts — but deliberately its own constant
+ * rather than an import of it.
+ *
+ * That constant is a statement about eight leaderboards, half of them
+ * scraped, none of which move fast enough to reward hourly polling. None of
+ * that reasoning is about GitHub. This is a real search API with a published
+ * quota (10 req/min unauthenticated, 30 authenticated), /github is the one
+ * route still rendered per request, and its filters multiply one page view
+ * into up to 78 distinct cached queries. Tying the two together would mean a
+ * future decision about leaderboard freshness silently retunes how hard we
+ * lean on somebody\'s rate limit. They agree today; they are allowed to
+ * disagree tomorrow.
+ */
+export const TRENDING_TTL_SECONDS = 21600;
+
+/**
  * "new" approximates the trending page: repos created inside the window,
  * ranked by stars. "momentum" surfaces established repos still being worked on.
  */
@@ -184,7 +200,7 @@ export async function fetchTrending(
   try {
     const response = await fetch(`${SEARCH_ENDPOINT}?${params}`, {
       headers,
-      next: { revalidate: 3600 },
+      next: { revalidate: TRENDING_TTL_SECONDS },
     });
 
     if (!response.ok) {

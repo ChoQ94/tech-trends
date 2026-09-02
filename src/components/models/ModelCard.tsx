@@ -1,7 +1,7 @@
 import { Badge, Card } from "@/components/ui";
 import { ProviderLabel } from "@/components/models/ProviderLabel";
 import { DASH, formatDate, formatTokens, formatUSD } from "@/lib/format";
-import { STATUS_MEANING, statusTone } from "@/lib/models";
+import { STATUS_MEANING, statusTone } from "@/lib/model-query";
 import type { Model } from "@/lib/types";
 
 /** Compact model card used on the overview. Dense by design. */

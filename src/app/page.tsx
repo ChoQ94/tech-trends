@@ -19,8 +19,12 @@ import {
   getRetiring,
 } from "@/lib/models";
 
-/** The catalog is fetched; see src/lib/model-catalog.ts for the cache window. */
-export const revalidate = 3600;
+/**
+ * The catalog is fetched; see src/lib/model-catalog.ts for the cache window.
+ * Next needs this as a literal, so it restates DATA_TTL_SECONDS from
+ * src/lib/cache.ts rather than importing it.
+ */
+export const revalidate = 21600;
 
 export default async function OverviewPage() {
   const catalog = await getCatalog();
@@ -122,7 +126,7 @@ export default async function OverviewPage() {
               >
                 openrouter.ai/api/v1/models
               </a>
-              , fetched once an hour and shared by every visitor.
+              , fetched once every six hours and shared by every visitor.
             </p>
             <ul className="space-y-1.5 text-xs leading-5">
               <li>

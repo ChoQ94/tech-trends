@@ -6,7 +6,8 @@ import {
   CredibilityBadge,
   FragileBadge,
 } from "@/components/sources/badges";
-import type { LeaderboardResult, LeaderboardSource } from "@/lib/types";
+import type { ResolvedResult } from "@/lib/leaderboard-view";
+import type { LeaderboardSource } from "@/lib/types";
 
 /**
  * One source and everything it published. The header carries the things a
@@ -19,7 +20,7 @@ export function SourceGroup({
   result,
 }: {
   source: LeaderboardSource;
-  result: LeaderboardResult;
+  result: ResolvedResult;
 }) {
   const boards = result.boards ?? [];
 

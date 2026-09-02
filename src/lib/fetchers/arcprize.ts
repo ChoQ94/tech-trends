@@ -1,3 +1,4 @@
+import { DATA_TTL_SECONDS } from "@/lib/cache";
 import {
   buildSlugIndex,
   lookupSlug,
@@ -126,7 +127,7 @@ async function fetchBoard(
   try {
     const response = await fetch(url, {
       headers: { accept: "application/json", "user-agent": USER_AGENT },
-      next: { revalidate: 3600 },
+      next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!response.ok) {
       return `ARC Prize ${spec.version}.json returned HTTP ${response.status}.`;

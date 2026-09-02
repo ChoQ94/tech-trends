@@ -1,4 +1,4 @@
-import { providerClasses } from "@/lib/models";
+import { providerClasses } from "@/lib/model-query";
 import type { Provider } from "@/lib/types";
 
 /** Provider name with its identity hue as a leading dot. Color = identity. */

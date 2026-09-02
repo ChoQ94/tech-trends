@@ -188,7 +188,7 @@ export default function SourcesPage() {
               <span className="font-mono text-fg">npx tsc --noEmit</span>. The
               JSON is imported at build time, so a deploy needs a rebuild to
               pick up a change — the OpenRouter catalog is not, and refreshes on
-              its own hourly cache.
+              its own six-hour cache.
             </li>
           </ul>
         </Card>

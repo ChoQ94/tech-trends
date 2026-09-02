@@ -4,7 +4,11 @@ import { TrendingFilters } from "@/components/github/TrendingFilters";
 import { fetchTrending, parseLanguage, parseWindow } from "@/lib/github";
 import type { TrendingWindow } from "@/lib/types";
 
-export const revalidate = 3600;
+/**
+ * Matches TRENDING_TTL_SECONDS in src/lib/github.ts, which is deliberately
+ * separate from the leaderboard window; Next needs this as a literal anyway.
+ */
+export const revalidate = 21600;
 
 export const metadata = {
   title: "GitHub Trending",
@@ -79,7 +83,7 @@ export default async function GitHubPage({
       </div>
 
       <p className="mt-8 text-xs text-fg-subtle">
-        Source: GitHub Search API. Cached for one hour. Star deltas are not
+        Source: GitHub Search API. Cached for six hours. Star deltas are not
         exposed by this API and are therefore omitted.
       </p>
     </div>

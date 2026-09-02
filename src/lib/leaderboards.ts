@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 
+import { DATA_TTL_SECONDS } from "@/lib/cache";
 import { fetch_arcprize } from "@/lib/fetchers/arcprize";
 import { fetch_arena } from "@/lib/fetchers/arena";
 import { fetch_designarena } from "@/lib/fetchers/designarena";
@@ -29,8 +30,12 @@ const FETCHERS: Record<string, Fetcher> = {
  * Every source, fetched in parallel. One source failing must never take the
  * page down, so each is individually guarded and degrades to its snapshot.
  */
-/** How long one collection of all boards is served before we refetch. */
-export const LEADERBOARD_TTL_SECONDS = 3600;
+/**
+ * How long one collection of all boards is served before we refetch.
+ * The window itself, and why it is six hours rather than one, lives in
+ * src/lib/cache.ts alongside every other consumer of it.
+ */
+export const LEADERBOARD_TTL_SECONDS = DATA_TTL_SECONDS;
 
 async function fetchAllUncached(): Promise<LeaderboardResult[]> {
   const entries = Object.entries(FETCHERS);
@@ -52,7 +57,7 @@ async function fetchAllUncached(): Promise<LeaderboardResult[]> {
 }
 
 /**
- * One collection per hour, shared by every visitor.
+ * One collection per cache window, shared by every visitor.
  *
  * Per-`fetch` revalidation is not enough on its own: Next's data cache does
  * not cache POST requests, so a POST-only source would go out to the network

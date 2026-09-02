@@ -1,7 +1,7 @@
 import { Badge, Card } from "@/components/ui";
 import { ProviderLabel } from "@/components/models/ProviderLabel";
 import { DASH, formatDate } from "@/lib/format";
-import type { FamilyGroup } from "@/lib/models";
+import type { FamilyGroup } from "@/lib/model-query";
 
 /**
  * What replaced the lineage view.

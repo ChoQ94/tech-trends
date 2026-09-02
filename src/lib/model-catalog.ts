@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
 
+import { DATA_TTL_SECONDS } from "@/lib/cache";
 import type {
   Model,
   ModelProvenance,
@@ -34,8 +35,11 @@ import supplementRaw from "../../data/models-supplement.json";
 
 export const CATALOG_ENDPOINT = "https://openrouter.ai/api/v1/models";
 
-/** One fetch per hour, shared by every visitor — same policy as the boards. */
-export const CATALOG_TTL_SECONDS = 3600;
+/**
+ * One fetch per cache window, shared by every visitor — same policy, and
+ * now literally the same number, as the boards. See src/lib/cache.ts.
+ */
+export const CATALOG_TTL_SECONDS = DATA_TTL_SECONDS;
 
 /**
  * OpenRouter ships `2098-12-31` on several z-ai rows to mean "no expiry".
@@ -522,7 +526,7 @@ async function fetchCatalogUncached(): Promise<CatalogData> {
 }
 
 /**
- * One fetch per hour, shared by every visitor.
+ * One fetch per cache window, shared by every visitor.
  *
  * This is a public deployment: without a cache in front of it, every page
  * view on every route that touches the catalog would be a request to

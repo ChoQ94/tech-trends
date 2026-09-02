@@ -1,3 +1,4 @@
+import { DATA_TTL_SECONDS } from "@/lib/cache";
 import {
   buildTokenIndex,
   lookupTokens,
@@ -300,7 +301,7 @@ async function loadBoard(
   try {
     const res = await fetch(spec.url, {
       headers: { "User-Agent": USER_AGENT, Accept: "text/html" },
-      next: { revalidate: 3600 },
+      next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!res.ok) {
       return { ok: false, why: `${spec.url} returned HTTP ${res.status}` };

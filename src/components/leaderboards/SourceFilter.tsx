@@ -3,8 +3,10 @@ import { HealthDot, HEALTH_TITLE } from "@/components/leaderboards/HealthNote";
 import type { LeaderboardSource, SourceHealth } from "@/lib/types";
 
 /**
- * Plain links, so every filtered view is a shareable URL and the page stays
- * a server component.
+ * Plain links, so every filtered view is a shareable, deep-linkable URL
+ * rather than hidden component state. The page reads the query in the
+ * browser now (see LeaderboardsBrowser) and is prerendered; these stayed
+ * anchors regardless, because that is the half that mattered to a reader.
  */
 export function SourceFilter({
   sources,

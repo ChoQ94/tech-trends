@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { Badge, Card } from "@/components/ui";
 import { ProviderLabel } from "@/components/models/ProviderLabel";
-import { leaderboardEntryLabel } from "@/lib/benchmarks";
 import { DASH, formatCompact, formatDate, formatUSD } from "@/lib/format";
-import { getModelMap } from "@/lib/models";
+import type { ResolvedBoard } from "@/lib/leaderboard-view";
 import type {
-  Leaderboard,
   LeaderboardEntry,
   LeaderboardSource,
   SourceHealth,
@@ -52,16 +50,21 @@ function formatScore(score: number, unit: string): string {
   return unit.includes("%") ? `${rounded}%` : String(rounded);
 }
 
-export async function BoardCard({
+/**
+ * Synchronous on purpose. This used to `await getModelMap()` to turn a row's
+ * slug into a real model name, which pinned the whole page to the server;
+ * the join now happens once, before the data gets here, in
+ * src/lib/leaderboard-view.ts. See ResolvedEntry.
+ */
+export function BoardCard({
   board,
   source,
   health,
 }: {
-  board: Leaderboard;
+  board: ResolvedBoard;
   source: LeaderboardSource;
   health: SourceHealth;
 }) {
-  const modelMap = await getModelMap();
   const entries = board.entries ?? [];
   const shown = entries.slice(0, ROW_LIMIT);
 
@@ -120,8 +123,8 @@ export async function BoardCard({
       ) : (
         <ol className="mt-4 space-y-2.5">
           {shown.map((e, i) => {
-            const model = e.modelId ? modelMap.get(e.modelId) : undefined;
-            const label = leaderboardEntryLabel(e, modelMap);
+            const provider = e.resolvedProvider;
+            const label = e.label;
             const ci = isCI(e.ci) ? e.ci : null;
             return (
               <li
@@ -142,11 +145,11 @@ export async function BoardCard({
                   </span>
 
                   <span className="min-w-0 flex-1 truncate" title={e.modelName}>
-                    {model ? (
+                    {provider ? (
                       // Only entries we could resolve to the catalog get a
                       // link; the rest render plainly rather than guess.
                       <Link
-                        href={`/models?provider=${encodeURIComponent(String(model.provider))}`}
+                        href={`/models?provider=${encodeURIComponent(String(provider))}`}
                         className="text-fg hover:text-accent hover:underline"
                       >
                         {label}
@@ -156,12 +159,12 @@ export async function BoardCard({
                     )}
                   </span>
 
-                  {model ? (
+                  {provider ? (
                     // The wrapper does the hiding: ProviderLabel sets its own
                     // display, and a `hidden` passed into it would lose to that.
                     <span className="hidden shrink-0 lg:block">
                       <ProviderLabel
-                        provider={model.provider}
+                        provider={provider}
                         className="text-[11px] text-fg-subtle"
                       />
                     </span>

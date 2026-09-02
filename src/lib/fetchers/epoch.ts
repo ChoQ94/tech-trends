@@ -1,3 +1,4 @@
+import { DATA_TTL_SECONDS } from "@/lib/cache";
 import {
   buildSlugIndex,
   lookupSlug,
@@ -85,7 +86,7 @@ export async function fetch_epoch(): Promise<LeaderboardResult> {
   try {
     const response = await fetch(ENDPOINT, {
       headers: { accept: "text/csv", "user-agent": USER_AGENT },
-      next: { revalidate: 3600 },
+      next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!response.ok) {
       return fallbackResult(

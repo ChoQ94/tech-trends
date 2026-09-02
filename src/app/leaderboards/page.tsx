@@ -1,17 +1,23 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Card, Empty, SectionHeader } from "@/components/ui";
+import { Card, SectionHeader } from "@/components/ui";
 import {
   HEALTH_TITLE,
   HealthDot,
 } from "@/components/leaderboards/HealthNote";
-import { SourceFilter } from "@/components/leaderboards/SourceFilter";
-import { SourceGroup } from "@/components/leaderboards/SourceGroup";
+import { LeaderboardsBrowser } from "@/components/leaderboards/LeaderboardsBrowser";
+import { LeaderboardsSection } from "@/components/leaderboards/LeaderboardsSection";
 import { fetchAllLeaderboards } from "@/lib/leaderboards";
+import { resolveResults, type ResolvedResult } from "@/lib/leaderboard-view";
 import { getSources, isFragile } from "@/lib/sources";
-import type { LeaderboardResult, SourceHealth } from "@/lib/types";
+import type { SourceHealth } from "@/lib/types";
 
-export const revalidate = 3600;
+/**
+ * Matches LEADERBOARD_TTL_SECONDS. Next needs this as a literal, so it
+ * restates DATA_TTL_SECONDS from src/lib/cache.ts rather than importing it.
+ */
+export const revalidate = 21600;
 
 export const metadata: Metadata = {
   title: "Leaderboards",
@@ -19,13 +25,8 @@ export const metadata: Metadata = {
     "Every public AI leaderboard we pull, grouped by source, each shown with what it measures, how much weight it deserves, who benefits from the ranking, and whether the data is live, stale or unavailable.",
 };
 
-function first(value: string | string[] | undefined): string | null {
-  if (Array.isArray(value)) return value[0] ?? null;
-  return value ?? null;
-}
-
 /** A source with no fetcher result at all is still a source we promised. */
-function emptyResult(sourceId: string): LeaderboardResult {
+function emptyResult(sourceId: string): ResolvedResult {
   return {
     sourceId,
     boards: [],
@@ -38,14 +39,12 @@ function emptyResult(sourceId: string): LeaderboardResult {
 
 const HEALTH_ORDER: SourceHealth[] = ["live", "stale", "unavailable"];
 
-export default async function LeaderboardsPage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
-  const sp = await searchParams;
+export default async function LeaderboardsPage() {
   const sources = getSources();
-  const results = await fetchAllLeaderboards();
+  // The catalog join happens here, once, rather than inside each board card:
+  // it is what used to make those cards async Server Components and pin the
+  // page to per-request rendering. See src/lib/leaderboard-view.ts.
+  const results = await resolveResults(await fetchAllLeaderboards());
 
   const byId = new Map(results.map((r) => [r.sourceId, r]));
   const rows = sources.map((source) => ({
@@ -53,26 +52,11 @@ export default async function LeaderboardsPage({
     result: byId.get(source.id) ?? emptyResult(source.id),
   }));
 
-  // An unknown ?source= is not a filter; the chips reflect what is applied.
-  const sourceParam = first(sp.source);
-  const activeSource = sources.some((s) => s.id === sourceParam)
-    ? sourceParam
-    : null;
-  const visible = activeSource
-    ? rows.filter((r) => r.source.id === activeSource)
-    : rows;
-
-  const health = new Map(rows.map((r) => [r.source.id, r.result.health]));
-  const boardCounts = new Map(
-    rows.map((r) => [r.source.id, r.result.boards.length]),
-  );
-  const totalBoards = rows.reduce((n, r) => n + r.result.boards.length, 0);
   const healthCounts = HEALTH_ORDER.map((h) => ({
     health: h,
     count: rows.filter((r) => r.result.health === h).length,
   }));
   const fragileCount = sources.filter(isFragile).length;
-  const conflicts = rows.filter((r) => r.source.conflictOfInterest);
 
   return (
     <div className="space-y-8">
@@ -81,7 +65,7 @@ export default async function LeaderboardsPage({
           Leaderboards
         </h1>
         <p className="max-w-2xl text-sm leading-6 text-fg-muted">
-          Eight public boards, fetched at request time and grouped by who
+          Eight public boards, fetched on a six-hour cycle and grouped by who
           publishes them. They do not measure the same thing and they do not
           agree with each other — that disagreement is the useful part. Every
           board is shown with the state of its data, because a number nobody
@@ -125,51 +109,34 @@ export default async function LeaderboardsPage({
         </Card>
       </div>
 
-      <SourceFilter
-        sources={sources}
-        health={health}
-        boardCounts={boardCounts}
-        activeSource={activeSource}
-        totalBoards={totalBoards}
-      />
+      {/*
+        The fallback is all eight boards, unfiltered, rendered on the server.
 
-      {conflicts.length > 0 && !activeSource ? (
-        <Card className="border-warn/30 p-4">
-          <h2 className="text-sm font-semibold text-fg">
-            Who benefits from these rankings
-          </h2>
-          <ul className="mt-2 space-y-1.5 text-xs leading-5 text-fg-muted">
-            {conflicts.map(({ source }) => (
-              <li key={source.id}>
-                <Link
-                  href={`#board-${source.id}`}
-                  className="text-warn hover:underline"
-                >
-                  {source.name}
-                </Link>{" "}
-                — {source.conflictOfInterest}
-              </li>
-            ))}
-          </ul>
-        </Card>
-      ) : null}
+        `useSearchParams` cannot run during a prerender, so React puts this
+        into the static HTML and swaps in the browser's answer at hydration.
+        Making it the real all-boards view rather than a skeleton means the
+        common case — arriving with no `?source=` — paints the finished page
+        from the CDN and is then replaced by something identical.
 
-      {visible.length === 0 ? (
-        <Empty>No source matches that filter.</Empty>
-      ) : (
-        <div className="space-y-10">
-          {visible.map(({ source, result }) => (
-            <SourceGroup key={source.id} source={source} result={result} />
-          ))}
-        </div>
-      )}
+        One thing does legitimately change on that swap: the "retrieved by
+        us" relative times. Prerendered, they are relative to the moment the
+        page was built; re-rendered here, they are relative to now. The
+        second is the true one on a page that can be served for six hours,
+        and getting it right is exactly the honesty this page is for.
+      */}
+      <Suspense
+        fallback={<LeaderboardsSection rows={rows} activeSource={null} />}
+      >
+        <LeaderboardsBrowser rows={rows} />
+      </Suspense>
 
       <Card className="p-4">
         <SectionHeader title="How to read this page" />
         <ul className="space-y-1.5 text-xs leading-5 text-fg-muted">
           <li>
             <span className="text-good">live</span> means the board was fetched
-            successfully for this page load.{" "}
+            successfully the last time this page was rebuilt &mdash;
+            &ldquo;retrieved by us&rdquo; on the board says when that was.{" "}
             <span className="text-warn">stale</span> means the live fetch failed
             and you are looking at a snapshot committed to this repository, with
             the date it was captured and the error that caused the fallback shown

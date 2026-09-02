@@ -1,3 +1,4 @@
+import { DATA_TTL_SECONDS } from "@/lib/cache";
 import {
   buildTokenIndex,
   makeTokenizer,
@@ -89,7 +90,7 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
   try {
     const res = await fetch(PAGE_URL, {
       headers: { "User-Agent": USER_AGENT, Accept: "text/html" },
-      next: { revalidate: 3600 },
+      next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!res.ok) {
       return fallbackResult(

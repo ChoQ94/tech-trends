@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 
+import { DATA_TTL_SECONDS } from "@/lib/cache";
 import {
   buildSlugIndex,
   lookupSlug,
@@ -113,7 +114,7 @@ async function fetchRegistryNames(): Promise<Map<string, string>> {
   try {
     const response = await fetch(REGISTRY_ENDPOINT, {
       headers: { accept: "application/json", "user-agent": USER_AGENT },
-      next: { revalidate: 3600 },
+      next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!response.ok) return names;
     const payload: unknown = await response.json();
@@ -150,7 +151,7 @@ async function fetchCategory(
         arenaType: spec.arenaType,
         category: spec.category,
       }),
-      next: { revalidate: 3600 },
+      next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!response.ok) {
       return `Design Arena ${label} returned HTTP ${response.status}.`;
@@ -266,7 +267,7 @@ async function fetchDesignArenaUncached(): Promise<LeaderboardResult> {
 const cachedFetch = unstable_cache(
   fetchDesignArenaUncached,
   ["design-arena-leaderboards"],
-  { revalidate: 3600, tags: ["leaderboards"] },
+  { revalidate: DATA_TTL_SECONDS, tags: ["leaderboards"] },
 );
 
 export async function fetch_designarena(): Promise<LeaderboardResult> {

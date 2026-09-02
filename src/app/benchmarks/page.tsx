@@ -15,9 +15,11 @@ import { getCatalog } from "@/lib/models";
 
 /**
  * The matrix joins to the model catalog, which is now fetched rather than
- * imported, so this page revalidates on the catalog's own clock.
+ * imported, so this page revalidates on the catalog's own clock. Next needs
+ * this as a literal; DATA_TTL_SECONDS in src/lib/cache.ts is the same number
+ * and carries the reason it is six hours and not one.
  */
-export const revalidate = 3600;
+export const revalidate = 21600;
 
 export const metadata: Metadata = {
   title: "Benchmarks",

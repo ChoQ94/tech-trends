@@ -63,7 +63,7 @@ export function GitHubTrendingEntry() {
           public repository data.
         </Field>
         <Field label="Freshness">
-          Fetched at request time, so it is genuinely current.
+          Fetched per request, out of a six-hour cache.
         </Field>
       </dl>
 

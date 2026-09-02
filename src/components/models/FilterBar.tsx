@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { STATUS_MEANING } from "@/lib/models";
+import { STATUS_MEANING } from "@/lib/model-query";
 import type { ModelStatus, Provider } from "@/lib/types";
 
 export function buildModelsHref(next: {
@@ -48,8 +48,13 @@ function Chip({
 }
 
 /**
- * Filters are plain links so the whole catalog stays a server component and
- * every filtered view is a shareable URL.
+ * Filters are plain links, so every filtered view is a shareable,
+ * deep-linkable, middle-clickable URL rather than hidden component state.
+ *
+ * They used to be links so the page could stay a Server Component. That is
+ * no longer the reason — the query is read in the browser now (see
+ * ModelsBrowser) and the route is prerendered — but the links themselves are
+ * the part that was worth keeping, so they stayed exactly as they were.
  */
 export function FilterBar({
   providers,
