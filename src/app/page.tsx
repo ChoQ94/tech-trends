@@ -12,10 +12,8 @@ import {
 import { formatDate, relativeTime } from "@/lib/format";
 import { CATALOG_ENDPOINT } from "@/lib/model-catalog";
 import {
-  getAllModels,
   getCatalog,
   getLatestReleases,
-  getProviders,
   getRetiring,
 } from "@/lib/models";
 
@@ -28,8 +26,6 @@ export const revalidate = 21600;
 
 export default async function OverviewPage() {
   const catalog = await getCatalog();
-  const models = await getAllModels();
-  const providers = await getProviders();
   const latest = await getLatestReleases(6);
   const retiring = await getRetiring();
   const primary = getPrimaryLeaderboard();
@@ -43,13 +39,7 @@ export default async function OverviewPage() {
           rather than leaving the landing page headingless. */}
       <h1 className="sr-only">지금 나와 있는 것들</h1>
 
-      <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-        <Stat
-          label="추적 중인 모델"
-          value={models.length}
-          hint={`${models.filter((m) => m.openWeights).length}개는 가중치가 공개된 것으로 보입니다`}
-        />
-        <Stat label="프로바이더" value={providers.length} hint="서로 다른 벤더 수" />
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
         <Stat
           label="벤치마크"
           value={getBenchmarkCount()}
@@ -72,7 +62,7 @@ export default async function OverviewPage() {
 
       <section>
         <SectionHeader
-          title="최근 등재된 모델"
+          title="최근 모델"
           subtitle="OpenRouter 카탈로그에 가장 최근 추가된 모델입니다. 벤더가 발표한 날짜가 아니라 등재된 날짜 기준입니다."
           action={
             <Link href="/models" className="text-xs text-accent hover:underline">
