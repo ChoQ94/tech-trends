@@ -27,10 +27,19 @@ export function Nav() {
           href="/"
           className="flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight text-fg"
         >
-          <span
+          {/* Same geometry as src/app/icon.svg, inlined so the mark costs no
+              request and follows the accent token if the palette changes. */}
+          <svg
+            viewBox="0 0 32 32"
             aria-hidden
-            className="h-4 w-4 rounded-sm border border-accent bg-accent-dim"
-          />
+            className="h-5 w-5 shrink-0 text-accent"
+          >
+            <rect width="32" height="32" rx="7" fill="currentColor" />
+            <g fill="#ffffff">
+              <rect x="6.5" y="7.75" width="19" height="5" rx="1.2" />
+              <rect x="13.5" y="7.75" width="5" height="16.5" rx="1.2" />
+            </g>
+          </svg>
           <span>
             tech<span className="text-accent">/</span>trends
           </span>
