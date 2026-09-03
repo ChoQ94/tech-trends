@@ -38,18 +38,10 @@ export default async function OverviewPage() {
 
   return (
     <div className="space-y-12">
-      <header className="space-y-3">
-        <h1 className="text-3xl font-semibold tracking-tight text-fg">
-          지금 나와 있는 것들
-        </h1>
-        <p className="max-w-2xl text-sm leading-6 text-fg-muted">
-          프런티어의 현재 상태를 한 화면에 모았습니다. 어떤 모델이 있고, 언제
-          등재됐고, 가격은 얼마이고, 점수는 어떤지, 그리고 오픈소스 진영은 이번
-          주에 무엇에 스타를 주고 있는지. 카탈로그는 실시간으로 가져오지만 벤치마크
-          점수는 그렇지 않습니다. 모든 페이지는 지금 보고 있는 것이 둘 중 어느
-          쪽인지 밝힙니다.
-        </p>
-      </header>
+      {/* The visible hero was dropped so the numbers lead. Every other route
+          still carries an h1, so this stays for screen readers and crawlers
+          rather than leaving the landing page headingless. */}
+      <h1 className="sr-only">지금 나와 있는 것들</h1>
 
       <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <Stat
