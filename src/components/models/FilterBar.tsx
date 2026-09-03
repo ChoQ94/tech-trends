@@ -2,17 +2,52 @@ import Link from "next/link";
 import { STATUS_LABEL, STATUS_MEANING } from "@/lib/model-query";
 import type { ModelStatus, Provider } from "@/lib/types";
 
-export function buildModelsHref(next: {
-  provider?: string | null;
-  status?: string | null;
-  openWeights?: boolean;
-}): string {
-  const params = new URLSearchParams();
-  if (next.provider) params.set("provider", next.provider);
-  if (next.status) params.set("status", next.status);
-  if (next.openWeights) params.set("weights", "open");
-  const qs = params.toString();
-  return qs ? `/models?${qs}` : "/models";
+/**
+ * The shape of /models' query string.
+ *
+ * Each facet is a list, comma-separated in the URL:
+ * `?provider=Anthropic,OpenAI&status=deprecated`. A comma is a legal
+ * sub-delimiter in a query string and no provider name contains one, so the
+ * separator stays literal — only the values themselves are percent-encoded —
+ * and the URL stays readable enough to share and to edit by hand.
+ */
+export interface ModelsQuery {
+  providers?: readonly string[];
+  statuses?: readonly string[];
+  /** 1-based. Omitted from the URL when it is 1, so page one has a clean URL. */
+  page?: number;
+}
+
+export function buildModelsHref(next: ModelsQuery): string {
+  const parts: string[] = [];
+  const facet = (key: string, values: readonly string[] | undefined) => {
+    if (values && values.length > 0) {
+      parts.push(`${key}=${values.map(encodeURIComponent).join(",")}`);
+    }
+  };
+  facet("provider", next.providers);
+  facet("status", next.statuses);
+  if (next.page && next.page > 1) parts.push(`page=${next.page}`);
+  return parts.length > 0 ? `/models?${parts.join("&")}` : "/models";
+}
+
+/** Read one facet back out of the query string. */
+export function parseFacet(raw: string | null): string[] {
+  if (!raw) return [];
+  return raw
+    .split(",")
+    .map((v) => v.trim())
+    .filter((v) => v.length > 0);
+}
+
+/**
+ * Add a value to a facet, or take it out if it is already there — which is
+ * what makes clicking an active chip deselect it rather than re-apply it.
+ */
+function toggled(values: readonly string[], value: string): string[] {
+  return values.includes(value)
+    ? values.filter((v) => v !== value)
+    : [...values, value];
 }
 
 function Chip({
@@ -31,8 +66,12 @@ function Chip({
   return (
     <Link
       href={href}
+      // Chips are a filter, not a destination: the table they change is
+      // already on screen, so jumping to the top of the document on every
+      // click would be pure loss.
+      scroll={false}
       title={title}
-      aria-current={active ? "true" : undefined}
+      aria-pressed={active}
       className={`inline-flex shrink-0 items-center gap-1.5 rounded-md border px-2 py-1 text-xs transition-colors ${
         active
           ? "border-accent/50 bg-accent-dim/60 font-medium text-accent"
@@ -55,41 +94,37 @@ function Chip({
  * no longer the reason — the query is read in the browser now (see
  * ModelsBrowser) and the route is prerendered — but the links themselves are
  * the part that was worth keeping, so they stayed exactly as they were.
+ *
+ * Several values may be on at once. Within a row they are OR'd, across rows
+ * AND'd, and every chip href is "the current selection with this one value
+ * flipped" — so the anchor a middle-click opens is the same state the click
+ * would have produced. No chip ever carries `page`: changing what is being
+ * filtered always returns to the first page of the new result.
  */
 export function FilterBar({
   providers,
   statuses,
-  activeProvider,
-  activeStatus,
-  activeOpenWeights,
+  activeProviders,
+  activeStatuses,
   providerCounts,
   statusCounts,
-  openWeightsCount,
   total,
 }: {
   providers: Provider[];
+  /** Only the statuses that get a chip; see listStatusFilters. */
   statuses: ModelStatus[];
-  activeProvider: string | null;
-  activeStatus: string | null;
-  activeOpenWeights: boolean;
+  activeProviders: readonly string[];
+  activeStatuses: readonly ModelStatus[];
   providerCounts: Map<string, number>;
   statusCounts: Map<string, number>;
-  openWeightsCount: number;
   total: number;
 }) {
-  // With OpenRouter as the source there is no lifecycle field, so this filter
-  // now sorts almost every model into one bucket. Saying so beside the chips
-  // is better than leaving a control that looks broken.
-  const unclassified = statusCounts.get("unclassified") ?? 0;
   return (
     <div className="flex flex-col gap-3">
       <FilterRow label="프로바이더">
         <Chip
-          href={buildModelsHref({
-            status: activeStatus,
-            openWeights: activeOpenWeights,
-          })}
-          active={!activeProvider}
+          href={buildModelsHref({ statuses: activeStatuses })}
+          active={activeProviders.length === 0}
           count={total}
         >
           전체
@@ -98,11 +133,10 @@ export function FilterBar({
           <Chip
             key={String(p)}
             href={buildModelsHref({
-              provider: String(p),
-              status: activeStatus,
-              openWeights: activeOpenWeights,
+              providers: toggled(activeProviders, String(p)),
+              statuses: activeStatuses,
             })}
-            active={activeProvider === p}
+            active={activeProviders.includes(String(p))}
             count={providerCounts.get(String(p))}
           >
             {p}
@@ -110,72 +144,29 @@ export function FilterBar({
         ))}
       </FilterRow>
 
-      <FilterRow label="상태">
-        <Chip
-          href={buildModelsHref({
-            provider: activeProvider,
-            openWeights: activeOpenWeights,
-          })}
-          active={!activeStatus}
-        >
-          전체
-        </Chip>
-        {statuses.map((s) => (
+      {statuses.length > 0 ? (
+        <FilterRow label="상태">
           <Chip
-            key={s}
-            href={buildModelsHref({
-              provider: activeProvider,
-              status: s,
-              openWeights: activeOpenWeights,
-            })}
-            active={activeStatus === s}
-            count={statusCounts.get(s)}
-            title={STATUS_MEANING[s]}
+            href={buildModelsHref({ providers: activeProviders })}
+            active={activeStatuses.length === 0}
           >
-            {STATUS_LABEL[s]}
+            전체
           </Chip>
-        ))}
-      </FilterRow>
-
-      <FilterRow label="가중치">
-        <Chip
-          href={buildModelsHref({
-            provider: activeProvider,
-            status: activeStatus,
-          })}
-          active={!activeOpenWeights}
-          count={total}
-        >
-          전체
-        </Chip>
-        <Chip
-          href={buildModelsHref({
-            provider: activeProvider,
-            status: activeStatus,
-            openWeights: true,
-          })}
-          active={activeOpenWeights}
-          count={openWeightsCount}
-          title="OpenRouter 등재 정보에 HuggingFace id가 있는지로 추정합니다 — 라이선스를 확인한 것이 아니라 하나의 신호일 뿐입니다."
-        >
-          공개
-        </Chip>
-      </FilterRow>
-
-      {unclassified > 0 ? (
-        <p className="text-[11px] leading-4 text-fg-subtle sm:pl-[4.75rem]">
-          모델{" "}
-          <span className="font-mono tabular-nums text-fg-muted">{total}</span>
-          개 중{" "}
-          <span className="font-mono tabular-nums text-fg-muted">
-            {unclassified}
-          </span>
-          개가 <span className="text-fg-muted">미분류</span>입니다. OpenRouter가
-          수명주기 필드를 제공하지 않아서, 여기서는 어떤 모델도 대표라거나,
-          현행이라거나, 대체되었다고 주장하지 않습니다. 피드에서 도출할 수 있는
-          유일한 상태는 <span className="text-bad">지원 종료</span>이며,
-          OpenRouter가 실제 종료 날짜를 게시할 때만 붙습니다.
-        </p>
+          {statuses.map((s) => (
+            <Chip
+              key={s}
+              href={buildModelsHref({
+                providers: activeProviders,
+                statuses: toggled(activeStatuses, s),
+              })}
+              active={activeStatuses.includes(s)}
+              count={statusCounts.get(s)}
+              title={STATUS_MEANING[s]}
+            >
+              {STATUS_LABEL[s]}
+            </Chip>
+          ))}
+        </FilterRow>
       ) : null}
     </div>
   );

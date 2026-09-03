@@ -18,7 +18,7 @@ export const revalidate = 21600;
 export const metadata: Metadata = {
   title: "모델",
   description:
-    "OpenRouter가 등재한 모든 모델을 실시간으로 가져옵니다. 프로바이더, 등재일, 컨텍스트 윈도우, 최대 출력, OpenRouter의 100만 토큰당 가격, 그리고 가중치가 공개된 것으로 보이는지 여부를 담았습니다.",
+    "OpenRouter가 등재한 모든 모델을 실시간으로 가져옵니다. 프로바이더, 등재일, 컨텍스트 윈도우, 최대 출력, 그리고 OpenRouter의 100만 토큰당 가격을 담았습니다.",
 };
 
 export default async function ModelsPage() {
@@ -47,25 +47,8 @@ export default async function ModelsPage() {
           뜻이지, 추측한 값이 아닙니다.
         </p>
 
-        <Callout label="이 수치들의 출처" tone="warn">
-          여기 모든 수치에는 출처가 있고, 그 출처는{" "}
-          <span className="text-fg">벤더가 아닙니다</span>. 그리고 하나같이
-          보이는 것보다 약합니다.{" "}
-          <span className="text-fg">날짜는 OpenRouter의 등재일</span>이지,
-          벤더가 발표한 날짜가 아닙니다 — 둘은 며칠씩 차이가 납니다.{" "}
-          <span className="text-fg">가격은 OpenRouter가</span> 이 모델을
-          라우팅하는 가격이지, 벤더의 정가가 아닙니다.{" "}
-          <span className="text-fg">가중치 공개 여부는 추정</span>으로, 등재
-          정보에 HuggingFace id가 있는지로 판단한 것이지 라이선스를 확인한
-          결과가 아닙니다. 게다가 OpenRouter는{" "}
-          <span className="text-fg">수명주기 필드를 전혀 제공하지 않아서</span>,
-          실제 종료 날짜가 따로 있지 않은 한 상태는{" "}
-          <span className="text-fg">미분류</span>입니다. 여기서는 순위를 매기지
-          않습니다. 우리가 가진 어떤 출처도 순위를 매기지 않기 때문입니다.
-        </Callout>
-
         {catalog.live ? (
-          <p className="text-xs text-fg-subtle">
+          <p className="text-xs leading-5 text-fg-subtle">
             가져온 시각{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {formatDate(catalog.retrievedAt)}
@@ -75,22 +58,26 @@ export default async function ModelsPage() {
               {counts.listed}
             </span>
             행 중 <span className="font-mono">:free</span>/
-            <span className="font-mono">:batch</span> 과금 변형{" "}
+            <span className="font-mono">:batch</span>{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {counts.variantsFolded}
             </span>
             건은 가격의 기준이 되는 모델에 합쳤고,{" "}
-            <span className="font-mono">~vendor/*-latest</span> 이동 포인터{" "}
+            <span className="font-mono">~vendor/*-latest</span>{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {counts.aliasPointers}
             </span>
-            건은 따로 뺐습니다. 각각 벤더가 그때그때 가리키는 모델로 해석되기
-            때문입니다 · OpenRouter가 다루지 않는 모델{" "}
+            건은 뺐으며, OpenRouter가 다루지 않는{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {counts.supplement}
             </span>
-            개는 손으로 추가하고 <span className="text-warn">수동</span>으로
-            표시했습니다.
+            개는 손으로 추가해 <span className="text-warn">수동</span>으로
+            표시했습니다. 그래서 아래 행 수는 응답 행 수와 다릅니다 · 등재일,
+            가격, 수명주기를 각각 어디까지 믿을 수 있는지는{" "}
+            <Link href="/sources" className="text-accent hover:underline">
+              /sources
+            </Link>
+            에 정리해 두었습니다.
           </p>
         ) : (
           <Callout label="실시간 카탈로그를 가져오지 못했습니다" tone="bad">
@@ -108,26 +95,27 @@ export default async function ModelsPage() {
       </header>
 
       {/*
-        The fallback is the whole catalog, unfiltered, rendered on the server.
+        The fallback is the real default view — unfiltered, page one —
+        rendered on the server.
 
         `useSearchParams` cannot run during a prerender, so React renders this
         fallback into the static HTML and swaps in the browser's answer at
-        hydration. Making the fallback the real unfiltered view rather than a
+        hydration. Making the fallback the real default view rather than a
         skeleton means the common case — arriving at /models with no query
         string — paints the finished page from the CDN and then replaces it
         with something byte-identical: no skeleton, no reflow, nothing to
-        watch. A shared link that does carry a filter shows the full catalog
-        for the moment before hydration, which is the one case we cannot
-        prerender our way out of without asking the server to render per
-        visitor again — which is the cost we came here to remove.
+        watch. A shared link that does carry a filter or a page number shows
+        the default view for the moment before hydration, which is the one
+        case we cannot prerender our way out of without asking the server to
+        render per visitor again — which is the cost we came here to remove.
       */}
       <Suspense
         fallback={
           <ModelsSection
             models={all}
-            activeProvider={null}
-            activeStatus={null}
-            activeOpenWeights={false}
+            activeProviders={[]}
+            activeStatuses={[]}
+            page={1}
           />
         }
       >

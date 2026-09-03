@@ -1,12 +1,22 @@
 import Link from "next/link";
 import { Empty, SectionHeader } from "@/components/ui";
 import { Families } from "@/components/models/Families";
-import { FilterBar, buildModelsHref } from "@/components/models/FilterBar";
+import {
+  FilterBar,
+  buildModelsHref,
+  parseFacet,
+} from "@/components/models/FilterBar";
 import { ModelTable } from "@/components/models/ModelTable";
+import {
+  PAGE_SIZE,
+  Pagination,
+  pageCount,
+  parsePage,
+} from "@/components/models/Pagination";
 import {
   getFamilies,
   listProviders,
-  listStatuses,
+  listStatusFilters,
   selectModels,
 } from "@/lib/model-query";
 import type { Model, ModelStatus } from "@/lib/types";
@@ -17,10 +27,11 @@ import type { Model, ModelStatus } from "@/lib/types";
  *
  * This is rendered twice from two different places, and that is the point.
  * The page renders it on the server with no filter applied, as the Suspense
- * fallback, so the prerendered HTML is the whole catalog rather than a
- * skeleton; ModelsBrowser renders it again in the browser with whatever the
- * query string asks for. Both go through the same function, so "what the
- * server prerenders" and "what the client shows" cannot drift apart.
+ * fallback, so the prerendered HTML is the real first page of the catalog
+ * rather than a skeleton; ModelsBrowser renders it again in the browser with
+ * whatever the query string asks for. Both go through the same function, so
+ * "what the server prerenders" and "what the client shows" cannot drift
+ * apart.
  *
  * It takes only the model list. Provider order, status order and every count
  * beside a chip are derived here rather than passed in, because deriving them
@@ -28,25 +39,34 @@ import type { Model, ModelStatus } from "@/lib/types";
  */
 export function ModelsSection({
   models,
-  activeProvider,
-  activeStatus,
-  activeOpenWeights,
+  activeProviders,
+  activeStatuses,
+  page,
 }: {
   /** The full, unfiltered catalog in its canonical sort order. */
   models: Model[];
   /** Already resolved against the catalog; see resolveModelFilters. */
-  activeProvider: string | null;
-  activeStatus: ModelStatus | null;
-  activeOpenWeights: boolean;
+  activeProviders: string[];
+  activeStatuses: ModelStatus[];
+  /** 1-based and ≥ 1, but not yet checked against this filter's row count. */
+  page: number;
 }) {
   const providers = listProviders(models);
-  const statuses = listStatuses(models);
+  const statuses = listStatusFilters(models);
+  const filtered = activeProviders.length > 0 || activeStatuses.length > 0;
 
   const rows = selectModels(models, {
-    provider: activeProvider,
-    status: activeStatus,
-    openWeights: activeOpenWeights,
+    providers: activeProviders,
+    statuses: activeStatuses,
   });
+
+  // A `?page` past the end of this filter's results is clamped rather than
+  // shown as an empty table — the same fall-through the filters use. Filter
+  // links never carry `page`, so narrowing the results always lands on 1
+  // anyway; this catches a hand-edited or stale deep link.
+  const pages = pageCount(rows.length);
+  const current = Math.min(page, pages);
+  const visible = rows.slice((current - 1) * PAGE_SIZE, current * PAGE_SIZE);
 
   const providerCounts = new Map<string, number>();
   const statusCounts = new Map<string, number>();
@@ -58,8 +78,9 @@ export function ModelsSection({
     statusCounts.set(m.status, (statusCounts.get(m.status) ?? 0) + 1);
   }
 
-  // Families are grouped from whatever the filters left, so the section
-  // describes the table above it rather than the whole catalog.
+  // Families are grouped from everything the filters left, not from the ten
+  // rows currently on screen: the section describes the selection, and a grid
+  // that reshuffled on every page step would be describing the pagination.
   const families = getFamilies(rows).filter((f) => f.models.length > 1);
 
   return (
@@ -68,12 +89,10 @@ export function ModelsSection({
         <FilterBar
           providers={providers}
           statuses={statuses}
-          activeProvider={activeProvider}
-          activeStatus={activeStatus}
-          activeOpenWeights={activeOpenWeights}
+          activeProviders={activeProviders}
+          activeStatuses={activeStatuses}
           providerCounts={providerCounts}
           statusCounts={statusCounts}
-          openWeightsCount={models.filter((m) => m.openWeights).length}
           total={models.length}
         />
 
@@ -87,11 +106,12 @@ export function ModelsSection({
             <span className="font-mono tabular-nums text-fg-muted">
               {rows.length}
             </span>
-            개 표시
+            개 일치
           </p>
-          {activeProvider || activeStatus || activeOpenWeights ? (
+          {filtered ? (
             <Link
               href={buildModelsHref({})}
+              scroll={false}
               className="text-xs text-accent hover:underline"
             >
               필터 해제
@@ -100,11 +120,20 @@ export function ModelsSection({
         </div>
 
         {rows.length > 0 ? (
-          <ModelTable models={rows} />
+          <>
+            <ModelTable models={visible} />
+            <Pagination
+              page={current}
+              pages={pages}
+              total={rows.length}
+              activeProviders={activeProviders}
+              activeStatuses={activeStatuses}
+            />
+          </>
         ) : (
           <Empty>
-            이 필터에 해당하는 모델이 없습니다. 프로바이더, 상태, 가중치 칩을
-            해제해 보십시오.
+            이 필터에 해당하는 모델이 없습니다. 프로바이더나 상태 칩을 해제해
+            보십시오.
           </Empty>
         )}
       </section>
@@ -135,33 +164,36 @@ export function ModelsSection({
 /**
  * Turn raw query-string values into the filter the page actually applies.
  *
- * A provider or status the catalog does not contain is not a filter — it is
- * resolved to null, so `?provider=Bogus` shows everything and, just as
- * importantly, no chip lights up claiming a filter that is not applied. The
- * status list is the one *present* in the catalog, which is stricter than
- * "is a known status": `?status=legacy` falls through while OpenRouter is
- * publishing no legacy rows.
+ * A provider or status the catalog does not offer is not a filter — it is
+ * dropped, so `?provider=Bogus` shows everything and, just as importantly, no
+ * chip lights up claiming a filter that is not applied. Dropping is per
+ * value, so `?provider=Bogus,Anthropic` is the Anthropic filter and nothing
+ * else.
+ *
+ * The lists resolved against are the ones the chips offer, which is stricter
+ * than "is a known value": `?status=legacy` falls through while OpenRouter is
+ * publishing no legacy rows, and `?status=unclassified` falls through because
+ * that facet no longer offers a chip for it (see listStatusFilters).
  */
 export function resolveModelFilters(
   raw: {
     provider: string | null;
     status: string | null;
-    weights: string | null;
+    page: string | null;
   },
   models: Model[],
 ): {
-  activeProvider: string | null;
-  activeStatus: ModelStatus | null;
-  activeOpenWeights: boolean;
+  activeProviders: string[];
+  activeStatuses: ModelStatus[];
+  page: number;
 } {
-  const providers = listProviders(models);
-  const statuses = listStatuses(models);
+  const providers = new Set(listProviders(models).map(String));
+  const statuses = new Set<string>(listStatusFilters(models));
   return {
-    activeProvider: providers.some((p) => String(p) === raw.provider)
-      ? raw.provider
-      : null,
-    activeStatus:
-      statuses.find((s) => s === raw.status) ?? null,
-    activeOpenWeights: raw.weights === "open",
+    activeProviders: parseFacet(raw.provider).filter((p) => providers.has(p)),
+    activeStatuses: parseFacet(raw.status).filter((s): s is ModelStatus =>
+      statuses.has(s),
+    ),
+    page: parsePage(raw.page),
   };
 }

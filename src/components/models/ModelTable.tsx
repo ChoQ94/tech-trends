@@ -30,11 +30,11 @@ export function ModelTable({ models }: { models: Model[] }) {
 
   return (
     <div className="scroll-thin w-full overflow-x-auto rounded-xl border border-border bg-surface">
-      <table className="w-full min-w-[880px] border-collapse text-sm">
+      <table className="w-full min-w-[760px] border-collapse text-sm">
         <caption className="sr-only">
           AI 모델 목록. 프로바이더, OpenRouter가 등재한 날짜, 수명주기 상태,
-          컨텍스트 윈도우, 최대 출력, OpenRouter의 100만 토큰당 가격, 그리고
-          가중치가 공개된 것으로 보이는지 여부를 담고 있습니다.
+          컨텍스트 윈도우, 최대 출력, 그리고 OpenRouter의 100만 토큰당 가격을
+          담고 있습니다.
         </caption>
         <thead className="border-b border-border bg-surface-2">
           <tr>
@@ -77,13 +77,6 @@ export function ModelTable({ models }: { models: Model[] }) {
               title="OpenRouter가 이 모델을 라우팅하는 가격이며, 벤더의 정가와 반드시 같지는 않습니다."
             >
               출력/1M
-            </th>
-            <th
-              scope="col"
-              className={`${TH} text-center`}
-              title="OpenRouter 등재 정보에 HuggingFace id가 있는지로 추정합니다. 라이선스를 확인한 것이 아니라 하나의 신호일 뿐입니다."
-            >
-              가중치
             </th>
           </tr>
         </thead>
@@ -169,30 +162,6 @@ export function ModelTable({ models }: { models: Model[] }) {
                 <td className={`${NUM} text-fg`}>
                   {m.pricing ? formatUSD(m.pricing.output) : DASH}
                 </td>
-                <td className={`${TD} text-center`}>
-                  {m.openWeights ? (
-                    <span
-                      title={
-                        manual
-                          ? "수동으로 기록했습니다."
-                          : "추정: OpenRouter 등재 정보에 HuggingFace id가 있습니다."
-                      }
-                    >
-                      <Badge tone="good">공개</Badge>
-                    </span>
-                  ) : (
-                    <span
-                      className="text-fg-subtle"
-                      title={
-                        manual
-                          ? "수동으로 기록했습니다."
-                          : "OpenRouter 등재 정보에 HuggingFace id가 없습니다 — 공개된 라이선스보다 약한 근거입니다."
-                      }
-                    >
-                      비공개
-                    </span>
-                  )}
-                </td>
               </tr>
             );
           })}
@@ -202,9 +171,7 @@ export function ModelTable({ models }: { models: Model[] }) {
         <span className="text-fg">등재</span>는 OpenRouter가 모델을 등재한
         날짜이지, 벤더가 발표한 날짜가 아닙니다.{" "}
         <span className="text-fg">가격</span>은 OpenRouter의 가격이지, 벤더의
-        정가가 아닙니다. <span className="text-fg">가중치</span>는 등재 정보에
-        HuggingFace id가 있는지로 추정한 것이지, 라이선스를 확인한 결과가
-        아닙니다.
+        정가가 아닙니다.
         {anyVariant ? (
           <>
             {" "}

@@ -17,6 +17,8 @@ import type { Model } from "@/lib/types";
  * everybody, so the only thing the server was doing per request was deciding
  * which subset of a list it had already built to print. That decision now
  * happens here, against the same prerendered list, and the route is static.
+ * Paging is the same kind of decision — a slice of a list the browser already
+ * holds — so it is read from the URL here too rather than on the server.
  *
  * The chips stay real `<Link>` anchors (see FilterBar): the URL is still the
  * filter, still shareable, still deep-linkable, still middle-clickable.
@@ -32,7 +34,7 @@ export function ModelsBrowser({ models }: { models: Model[] }) {
         {
           provider: params.get("provider"),
           status: params.get("status"),
-          weights: params.get("weights"),
+          page: params.get("page"),
         },
         models,
       ),

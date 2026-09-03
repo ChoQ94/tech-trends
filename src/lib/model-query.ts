@@ -71,39 +71,67 @@ export function listStatuses(list: Model[]): ModelStatus[] {
   );
 }
 
-export interface ModelFilter {
-  provider?: string | null;
-  status?: string | null;
-  /** Restrict to models whose weights we believe are downloadable. */
-  openWeights?: boolean;
+/**
+ * Statuses that get a filter chip: those present in the catalog, minus
+ * `unclassified`.
+ *
+ * `unclassified` is not a lifecycle claim, it is the absence of one, and with
+ * OpenRouter as the source it covers almost the whole catalog — a chip for it
+ * offered to filter *in* the default state of nearly every row. The rows are
+ * untouched: they still appear in the unfiltered view and still carry the
+ * 미분류 badge. Only the control is gone, and with it `?status=unclassified`,
+ * which now falls through like any other value the facet does not offer.
+ */
+const HIDDEN_STATUS_FILTERS: ReadonlySet<ModelStatus> = new Set([
+  "unclassified",
+]);
+
+/** The status values the filter row actually offers. Pure; see listProviders. */
+export function listStatusFilters(list: Model[]): ModelStatus[] {
+  return listStatuses(list).filter((s) => !HIDDEN_STATUS_FILTERS.has(s));
 }
 
-function isKnownStatus(value: string): value is ModelStatus {
-  return value in STATUS_ORDER;
+export interface ModelFilter {
+  /**
+   * Providers to keep. Several are OR'd together; an empty or absent list is
+   * not a filter at all.
+   */
+  providers?: readonly string[] | null;
+  /** Statuses to keep, OR'd together and AND'd against the provider facet. */
+  statuses?: readonly string[] | null;
 }
 
 /**
- * Filters are user-supplied query params; unknown values are ignored, which
- * is what makes `?provider=Bogus` fall through to the unfiltered catalog
- * rather than to an empty table.
+ * Filters are user-supplied query params; values the catalog does not offer
+ * are dropped, which is what makes `?provider=Bogus` fall through to the
+ * unfiltered catalog rather than to an empty table. Dropping happens per
+ * value, so `?provider=Bogus,Anthropic` is simply the Anthropic filter.
+ *
+ * Within a facet the surviving values are OR'd; across facets they are AND'd.
+ * A facet left with nothing imposes no restriction, so an all-unknown list
+ * behaves exactly like an absent one.
  *
  * Pure and synchronous, preserving the order of the list handed in — so a
  * caller that passes `getAllModels()` gets the catalog sort back. /models
  * calls this in the browser on every filter change.
  */
 export function selectModels(list: Model[], filter: ModelFilter): Model[] {
-  const provider =
-    filter.provider && list.some((m) => m.provider === filter.provider)
-      ? filter.provider
-      : null;
-  const status =
-    filter.status && isKnownStatus(filter.status) ? filter.status : null;
+  const knownProviders = new Set(list.map((m) => String(m.provider)));
+  const knownStatuses = new Set<string>(listStatusFilters(list));
+
+  const providers = new Set(
+    (filter.providers ?? []).filter((p) => knownProviders.has(p)),
+  );
+  const statuses = new Set(
+    (filter.statuses ?? []).filter((s) => knownStatuses.has(s)),
+  );
+
+  if (providers.size === 0 && statuses.size === 0) return [...list];
 
   return list.filter(
     (m) =>
-      (!provider || m.provider === provider) &&
-      (!status || m.status === status) &&
-      (!filter.openWeights || m.openWeights),
+      (providers.size === 0 || providers.has(String(m.provider))) &&
+      (statuses.size === 0 || statuses.has(m.status)),
   );
 }
 
