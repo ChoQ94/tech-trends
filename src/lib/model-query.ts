@@ -288,3 +288,81 @@ export const STATUS_LABEL: Record<ModelStatus, string> = {
   legacy: "구형",
   deprecated: "지원 종료",
 };
+
+/* -------------------------------------------------------------------------
+ * Provider presets
+ *
+ * Shortcuts that turn on several provider chips at once. Provider names come
+ * from OpenRouter's own listing and are deliberately left uncorrected — x-ai
+ * reads "SpaceXAI" there, for instance — so hard-coding names would let an
+ * upstream rename silently turn a preset into a filter that matches nothing.
+ *
+ * Each preset therefore matches on a punctuation- and case-insensitive key and
+ * is resolved against the providers actually in the catalog. A name that has
+ * moved simply drops out of the preset, and a preset that resolves to nothing
+ * is not offered at all rather than being offered and doing nothing.
+ * ---------------------------------------------------------------------- */
+
+export interface ProviderPreset {
+  id: string;
+  label: string;
+  title: string;
+  /** Normalised provider keys; see providerKey. */
+  match: readonly string[];
+}
+
+/**
+ * These groupings are an editorial convenience, not a claim the data supports
+ * — the catalog carries no notion of "major" or of where a lab sits. They
+ * exist only to save clicks, and are meant to be edited freely.
+ */
+export const PROVIDER_PRESETS: readonly ProviderPreset[] = [
+  {
+    id: "big3",
+    label: "주요 3사",
+    title: "Anthropic, OpenAI, Google을 한 번에 선택합니다.",
+    match: ["anthropic", "openai", "google"],
+  },
+  {
+    id: "open-weights",
+    label: "오픈웨이트 배포사",
+    title:
+      "가중치를 공개해 온 곳들입니다: Meta, DeepSeek, Qwen, Mistral, Z.ai, MoonshotAI, NVIDIA.",
+    match: [
+      "meta",
+      "metallama",
+      "deepseek",
+      "qwen",
+      "mistral",
+      "mistralai",
+      "zai",
+      "moonshotai",
+      "nvidia",
+    ],
+  },
+];
+
+function providerKey(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+/** The providers this preset actually maps onto, in catalog order. */
+export function resolvePreset(
+  preset: ProviderPreset,
+  providers: Provider[],
+): string[] {
+  const want = new Set(preset.match);
+  return providers
+    .map(String)
+    .filter((p) => want.has(providerKey(p)));
+}
+
+/** True when the current selection is exactly this preset, order-insensitively. */
+export function presetIsActive(
+  resolved: readonly string[],
+  active: readonly string[],
+): boolean {
+  if (resolved.length === 0 || resolved.length !== active.length) return false;
+  const set = new Set(active);
+  return resolved.every((p) => set.has(p));
+}

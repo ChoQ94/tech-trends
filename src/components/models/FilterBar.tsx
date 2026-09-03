@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { STATUS_LABEL, STATUS_MEANING } from "@/lib/model-query";
+import {
+  PROVIDER_PRESETS,
+  presetIsActive,
+  resolvePreset,
+  STATUS_LABEL,
+  STATUS_MEANING,
+} from "@/lib/model-query";
 import type { ModelStatus, Provider } from "@/lib/types";
 
 /**
@@ -121,6 +127,35 @@ export function FilterBar({
 }) {
   return (
     <div className="flex flex-col gap-3">
+      <FilterRow label="프리셋">
+        {PROVIDER_PRESETS.map((preset) => {
+          const resolved = resolvePreset(preset, providers);
+          // A preset none of whose providers are in the catalog would be a
+          // button that visibly does nothing, so it is not rendered.
+          if (resolved.length === 0) return null;
+          const on = presetIsActive(resolved, activeProviders);
+          return (
+            <Chip
+              key={preset.id}
+              href={buildModelsHref({
+                // Clicking it again clears the selection, the way an active
+                // chip does, rather than re-applying what is already on.
+                providers: on ? [] : resolved,
+                statuses: activeStatuses,
+              })}
+              active={on}
+              title={preset.title}
+              count={resolved.reduce(
+                (n, p) => n + (providerCounts.get(p) ?? 0),
+                0,
+              )}
+            >
+              {preset.label}
+            </Chip>
+          );
+        })}
+      </FilterRow>
+
       <FilterRow label="프로바이더">
         <Chip
           href={buildModelsHref({ statuses: activeStatuses })}
@@ -129,6 +164,7 @@ export function FilterBar({
         >
           전체
         </Chip>
+
         {providers.map((p) => (
           <Chip
             key={String(p)}
