@@ -11,15 +11,15 @@ import type { TrendingWindow } from "@/lib/types";
 export const revalidate = 21600;
 
 export const metadata = {
-  title: "GitHub Trending",
+  title: "GitHub 트렌딩",
   description:
-    "New and fast-moving GitHub repositories, derived from the GitHub Search API.",
+    "GitHub Search API로 뽑아낸, 새로 생겼거나 빠르게 움직이는 GitHub 저장소입니다.",
 };
 
 const WINDOW_PHRASE: Record<TrendingWindow, string> = {
-  daily: "in the last day",
-  weekly: "in the last 7 days",
-  monthly: "in the last 30 days",
+  daily: "최근 하루",
+  weekly: "최근 7일",
+  monthly: "최근 30일",
 };
 
 function ErrorBanner({ message }: { message: string }) {
@@ -49,14 +49,14 @@ export default async function GitHubPage({
 
   // Both lists hit the same API, so one banner covers the page.
   const error = fresh.error ?? momentum.error;
-  const scope = language ? `${language} repositories` : "repositories";
+  const scope = language ? `${language} 저장소` : "저장소";
   const phrase = WINDOW_PHRASE[window];
 
   return (
     <div>
       <SectionHeader
-        title="GitHub Trending"
-        subtitle="GitHub publishes no official trending API, so these lists approximate it with the GitHub Search API: repositories are ranked by total stars within a creation or push window, not by stars gained. Treat the ordering as a proxy, not as GitHub's own trending page."
+        title="GitHub 트렌딩"
+        subtitle="GitHub은 공식 트렌딩 API를 제공하지 않습니다. 그래서 이 목록은 GitHub Search API로 근사한 결과입니다. 생성 또는 푸시 기간 안에서 늘어난 스타가 아니라 누적 스타로 순위를 매깁니다. 이 순서는 GitHub 자체 트렌딩 페이지가 아니라 그 대용이라고 보시기 바랍니다."
       />
 
       <div className="mt-6">
@@ -71,20 +71,20 @@ export default async function GitHubPage({
 
       <div className="mt-8 space-y-10">
         <RepoList
-          title="New & Rising"
-          subtitle={`${scope} created ${phrase}, ranked by stars.`}
+          title="신규·급상승"
+          subtitle={`${phrase} 동안 생성된 ${scope}를 스타 수 순으로 나열했습니다.`}
           result={fresh}
         />
         <RepoList
-          title="Most Starred, Actively Maintained"
-          subtitle={`Established ${scope} (1,000+ stars) pushed to ${phrase}, ranked by stars.`}
+          title="스타 많고 지금도 관리되는 저장소"
+          subtitle={`스타 1,000개 이상인 기존 ${scope} 중 ${phrase} 안에 푸시된 것을 스타 수 순으로 나열했습니다.`}
           result={momentum}
         />
       </div>
 
       <p className="mt-8 text-xs text-fg-subtle">
-        Source: GitHub Search API. Cached for six hours. Star deltas are not
-        exposed by this API and are therefore omitted.
+        출처는 GitHub Search API이고 6시간 동안 캐시합니다. 기간별 스타 증감은 이
+        API가 제공하지 않으므로 표시하지 않습니다.
       </p>
     </div>
   );

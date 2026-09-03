@@ -79,22 +79,22 @@ export function ModelsSection({
 
         <div className="flex items-baseline justify-between gap-3">
           <p className="text-xs text-fg-subtle">
-            Showing{" "}
-            <span className="font-mono tabular-nums text-fg-muted">
-              {rows.length}
-            </span>{" "}
-            of{" "}
+            모델{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {models.length}
-            </span>{" "}
-            models
+            </span>
+            개 중{" "}
+            <span className="font-mono tabular-nums text-fg-muted">
+              {rows.length}
+            </span>
+            개 표시
           </p>
           {activeProvider || activeStatus || activeOpenWeights ? (
             <Link
               href={buildModelsHref({})}
               className="text-xs text-accent hover:underline"
             >
-              Clear filters
+              필터 해제
             </Link>
           ) : null}
         </div>
@@ -103,8 +103,8 @@ export function ModelsSection({
           <ModelTable models={rows} />
         ) : (
           <Empty>
-            No models match this filter. Try clearing the provider, status or
-            weights chip.
+            이 필터에 해당하는 모델이 없습니다. 프로바이더, 상태, 가중치 칩을
+            해제해 보십시오.
           </Empty>
         )}
       </section>
@@ -112,17 +112,18 @@ export function ModelsSection({
       {families.length > 0 ? (
         <section>
           <SectionHeader
-            title="Families"
-            subtitle="Ids sharing a name stem, so a model and its variants do not read as unrelated rows. No succession is implied — the source publishes none."
+            title="패밀리"
+            subtitle="이름 앞부분이 같은 id를 묶었습니다. 모델과 그 변형이 서로 무관한 행처럼 보이지 않게 하기 위한 것입니다. 계승 관계를 뜻하지는 않습니다 — 출처가 그런 정보를 제공하지 않습니다."
           />
           <Families families={families} limit={12} />
           {families.length > 12 ? (
             <p className="mt-3 text-xs text-fg-subtle">
-              Showing the 12 largest of{" "}
+              이 화면의 패밀리{" "}
               <span className="font-mono tabular-nums text-fg-muted">
                 {families.length}
-              </span>{" "}
-              families in this view. Filter by provider to see the rest.
+              </span>
+              개 중 규모가 큰 12개만 표시합니다. 나머지는 프로바이더로 필터하면 볼 수
+              있습니다.
             </p>
           ) : null}
         </section>

@@ -95,7 +95,7 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
     if (!res.ok) {
       return fallbackResult(
         SOURCE_ID,
-        `swebench.com returned HTTP ${res.status} ${res.statusText}.`,
+        `swebench.com이 HTTP ${res.status} ${res.statusText}을(를) 반환했습니다.`,
       );
     }
     html = await res.text();
@@ -103,7 +103,7 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not reach swebench.com — ${reason}.`,
+      `swebench.com에 연결하지 못했습니다 — ${reason}.`,
     );
   }
 
@@ -126,7 +126,7 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
     if (!Array.isArray(splits)) {
       return fallbackResult(
         SOURCE_ID,
-        "swebench.com's embedded leaderboard data is no longer a list of splits.",
+        "swebench.com에 묻힌 리더보드 데이터가 더 이상 split 목록이 아닙니다.",
       );
     }
 
@@ -137,14 +137,14 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
       // Deliberately no silent substitution: Verified measures something else.
       return fallbackResult(
         SOURCE_ID,
-        `swebench.com no longer publishes a "${SPLIT}" split — the other splits are not comparable, so nothing was substituted.`,
+        `swebench.com이 더 이상 "${SPLIT}" split을 공개하지 않습니다. 다른 split은 비교할 수 없어서 대체하지 않았습니다.`,
       );
     }
     const rows = split.results;
     if (!Array.isArray(rows)) {
       return fallbackResult(
         SOURCE_ID,
-        `The "${SPLIT}" split on swebench.com no longer carries a results list.`,
+        `swebench.com의 "${SPLIT}" split에 결과 목록이 더 이상 없습니다.`,
       );
     }
 
@@ -155,7 +155,7 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
       if (!row) {
         return fallbackResult(
           SOURCE_ID,
-          `A row in the "${SPLIT}" split is not an object — swebench.com's data shape has changed.`,
+          `"${SPLIT}" split의 한 행이 객체가 아닙니다. swebench.com의 데이터 구조가 바뀌었습니다.`,
         );
       }
       const name = asNonEmptyString(row.name);
@@ -163,13 +163,13 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
       if (!name || resolved === null) {
         return fallbackResult(
           SOURCE_ID,
-          `A row in the "${SPLIT}" split is missing its name or resolved rate — swebench.com's data shape has changed.`,
+          `"${SPLIT}" split의 한 행에 이름 또는 해결률이 없습니다. swebench.com의 데이터 구조가 바뀌었습니다.`,
         );
       }
       if (resolved < 0 || resolved > 100) {
         return fallbackResult(
           SOURCE_ID,
-          `A resolved rate of ${resolved} on swebench.com is not a percentage — the column may have changed units.`,
+          `swebench.com의 해결률 ${resolved}은(는) 백분율이 아닙니다. 열의 단위가 바뀌었을 수 있습니다.`,
         );
       }
       parsed.push({ name, resolved, date: asNonEmptyString(row.date) });
@@ -178,7 +178,7 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
     if (parsed.length < MIN_ENTRIES) {
       return fallbackResult(
         SOURCE_ID,
-        `Only ${parsed.length} rows parsed out of the "${SPLIT}" split; expected at least ${MIN_ENTRIES}.`,
+        `"${SPLIT}" split에서 ${parsed.length}행만 해석했습니다. 최소 ${MIN_ENTRIES}행을 기대했습니다.`,
       );
     }
 
@@ -222,7 +222,7 @@ export async function fetch_swebench(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not read the SWE-bench payload — ${reason}.`,
+      `SWE-bench 페이로드를 읽지 못했습니다 — ${reason}.`,
     );
   }
 }

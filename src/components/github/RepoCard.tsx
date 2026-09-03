@@ -101,14 +101,14 @@ export function RepoCard({ repo, rank }: { repo: TrendingRepo; rank?: number }) 
               {repo.language}
             </span>
           ) : null}
-          <MetaItem label="stars" value={formatCompact(repo.stars)} />
-          <MetaItem label="forks" value={formatCompact(repo.forks)} />
-          <MetaItem label="issues" value={formatCompact(repo.openIssues)} />
-          <span className="text-fg-subtle" title={`Created ${repo.createdAt}`}>
-            created {relativeTime(repo.createdAt)}
+          <MetaItem label="스타" value={formatCompact(repo.stars)} />
+          <MetaItem label="포크" value={formatCompact(repo.forks)} />
+          <MetaItem label="이슈" value={formatCompact(repo.openIssues)} />
+          <span className="text-fg-subtle" title={`생성 ${repo.createdAt}`}>
+            생성 {relativeTime(repo.createdAt)}
           </span>
-          <span className="text-fg-subtle" title={`Pushed ${repo.pushedAt}`}>
-            pushed {relativeTime(repo.pushedAt)}
+          <span className="text-fg-subtle" title={`푸시 ${repo.pushedAt}`}>
+            푸시 {relativeTime(repo.pushedAt)}
           </span>
         </div>
 

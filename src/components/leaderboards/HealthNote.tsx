@@ -11,10 +11,17 @@ const HEALTH_TONE: Record<SourceHealth, BadgeTone> = {
   unavailable: "bad",
 };
 
+/** Display label per health state. The enum value itself is unchanged. */
+export const HEALTH_LABEL: Record<SourceHealth, string> = {
+  live: "실시간",
+  stale: "스냅샷",
+  unavailable: "없음",
+};
+
 export const HEALTH_TITLE: Record<SourceHealth, string> = {
-  live: "Fetched successfully the last time this page was rebuilt.",
-  stale: "The live fetch failed. These numbers come from a snapshot committed to the repo.",
-  unavailable: "The live fetch failed and no snapshot is committed, so there is nothing to show.",
+  live: "이 페이지를 마지막으로 다시 빌드했을 때 성공적으로 가져왔습니다.",
+  stale: "실시간 가져오기가 실패했습니다. 이 숫자들은 저장소에 커밋된 스냅샷에서 나온 것입니다.",
+  unavailable: "실시간 가져오기가 실패했고 커밋된 스냅샷도 없어서 보여줄 것이 없습니다.",
 };
 
 /**
@@ -48,13 +55,13 @@ export function HealthBadge({ health }: { health: SourceHealth }) {
   return (
     <Badge tone={HEALTH_TONE[health]} title={HEALTH_TITLE[health]}>
       <HealthDot health={health} className="h-2 w-2" />
-      {health}
+      {HEALTH_LABEL[health]}
     </Badge>
   );
 }
 
 function Timestamp({ value }: { value: string | null }) {
-  if (!value) return <span className="text-fg-subtle">not published</span>;
+  if (!value) return <span className="text-fg-subtle">미공개</span>;
   return (
     <span className="font-mono tabular-nums text-fg">
       {formatDate(value)}{" "}
@@ -74,14 +81,14 @@ export function HealthNote({ result }: { result: LeaderboardResult }) {
   const timestamps = (
     <dl className="grid grid-cols-1 gap-x-6 gap-y-1 text-xs sm:grid-cols-2">
       <div className="flex flex-wrap items-baseline gap-x-2">
-        <dt className="text-fg-subtle">Board last changed upstream</dt>
+        <dt className="text-fg-subtle">원본 최종 변경</dt>
         <dd>
           <Timestamp value={upstreamUpdatedAt} />
         </dd>
       </div>
       <div className="flex flex-wrap items-baseline gap-x-2">
         <dt className="text-fg-subtle">
-          {health === "stale" ? "Snapshot captured" : "Retrieved by us"}
+          {health === "stale" ? "스냅샷 캡처 시점" : "가져온 시각"}
         </dt>
         <dd>
           <Timestamp value={retrievedAt} />
@@ -103,8 +110,8 @@ export function HealthNote({ result }: { result: LeaderboardResult }) {
     <div className={`mt-3 rounded-lg border px-3 py-2 ${tone}`}>
       <p className="text-xs font-medium">
         {health === "stale"
-          ? "Live fetch failed — showing a snapshot committed to this repo, not current data."
-          : "Live fetch failed and no snapshot is committed — nothing to show."}
+          ? "실시간 가져오기 실패 — 현재 데이터가 아니라 이 저장소에 커밋된 스냅샷을 보여주고 있습니다."
+          : "실시간 가져오기가 실패했고 커밋된 스냅샷도 없습니다 — 보여줄 것이 없습니다."}
       </p>
       {error ? (
         <p className="mt-1 break-words font-mono text-[11px] leading-4 text-fg-muted">

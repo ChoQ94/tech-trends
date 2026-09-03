@@ -187,7 +187,7 @@ export async function fetch_arcprize(): Promise<LeaderboardResult> {
             rank: rank + 1,
             modelId: human ? null : resolveModelId(row, index),
             modelName: human
-              ? `${row.modelDisplayName} — human baseline, not a model`
+              ? `${row.modelDisplayName} — 모델이 아니라 사람 기준선`
               : row.modelDisplayName,
             // The payload scores 0..1; the board's unit is a percentage.
             // Rounded only to drop float noise (0.3016 * 100), not precision.
@@ -212,7 +212,7 @@ export async function fetch_arcprize(): Promise<LeaderboardResult> {
     if (failures.length > 0 || boards.length !== BOARDS.length) {
       return fallbackResult(
         SOURCE_ID,
-        failures.join(" ") || "ARC Prize returned no usable boards.",
+        failures.join(" ") || "ARC Prize가 쓸 수 있는 보드를 반환하지 않았습니다.",
       );
     }
 
@@ -221,7 +221,7 @@ export async function fetch_arcprize(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not parse the ARC Prize leaderboard data: ${reason}`,
+      `ARC Prize 리더보드 데이터를 해석하지 못했습니다: ${reason}`,
     );
   }
 }

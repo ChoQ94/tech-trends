@@ -266,13 +266,13 @@ export async function fetch_terminalbench(): Promise<LeaderboardResult> {
     if (!res.ok) {
       return fallbackResult(
         SOURCE_ID,
-        `tbench.ai returned HTTP ${res.status} ${res.statusText}.`,
+        `tbench.ai가 HTTP ${res.status} ${res.statusText}을(를) 반환했습니다.`,
       );
     }
     html = await res.text();
   } catch (cause) {
     const reason = cause instanceof Error ? cause.message : "unknown error";
-    return fallbackResult(SOURCE_ID, `Could not reach tbench.ai — ${reason}.`);
+    return fallbackResult(SOURCE_ID, `tbench.ai에 연결하지 못했습니다 — ${reason}.`);
   }
 
   try {
@@ -280,7 +280,7 @@ export async function fetch_terminalbench(): Promise<LeaderboardResult> {
     if (!payload) {
       return fallbackResult(
         SOURCE_ID,
-        "No Next.js RSC payload in the tbench.ai page — the site's rendering may have changed.",
+        "tbench.ai 페이지에 Next.js RSC 페이로드가 없습니다. 사이트 렌더링 방식이 바뀌었을 수 있습니다.",
       );
     }
 
@@ -292,7 +292,7 @@ export async function fetch_terminalbench(): Promise<LeaderboardResult> {
     if (!parsed.length) {
       return fallbackResult(
         SOURCE_ID,
-        "Could not find the embedded Terminal-Bench leaderboard payload — tbench.ai markup may have changed.",
+        "페이지에 묻힌 Terminal-Bench 리더보드 페이로드를 찾지 못했습니다. tbench.ai 마크업이 바뀌었을 수 있습니다.",
       );
     }
 
@@ -304,7 +304,7 @@ export async function fetch_terminalbench(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not read the Terminal-Bench payload — ${reason}.`,
+      `Terminal-Bench 페이로드를 읽지 못했습니다 — ${reason}.`,
     );
   }
 }

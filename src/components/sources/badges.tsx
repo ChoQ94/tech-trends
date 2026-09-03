@@ -12,9 +12,9 @@ const CREDIBILITY_TONE: Record<Credibility, BadgeTone> = {
 };
 
 const CREDIBILITY_LABEL: Record<Credibility, string> = {
-  high: "high credibility",
-  medium: "medium credibility",
-  caveated: "caveated",
+  high: "신뢰도 높음",
+  medium: "신뢰도 보통",
+  caveated: "신뢰도 유보",
 };
 
 export function CredibilityBadge({
@@ -40,13 +40,13 @@ export const FETCH_KIND_LABEL: Record<FetchKind, string> = {
 };
 
 export const FETCH_KIND_EXPLAINER: Record<FetchKind, string> = {
-  "json-api": "A JSON endpoint the operator publishes for callers.",
-  "static-json": "A static JSON file the site publishes next to the page.",
-  csv: "A downloadable CSV the operator publishes.",
+  "json-api": "운영 주체가 호출자를 위해 공개한 JSON 엔드포인트입니다.",
+  "static-json": "사이트가 페이지 옆에 함께 올려 두는 정적 JSON 파일입니다.",
+  csv: "운영 주체가 공개하는 내려받기용 CSV입니다.",
   "scrape-embedded-json":
-    "JSON we dig out of the page's HTML. Not a published interface — a redesign breaks it silently.",
+    "페이지 HTML 속에서 캐낸 JSON입니다. 공개된 인터페이스가 아니라서, 화면이 개편되면 아무 소리 없이 깨집니다.",
   "scrape-html":
-    "Numbers parsed out of rendered markup. The most fragile kind — a redesign breaks it silently.",
+    "렌더링된 마크업에서 파싱해 낸 숫자입니다. 가장 취약한 방식이고, 화면이 개편되면 아무 소리 없이 깨집니다.",
 };
 
 export function FetchKindBadge({ kind }: { kind: FetchKind }) {
@@ -64,9 +64,9 @@ export function FragileBadge({ source }: { source: LeaderboardSource }) {
   return (
     <Badge
       tone="warn"
-      title={`Scraped, not an API: ${FETCH_KIND_EXPLAINER[source.fetchKind]} These numbers can silently stop updating.`}
+      title={`API가 아니라 스크레이핑입니다: ${FETCH_KIND_EXPLAINER[source.fetchKind]} 이 수치들은 조용히 갱신을 멈출 수 있습니다.`}
     >
-      scraped
+      스크레이핑
     </Badge>
   );
 }

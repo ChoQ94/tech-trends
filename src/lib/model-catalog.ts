@@ -284,6 +284,10 @@ export function getIdMapSize(): number {
  * Models OpenRouter has no listing for — restricted-access or retired — kept
  * so that dropping the curated file does not silently delete them. Marked
  * `manual` everywhere they surface, because nothing refreshes them.
+ *
+ * This is a file in this repository, so it is merged in `withSupplement`,
+ * past the cache boundary. Editing it must take effect on the next build;
+ * see the note on `LiveCatalogData` for what happens when it does not.
  */
 export const SUPPLEMENT_MODELS: Model[] = (
   Array.isArray(supplementRaw) ? (supplementRaw as unknown as Model[]) : []
@@ -311,10 +315,40 @@ export interface CatalogCounts {
 }
 
 /**
- * What actually goes through the cache. It has to be plain JSON: whatever
- * `unstable_cache` holds is serialised, so a `Map` handed to it comes back a
- * bare object with no `.has()` — which is exactly how this first broke.
+ * What actually goes through the cache: OpenRouter's answer, normalised, and
+ * nothing else.
+ *
+ * Two rules govern this shape, and both are scars.
+ *
+ * It has to be plain JSON, because whatever `unstable_cache` holds is
+ * serialised — a `Map` handed to it comes back a bare object with no
+ * `.has()`, which is exactly how this first broke.
+ *
+ * It also has to be *remote*. `unstable_cache` keys on the function identity
+ * and the key array, never on the bytes of a file, and Next persists the
+ * entry across requests, builds and deployments alike — Vercel restores
+ * `.next/cache` between deploys. So a file committed to this repository that
+ * is folded in on the far side of this boundary is frozen for a whole TTL
+ * window: editing data/models-supplement.json changed nothing for six hours,
+ * a rebuild and a deploy included, and the only cure was deleting
+ * `.next/cache/fetch-cache` by hand. A data-only commit could ship green and
+ * still serve the old strings. That merge now happens in `withSupplement`,
+ * on this side of the cache, so an edit lands on the next build.
+ *
+ * The OpenRouter fetch stays cached, because that is the part the cache is
+ * for: one request per window for every visitor, rather than one per view.
  */
+interface LiveCatalogData {
+  models: Model[];
+  live: boolean;
+  /** When the data being shown was actually fetched. */
+  retrievedAt: string;
+  error: string | null;
+  /** `supplement` is counted past the cache boundary; see `withSupplement`. */
+  counts: Omit<CatalogCounts, "supplement">;
+}
+
+/** The catalog the app sees: the cached live rows plus the committed five. */
 export interface CatalogData {
   models: Model[];
   live: boolean;
@@ -461,7 +495,7 @@ function indexById(models: Model[]): Map<string, Model> {
  * field null, marked `id-map` so nothing here can be mistaken for a fetched
  * figure.
  */
-function degraded(error: string): CatalogData {
+function degraded(error: string): LiveCatalogData {
   const stubs: Model[] = ID_MAP_ENTRIES.map((e) => ({
     id: e.openRouterId,
     name: e.oldName || e.openRouterId,
@@ -482,7 +516,7 @@ function degraded(error: string): CatalogData {
   }));
 
   return {
-    models: [...stubs, ...SUPPLEMENT_MODELS],
+    models: stubs,
     live: false,
     retrievedAt: new Date().toISOString(),
     error,
@@ -491,13 +525,12 @@ function degraded(error: string): CatalogData {
       variantsFolded: 0,
       aliasPointers: 0,
       live: 0,
-      supplement: SUPPLEMENT_MODELS.length,
       aliased: stubs.length,
     },
   };
 }
 
-async function fetchCatalogUncached(): Promise<CatalogData> {
+async function fetchCatalogUncached(): Promise<LiveCatalogData> {
   try {
     const res = await fetch(CATALOG_ENDPOINT, {
       headers: { accept: "application/json" },
@@ -506,22 +539,22 @@ async function fetchCatalogUncached(): Promise<CatalogData> {
       cache: "no-store",
     });
     if (!res.ok) {
-      return degraded(`OpenRouter returned HTTP ${res.status}.`);
+      return degraded(`OpenRouter가 HTTP ${res.status}을(를) 반환했습니다.`);
     }
     const { models, counts } = normalizeCatalog(await res.json());
     if (models.length === 0) {
-      return degraded("OpenRouter returned no usable models.");
+      return degraded("OpenRouter가 쓸 수 있는 모델을 반환하지 않았습니다.");
     }
     return {
-      models: [...models, ...SUPPLEMENT_MODELS],
+      models,
       live: true,
       retrievedAt: new Date().toISOString(),
       error: null,
-      counts: { ...counts, supplement: SUPPLEMENT_MODELS.length },
+      counts,
     };
   } catch (cause) {
     const reason = cause instanceof Error ? cause.message : "unknown error";
-    return degraded(`Could not reach OpenRouter: ${reason}`);
+    return degraded(`OpenRouter에 연결하지 못했습니다: ${reason}`);
   }
 }
 
@@ -534,21 +567,43 @@ async function fetchCatalogUncached(): Promise<CatalogData> {
  * the cache read, so the page reports when the numbers were obtained rather
  * than implying they are seconds old — the same rule the boards follow in
  * src/lib/leaderboards.ts.
+ *
+ * The key says `-live` because that is now all this holds: the rows
+ * OpenRouter served. The committed supplement is merged past it.
  */
 const cachedFetchCatalog = unstable_cache(
   fetchCatalogUncached,
-  ["openrouter-model-catalog"],
+  ["openrouter-model-catalog-live"],
   { revalidate: CATALOG_TTL_SECONDS, tags: ["model-catalog"] },
 );
 
 /**
- * The catalog, with its lookup map rebuilt on this side of the cache.
+ * The five committed models, folded in on this side of the cache.
+ *
+ * Read at module scope from data/models-supplement.json, which means the
+ * value the bundle carries is whatever the file said at build time — and
+ * because nothing here is memoised by `unstable_cache`, that is what every
+ * build serves. Live rows come first so that an id present in both resolves
+ * to the fetched row, which is the order the merge has always had.
+ */
+function withSupplement(data: LiveCatalogData): CatalogData {
+  return {
+    ...data,
+    models: [...data.models, ...SUPPLEMENT_MODELS],
+    counts: { ...data.counts, supplement: SUPPLEMENT_MODELS.length },
+  };
+}
+
+/**
+ * The catalog, with the supplement merged and its lookup map rebuilt on this
+ * side of the cache.
  *
  * `cache` is React's per-request memo, so the several callers a single page
  * has — the table, the matrix, each leaderboard card — share one map rather
- * than rebuilding it apiece.
+ * than rebuilding it apiece. The merge rides along inside it, so the five
+ * rows are appended once per request, not once per caller.
  */
 export const fetchCatalog = cache(async (): Promise<Catalog> => {
-  const data = await cachedFetchCatalog();
+  const data = withSupplement(await cachedFetchCatalog());
   return { ...data, map: indexById(data.models) };
 });

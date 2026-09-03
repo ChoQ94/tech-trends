@@ -53,7 +53,7 @@ export function SourceEntry({ source }: { source: LeaderboardSource }) {
       </div>
 
       <dl className="mt-3 divide-y divide-border border-t border-border">
-        <Field label="Page">
+        <Field label="페이지">
           <a
             href={source.url}
             target="_blank"
@@ -63,46 +63,46 @@ export function SourceEntry({ source }: { source: LeaderboardSource }) {
             {source.url}
           </a>
         </Field>
-        <Field label="Endpoint we call" mono>
+        <Field label="호출하는 엔드포인트" mono>
           <span className="break-all text-fg">{source.endpoint}</span>
         </Field>
-        <Field label="Method">
+        <Field label="메서드">
           <span className="font-mono text-fg">{source.method}</span>
         </Field>
-        <Field label="Fetch kind">
+        <Field label="수집 방식">
           <span className="font-mono text-fg">{source.fetchKind}</span>
           <span className="text-fg-subtle">
             {" "}
             — {FETCH_KIND_EXPLAINER[source.fetchKind]}
           </span>
         </Field>
-        <Field label="Auth">
+        <Field label="인증">
           {source.requiresAuth ? (
             <span className="text-warn">
-              Requires a key we do not ship, so this source cannot be fetched
-              from a clean checkout.
+              저장소에 넣어 두지 않은 키가 필요합니다. 그래서 새로 받은
+              체크아웃에서는 이 출처를 가져올 수 없습니다.
             </span>
           ) : (
-            "None. No key, no account."
+            "필요 없습니다. 키도 계정도 쓰지 않습니다."
           )}
         </Field>
-        <Field label="Licence">
+        <Field label="라이선스">
           {source.license ?? (
             <span className="text-fg-subtle">
-              {DASH} not stated by the operator
+              {DASH} 운영 주체가 밝히지 않음
             </span>
           )}
         </Field>
-        <Field label="Cadence">{source.cadence}</Field>
-        <Field label="Unit">
+        <Field label="갱신 주기">{source.cadence}</Field>
+        <Field label="단위">
           <span className="font-mono text-fg">{source.unit}</span>
         </Field>
-        <Field label="Credibility">{source.credibilityNote}</Field>
+        <Field label="신뢰도">{source.credibilityNote}</Field>
       </dl>
 
       {source.conflictOfInterest ? (
         <div className="mt-3">
-          <Callout label="Conflict of interest" tone="warn">
+          <Callout label="이해충돌" tone="warn">
             {source.conflictOfInterest}
           </Callout>
         </div>
@@ -113,7 +113,7 @@ export function SourceEntry({ source }: { source: LeaderboardSource }) {
           href={`/leaderboards?source=${encodeURIComponent(source.id)}`}
           className="text-accent hover:underline"
         >
-          See this source&rsquo;s boards →
+          이 출처의 보드 보기 →
         </Link>
       </p>
     </Card>

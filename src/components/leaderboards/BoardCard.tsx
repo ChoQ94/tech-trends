@@ -95,30 +95,30 @@ export function BoardCard({
           {board.name}
         </h4>
         <div className="flex shrink-0 items-center gap-2">
-          {stale ? <Badge tone="warn">snapshot</Badge> : null}
+          {stale ? <Badge tone="warn">스냅샷</Badge> : null}
           <a
             href={board.url || source.url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-accent hover:underline"
           >
-            Board ↗
+            보드 ↗
           </a>
         </div>
       </div>
 
       <p className="mt-0.5 text-[11px] text-fg-subtle">
-        Board updated{" "}
+        보드 갱신{" "}
         <span className="font-mono tabular-nums text-fg-muted">
           {formatDate(board.updatedAt)}
         </span>
         <span aria-hidden> · </span>
-        scores in <span className="text-fg-muted">{source.unit}</span>
+        점수 단위 <span className="text-fg-muted">{source.unit}</span>
       </p>
 
       {shown.length === 0 ? (
         <p className="mt-4 rounded-lg border border-dashed border-border px-3 py-4 text-center text-xs text-fg-muted">
-          This board returned no rows.
+          이 보드는 행을 하나도 반환하지 않았습니다.
         </p>
       ) : (
         <ol className="mt-4 space-y-2.5">
@@ -137,7 +137,7 @@ export function BoardCard({
                     {tied[i] ? (
                       <span
                         className="text-warn"
-                        title="Confidence interval overlaps a neighbour — the ordering between them is not statistically meaningful."
+                        title="신뢰구간이 옆 행과 겹칩니다 — 두 행 사이의 순서는 통계적으로 의미가 없습니다."
                       >
                         *
                       </span>
@@ -173,7 +173,7 @@ export function BoardCard({
                   {anyCost ? (
                     <span
                       className="hidden w-16 shrink-0 text-right font-mono tabular-nums text-fg-subtle sm:inline"
-                      title="Cost per task, as reported by the board."
+                      title="보드가 보고한 작업당 비용입니다."
                     >
                       {typeof e.costPerTask === "number"
                         ? formatUSD(e.costPerTask)
@@ -225,34 +225,35 @@ export function BoardCard({
       <div className="mt-auto space-y-1 pt-3 text-[11px] text-fg-subtle">
         {stale ? (
           <p>
-            Hatched bars, and this card&rsquo;s dashed edge, mean the figures
-            come from a committed snapshot rather than a live fetch.
+            빗금 막대와 이 카드의 점선 테두리는 수치가 실시간 가져오기가 아니라
+            커밋된 스냅샷에서 나왔다는 뜻입니다.
           </p>
         ) : null}
         {entries.length > shown.length ? (
           <p>
-            Showing top{" "}
-            <span className="font-mono tabular-nums">{shown.length}</span> of{" "}
-            <span className="font-mono tabular-nums">{entries.length}</span>{" "}
-            entries.{" "}
+            전체{" "}
+            <span className="font-mono tabular-nums">{entries.length}</span>개
+            항목 중 상위{" "}
+            <span className="font-mono tabular-nums">{shown.length}</span>개를
+            표시합니다.{" "}
             <a
               href={board.url || source.url}
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:underline"
             >
-              Full board ↗
+              전체 보드 ↗
             </a>
           </p>
         ) : null}
         {anyCost ? (
-          <p>The middle column is cost per task in USD, as the board reports it.</p>
+          <p>가운데 열은 보드가 보고한 작업당 비용(USD)입니다.</p>
         ) : null}
         {anyTied ? (
           <p>
-            <span className="text-warn">*</span> Confidence intervals overlap a
-            neighbour. Those rows are statistically tied; the rank order between
-            them is not a real ordering.
+            <span className="text-warn">*</span> 신뢰구간이 옆 행과 겹칩니다. 그
+            행들은 통계적으로 동률이며, 그 사이의 순위 순서는 실제 순서가
+            아닙니다.
           </p>
         ) : null}
       </div>

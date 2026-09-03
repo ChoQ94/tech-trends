@@ -21,14 +21,14 @@ export const LEADERBOARD_SOURCES: readonly LeaderboardSource[] = [
     requiresAuth: false,
     license: "CC BY 4.0",
     measures:
-      "Tokens processed per model through the OpenRouter API, in weekly buckets.",
+      "OpenRouter API를 거쳐 모델별로 처리된 tokens을 주 단위로 묶어 집계한 수치입니다.",
     unit: "tokens",
     credibility: "caveated",
     credibilityNote:
-      "The only board here measuring revealed preference rather than a score — you cannot game it without paying for the tokens. But it is not a quality ranking: it is dominated by cheap and free models, and Claude traffic largely does not route through OpenRouter, so Anthropic barely registers. Read it as a price and distribution signal.",
+      "여기 있는 보드 중 점수가 아니라 드러난 선호를 측정하는 유일한 보드입니다. tokens 값을 치르지 않고는 조작할 수 없습니다. 다만 품질 순위는 아닙니다. 저가 모델과 무료 모델이 순위를 장악하고 있고, Claude 트래픽은 대부분 OpenRouter를 거치지 않아 Anthropic은 거의 잡히지 않습니다. 가격과 유통 경로를 알려 주는 신호로 읽어야 합니다.",
     conflictOfInterest:
-      "OpenRouter is a paid router that earns on the traffic it ranks.",
-    cadence: "Weekly buckets, updated daily.",
+      "OpenRouter는 자신이 순위를 매기는 그 트래픽에서 수익을 얻는 유료 라우터입니다.",
+    cadence: "주 단위로 묶어 매일 갱신합니다.",
   },
   {
     id: "arc-prize",
@@ -40,13 +40,13 @@ export const LEADERBOARD_SOURCES: readonly LeaderboardSource[] = [
     requiresAuth: false,
     license: null,
     measures:
-      "Abstract visual reasoning against a semi-private evaluation set, with cost per task and a human panel baseline.",
+      "일부만 공개된(semi-private) 평가셋에 대한 추상 시각 추론을 측정합니다. 과제당 비용과 사람 패널 기준선을 함께 제공합니다.",
     unit: "% solved",
     credibility: "high",
     credibilityNote:
-      "Structurally contamination-resistant: the ranked set is semi-private and never published. Run by a nonprofit with no lab affiliation, reports cost per task as a first-class axis, and includes a human baseline. The standing critique is that abstract visual reasoning correlates only loosely with practical usefulness.",
+      "구조적으로 오염에 강합니다. 순위 산정에 쓰는 평가셋은 일부만 공개되며 전부 공개된 적이 없습니다. 특정 연구소에 속하지 않은 비영리 단체가 운영하고, 과제당 비용을 일급 축으로 보고하며, 사람 기준선도 포함합니다. 다만 추상 시각 추론이 실용적 유용성과는 느슨하게만 상관한다는 비판이 계속 따라붙습니다.",
     conflictOfInterest: null,
-    cadence: "Irregular; the payload carries its own generatedAt.",
+    cadence: "비정기적입니다. 페이로드에 자체 generatedAt이 들어 있습니다.",
   },
   {
     id: "epoch-eci",
@@ -58,13 +58,13 @@ export const LEADERBOARD_SOURCES: readonly LeaderboardSource[] = [
     requiresAuth: false,
     license: "CC BY",
     measures:
-      "A latent-variable composite fit across 50+ benchmarks, designed to survive the saturation of any single one.",
+      "50개가 넘는 벤치마크에 걸쳐 적합시킨 잠재변수 종합 지표입니다. 어느 한 벤치마크가 포화되더라도 견디도록 설계되었습니다.",
     unit: "ECI",
     credibility: "high",
     credibilityNote:
-      "Nonprofit, no vendor money in the ranking, published as a downloadable CSV with confidence intervals on every row and minimum-benchmark thresholds to suppress noise. Because it is fit over other people's benchmarks it inherits their contamination. Note that the top entries' confidence intervals overlap — treat near-neighbours as tied, not ordered.",
+      "비영리이고 순위에 벤더 자금이 들어가 있지 않습니다. 모든 행에 신뢰구간을 붙이고 노이즈를 걸러내는 최소 벤치마크 수 기준을 적용한 CSV로 내려받게 공개합니다. 다만 남의 벤치마크 위에 적합시킨 지표라서 그 오염을 그대로 물려받습니다. 상위 항목들의 신뢰구간은 서로 겹칩니다. 근소한 차이의 이웃은 순서가 있다고 보지 말고 동률로 취급해야 합니다.",
     conflictOfInterest: null,
-    cadence: "Continuous.",
+    cadence: "상시 갱신합니다.",
   },
   {
     id: "design-arena",
@@ -76,68 +76,68 @@ export const LEADERBOARD_SOURCES: readonly LeaderboardSource[] = [
     requiresAuth: false,
     license: null,
     measures:
-      "Blind human preference between generated UIs, across web, game and full-stack categories.",
+      "생성된 UI들 사이의 블라인드 사람 선호도를 웹, 게임, 풀스택 카테고리에 걸쳐 측정합니다.",
     unit: "Elo",
     credibility: "medium",
     credibilityNote:
-      "Independent with genuinely large vote volume, and it has grown past single-file HTML into a real agentic harness. But it votes on the aesthetics of generated interfaces, most rows surface no error bars, and its ordering diverges sharply from capability boards. A taste signal, not a capability measure.",
+      "독립적으로 운영되고 투표 수도 실제로 많으며, 단일 파일 HTML 수준을 넘어 제대로 된 에이전트 하네스로 발전했습니다. 다만 투표 대상은 생성된 인터페이스의 미감이고, 대부분의 행에 오차 막대가 나타나지 않으며, 순위는 능력 보드들과 크게 어긋납니다. 능력 측정치가 아니라 취향 신호입니다.",
     conflictOfInterest: null,
-    cadence: "Hourly.",
+    cadence: "매시간 갱신합니다.",
   },
   {
     id: "terminal-bench",
     name: "Terminal-Bench 4.0",
     url: "https://www.tbench.ai/",
-    endpoint: "https://www.tbench.ai/ (RSC payload embedded in the page)",
+    endpoint: "https://www.tbench.ai/ (페이지에 포함된 RSC 페이로드)",
     method: "GET",
     fetchKind: "scrape-embedded-json",
     requiresAuth: false,
     license: null,
     measures:
-      "Agentic terminal and CLI task completion, reported with 95% confidence intervals, cost and trial count.",
+      "에이전트의 터미널·CLI 과제 완수율입니다. 95% 신뢰구간, 비용, 시도 횟수와 함께 보고합니다.",
     unit: "% accuracy",
     credibility: "high",
     credibilityNote:
-      "The strongest anti-gaming regime of any board here: trajectories required for passing trials, reward hacking scored zero, an open-sourced judge over every passing trial, and a canary GUID published to detect training-corpus contamination. It reports n, cost and CIs rather than a bare percentage. Its one confound is that the agent harness is not held constant across entries, so model and scaffold are entangled.",
+      "여기 있는 보드 중 조작 방지 장치가 가장 강력합니다. 통과한 시도는 실행 궤적 제출을 요구하고, 리워드 해킹은 0점 처리하며, 통과한 모든 시도를 오픈소스로 공개한 심사기로 검증하고, 학습 코퍼스 오염을 탐지하려고 canary GUID를 공개해 둡니다. 맨 퍼센트 하나가 아니라 n과 비용, 신뢰구간을 함께 보고합니다. 유일한 교란 요인은 항목마다 에이전트 하네스가 동일하게 고정되지 않는다는 점입니다. 그래서 모델과 스캐폴드가 뒤엉켜 있습니다.",
     conflictOfInterest: null,
-    cadence: "Continuous; versions ship every few months.",
+    cadence: "상시 갱신합니다. 버전은 몇 달에 한 번씩 나옵니다.",
   },
   {
     id: "swe-bench",
     name: "SWE-bench (Bash Only)",
     url: "https://www.swebench.com/",
     endpoint:
-      'https://www.swebench.com/ (JSON in <script id="leaderboard-data">)',
+      'https://www.swebench.com/ (<script id="leaderboard-data"> 안의 JSON)',
     method: "GET",
     fetchKind: "scrape-embedded-json",
     requiresAuth: false,
     license: null,
     measures:
-      "Resolution rate on real GitHub issues. We take the Bash Only split, which holds one scaffold constant across every model.",
+      "실제 GitHub 이슈의 해결률입니다. 모든 모델에 스캐폴드 하나를 똑같이 고정해 두는 Bash Only 스플릿을 가져옵니다.",
     unit: "% resolved",
     credibility: "medium",
     credibilityNote:
-      "Use the Bash Only split, not Verified. The Verified board is dominated by unverified self-submissions with bespoke scaffolds and multi-attempt entries, which makes it an agent-product board rather than a model comparison — the maintainers made Bash Only the default view for exactly this reason. Even so the frontier has compressed to a few points across the top ten, so it no longer discriminates well.",
+      "Verified가 아니라 Bash Only 스플릿을 봐야 합니다. Verified 보드는 검증되지 않은 자체 제출이 장악하고 있고, 각자 맞춰 만든 스캐폴드와 여러 번 시도한 항목이 섞여 있습니다. 그래서 모델 비교가 아니라 에이전트 제품 비교 보드가 됩니다. 관리자들이 Bash Only를 기본 화면으로 바꾼 이유도 정확히 이것입니다. 그럼에도 상위 10개의 격차가 몇 점 안으로 좁혀져서, 이제는 변별력이 떨어집니다.",
     conflictOfInterest: null,
-    cadence: "Irregular; submission flow has slowed.",
+    cadence: "비정기적입니다. 제출 유입이 느려졌습니다.",
   },
   {
     id: "arena",
     name: "Arena (formerly LMArena)",
     url: "https://arena.ai/leaderboard",
-    endpoint: "https://arena.ai/leaderboard/* (server-rendered HTML)",
+    endpoint: "https://arena.ai/leaderboard/* (서버 렌더링된 HTML)",
     method: "GET",
     fetchKind: "scrape-html",
     requiresAuth: false,
     license: null,
     measures:
-      "Human preference votes between model outputs, across text, code and agent boards.",
+      "모델 출력 사이의 사람 선호 투표를 텍스트, 코드, 에이전트 보드에 걸쳐 집계합니다.",
     unit: "Elo",
     credibility: "medium",
     credibilityNote:
-      "Very large samples, published confidence intervals, and low-vote entries are marked preliminary. But it is a preference proxy rather than task success, it is subject to style and length effects, its voter population is self-selected, and some boards label the harness — so model and scaffold are confounded here too. Its ordering can disagree with capability boards; that disagreement is information, not error.",
+      "표본이 매우 크고 신뢰구간을 공개하며, 투표 수가 적은 항목은 잠정으로 표시합니다. 다만 과제 성공이 아니라 선호도를 대신 재는 지표이고, 문체와 길이의 영향을 받으며, 투표자 집단은 스스로 모여든 사람들입니다. 게다가 일부 보드는 하네스를 함께 표기합니다. 여기서도 모델과 스캐폴드가 뒤섞여 있다는 뜻입니다. 순위가 능력 보드들과 어긋날 수 있는데, 그 불일치는 오류가 아니라 정보입니다.",
     conflictOfInterest: null,
-    cadence: "Continuous.",
+    cadence: "상시 갱신합니다.",
   },
   {
     id: "scale-swe-bench-pro",
@@ -149,14 +149,14 @@ export const LEADERBOARD_SOURCES: readonly LeaderboardSource[] = [
     requiresAuth: false,
     license: null,
     measures:
-      "Agentic coding on copyleft and commercial repositories, with a genuinely private split drawn from proprietary codebases.",
+      "카피레프트 저장소와 상용 저장소를 대상으로 한 에이전트 코딩 능력입니다. 독점 코드베이스에서 뽑은 진짜 비공개 스플릿을 포함합니다.",
     unit: "% resolved",
     credibility: "caveated",
     credibilityNote:
-      "Well designed — a private split makes it contamination-resistant, and it reports confidence intervals. Read the ranking with its ownership in mind, and note the refresh cadence has slipped.",
+      "설계는 좋습니다. 비공개 스플릿 덕분에 오염에 강하고 신뢰구간도 보고합니다. 다만 순위는 이 보드의 소유 관계를 염두에 두고 읽어야 하고, 갱신 주기가 느려졌다는 점도 함께 봐야 합니다.",
     conflictOfInterest:
-      "Scale is majority-owned by Meta, and Meta's own model sits at #1 on SWE-bench Pro public, SWE-bench Pro private and MCP Atlas simultaneously — a pattern that appears on no independent board.",
-    cadence: "Irregular; some splits months old.",
+      "Scale의 지분 과반은 Meta가 가지고 있습니다. 그리고 Meta 자사 모델이 SWE-bench Pro public, SWE-bench Pro private, MCP Atlas에서 동시에 1위입니다. 어떤 독립 보드에서도 나타나지 않는 양상입니다.",
+    cadence: "비정기적입니다. 일부 스플릿은 몇 달 전 것입니다.",
   },
 ] as const;
 

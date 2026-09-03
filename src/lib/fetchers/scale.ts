@@ -203,20 +203,20 @@ async function parseBoard(
   if (!payload) {
     return {
       ok: false,
-      why: `no Next.js RSC payload on ${spec.url}`,
+      why: `${spec.url}에 Next.js RSC 페이로드가 없습니다`,
     };
   }
   const rows = findRows(payload);
   if (!rows) {
     return {
       ok: false,
-      why: `could not find the embedded leaderboard rows on ${spec.url}`,
+      why: `${spec.url}에 묻힌 리더보드 행을 찾지 못했습니다`,
     };
   }
   if (rows.length < spec.minEntries) {
     return {
       ok: false,
-      why: `only ${rows.length} rows on ${spec.url}, expected at least ${spec.minEntries}`,
+      why: `${spec.url}에 ${rows.length}행만 있습니다. 최소 ${spec.minEntries}행을 기대했습니다`,
     };
   }
 
@@ -265,18 +265,18 @@ async function loadBoard(spec: BoardSpec): Promise<BoardOutcome> {
       next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!res.ok) {
-      return { ok: false, why: `${spec.url} returned HTTP ${res.status}` };
+      return { ok: false, why: `${spec.url}이(가) HTTP ${res.status}을(를) 반환했습니다` };
     }
     html = await res.text();
   } catch (cause) {
     const reason = cause instanceof Error ? cause.message : "unknown error";
-    return { ok: false, why: `could not reach ${spec.url} (${reason})` };
+    return { ok: false, why: `${spec.url}에 연결하지 못했습니다 (${reason})` };
   }
   try {
     return await parseBoard(spec, html);
   } catch (cause) {
     const reason = cause instanceof Error ? cause.message : "unknown error";
-    return { ok: false, why: `could not read ${spec.url} (${reason})` };
+    return { ok: false, why: `${spec.url}을(를) 읽지 못했습니다 (${reason})` };
   }
 }
 
@@ -294,7 +294,7 @@ export async function fetch_scale(): Promise<LeaderboardResult> {
   if (!pub.ok) {
     return fallbackResult(
       SOURCE_ID,
-      `Could not read the SWE-bench Pro public leaderboard — ${pub.why}. labs.scale.com markup may have changed.`,
+      `SWE-bench Pro public 리더보드를 읽지 못했습니다 — ${pub.why}. labs.scale.com 마크업이 바뀌었을 수 있습니다.`,
     );
   }
 

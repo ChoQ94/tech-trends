@@ -52,7 +52,7 @@ export function Families({
                 <span className="flex min-w-0 items-center gap-2">
                   <span
                     className="shrink-0 font-mono tabular-nums text-fg-subtle"
-                    title="The date OpenRouter listed this model."
+                    title="OpenRouter가 이 모델을 등재한 날짜입니다."
                   >
                     {m.releaseDate ? formatDate(m.releaseDate) : DASH}
                   </span>
@@ -62,28 +62,28 @@ export function Families({
                   {m.variants?.map((v) => (
                     <span
                       key={v.id}
-                      title={`Also listed as ${v.id} — the same model at a different price.`}
+                      title={`${v.id} — 같은 모델을 다른 가격으로 등재한 항목입니다.`}
                       className="rounded border border-border px-1 font-mono text-[10px] text-fg-subtle"
                     >
                       :{v.suffix}
                     </span>
                   ))}
                   {m.provenance === "manual" ? (
-                    <Badge tone="warn">manual</Badge>
+                    <Badge tone="warn">수동</Badge>
                   ) : null}
-                  {m.retiresOn ? <Badge tone="bad">retiring</Badge> : null}
+                  {m.retiresOn ? <Badge tone="bad">종료 예정</Badge> : null}
                 </span>
               </li>
             ))}
             {f.models.length > MAX_ROWS ? (
               <li className="pt-0.5 text-xs text-fg-subtle">
-                +{f.models.length - MAX_ROWS} more in this family
+                이 패밀리에 {f.models.length - MAX_ROWS}개 더 있습니다
               </li>
             ) : null}
           </ol>
           <p className="mt-3 border-t border-border pt-2 text-[11px] leading-4 text-fg-subtle">
-            Grouped by the stem of the OpenRouter id. Ordering is by listing
-            date, and implies nothing about which model replaced which.
+            OpenRouter id의 이름 앞부분으로 묶었습니다. 정렬 기준은 등재일이며,
+            어떤 모델이 어떤 모델을 대체했는지는 나타내지 않습니다.
           </p>
         </Card>
       ))}

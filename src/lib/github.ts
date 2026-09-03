@@ -38,9 +38,9 @@ const WINDOW_DAYS: Record<TrendingWindow, number> = {
 };
 
 export const WINDOW_LABELS: Record<TrendingWindow, string> = {
-  daily: "Today",
-  weekly: "This week",
-  monthly: "This month",
+  daily: "오늘",
+  weekly: "이번 주",
+  monthly: "이번 달",
 };
 
 export interface LanguageOption {
@@ -161,7 +161,7 @@ function toTrendingRepo(raw: RawRepo): TrendingRepo {
 }
 
 const RATE_LIMIT_MESSAGE =
-  "GitHub API rate limit exceeded — set GITHUB_TOKEN to raise the limit from 60 to 5,000 requests/hour.";
+  "GitHub API 요청 한도를 초과했습니다. GITHUB_TOKEN을 설정하면 한도가 시간당 60회에서 5,000회로 늘어납니다.";
 
 function isRateLimited(response: Response): boolean {
   if (response.status === 429) return true;
@@ -206,7 +206,7 @@ export async function fetchTrending(
     if (!response.ok) {
       const error = isRateLimited(response)
         ? RATE_LIMIT_MESSAGE
-        : `GitHub API returned ${response.status} ${response.statusText}.`;
+        : `GitHub API가 ${response.status} ${response.statusText}을(를) 반환했습니다.`;
       return { ...base, repos: [], error };
     }
 
@@ -217,7 +217,7 @@ export async function fetchTrending(
     return {
       ...base,
       repos: [],
-      error: `Could not reach the GitHub API (${detail}).`,
+      error: `GitHub API에 연결하지 못했습니다 (${detail}).`,
     };
   }
 }

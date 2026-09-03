@@ -241,12 +241,22 @@ export function statusTone(status: ModelStatus): BadgeTone {
 
 /** One sentence per status, for the badge's title and the filter legend. */
 export const STATUS_MEANING: Record<ModelStatus, string> = {
-  flagship: "Recorded by hand as the provider's most capable model.",
-  current: "Recorded by hand as generally available.",
-  preview: "Recorded by hand as preview or limited release.",
+  flagship: "프로바이더에서 가장 뛰어난 모델로 수동 기록한 항목입니다.",
+  current: "일반 제공 중인 모델로 수동 기록한 항목입니다.",
+  preview: "프리뷰 또는 제한 공개 모델로 수동 기록한 항목입니다.",
   unclassified:
-    "OpenRouter publishes no lifecycle field, so nothing is claimed about this model's standing. It is not a statement that the model is old, or new, or second-rate.",
-  legacy: "Recorded by hand as superseded.",
+    "OpenRouter가 수명주기 필드를 제공하지 않으므로 이 모델의 위치에 대해서는 아무것도 주장하지 않습니다. 모델이 오래됐다거나, 새롭다거나, 수준이 낮다는 뜻이 아닙니다.",
+  legacy: "후속 모델로 대체된 것으로 수동 기록한 항목입니다.",
   deprecated:
-    "OpenRouter publishes a retirement date for this model, or one was recorded by hand.",
+    "OpenRouter가 이 모델의 종료 날짜를 게시했거나, 종료 날짜를 수동 기록한 항목입니다.",
+};
+
+/** Display label for a status. The enum value stays the URL param. */
+export const STATUS_LABEL: Record<ModelStatus, string> = {
+  flagship: "대표",
+  current: "현행",
+  preview: "프리뷰",
+  unclassified: "미분류",
+  legacy: "구형",
+  deprecated: "지원 종료",
 };

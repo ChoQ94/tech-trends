@@ -43,11 +43,11 @@ export async function LeaderboardCard({
           rel="noopener noreferrer"
           className="text-xs text-accent hover:underline"
         >
-          Source ↗
+          출처 ↗
         </a>
       </div>
       <p className="mt-0.5 text-xs text-fg-subtle">
-        Updated{" "}
+        업데이트{" "}
         <span className="font-mono tabular-nums">
           {formatDate(leaderboard.updatedAt)}
         </span>

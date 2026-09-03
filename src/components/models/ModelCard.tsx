@@ -1,7 +1,7 @@
 import { Badge, Card } from "@/components/ui";
 import { ProviderLabel } from "@/components/models/ProviderLabel";
 import { DASH, formatDate, formatTokens, formatUSD } from "@/lib/format";
-import { STATUS_MEANING, statusTone } from "@/lib/model-query";
+import { STATUS_LABEL, STATUS_MEANING, statusTone } from "@/lib/model-query";
 import type { Model } from "@/lib/types";
 
 /** Compact model card used on the overview. Dense by design. */
@@ -31,19 +31,21 @@ export function ModelCard({ model }: { model: Model }) {
           />
         </div>
         <span title={STATUS_MEANING[model.status]}>
-          <Badge tone={statusTone(model.status)}>{model.status}</Badge>
+          <Badge tone={statusTone(model.status)}>
+            {STATUS_LABEL[model.status]}
+          </Badge>
         </span>
       </div>
 
       <dl className="mt-auto grid grid-cols-3 gap-x-3 gap-y-2 border-t border-border pt-3 text-xs">
         <Field
-          label="Listed"
-          title="The date OpenRouter listed the model, not the date the vendor announced it."
+          label="등재"
+          title="OpenRouter가 이 모델을 등재한 날짜이지, 벤더가 발표한 날짜가 아닙니다."
         >
           {model.releaseDate ? formatDate(model.releaseDate) : DASH}
         </Field>
-        <Field label="Context">{formatTokens(model.contextWindow)}</Field>
-        <Field label="In / Out" title="OpenRouter's price per 1M tokens, not the vendor's list price.">
+        <Field label="컨텍스트">{formatTokens(model.contextWindow)}</Field>
+        <Field label="입력/출력" title="OpenRouter의 1M 토큰당 가격이지, 벤더의 정가가 아닙니다.">
           {price
             ? `${formatUSD(price.input)} / ${formatUSD(price.output)}`
             : DASH}

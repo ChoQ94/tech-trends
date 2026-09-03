@@ -55,16 +55,16 @@ export function SourceGroup({
 
         <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px]">
           <span className="text-fg-subtle">
-            Unit <span className="font-mono text-fg-muted">{source.unit}</span>
+            단위 <span className="font-mono text-fg-muted">{source.unit}</span>
           </span>
           <span className="text-fg-subtle">
-            Cadence <span className="text-fg-muted">{source.cadence}</span>
+            갱신 주기 <span className="text-fg-muted">{source.cadence}</span>
           </span>
           <Link
             href={`/sources#${source.id}`}
             className="text-accent hover:underline"
           >
-            How we fetch it, and what to distrust →
+            어떻게 가져오는지, 무엇을 의심해야 하는지 →
           </Link>
           <a
             href={source.url}
@@ -78,7 +78,7 @@ export function SourceGroup({
 
         {source.conflictOfInterest ? (
           <div className="mt-3">
-            <Callout label="Conflict of interest" tone="warn">
+            <Callout label="이해충돌" tone="warn">
               {source.conflictOfInterest}
             </Callout>
           </div>
@@ -100,10 +100,10 @@ export function SourceGroup({
         </div>
       ) : (
         <p className="rounded-xl border border-dashed border-border px-4 py-6 text-center text-xs text-fg-muted">
-          No boards to show for this source.{" "}
+          이 출처에서 보여줄 보드가 없습니다.{" "}
           {result.health === "unavailable"
-            ? "Nothing was fetched and no snapshot is committed, so this space is deliberately empty rather than filled with old numbers."
-            : "The source returned an empty payload."}
+            ? "가져온 것도 없고 커밋된 스냅샷도 없어서, 지난 숫자로 채우는 대신 이 자리를 일부러 비워 둡니다."
+            : "출처가 빈 페이로드를 반환했습니다."}
         </p>
       )}
     </section>

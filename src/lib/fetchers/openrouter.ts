@@ -109,7 +109,7 @@ export async function fetch_openrouter(): Promise<LeaderboardResult> {
     if (!response.ok) {
       return fallbackResult(
         SOURCE_ID,
-        `OpenRouter rankings endpoint returned HTTP ${response.status}.`,
+        `OpenRouter 랭킹 엔드포인트가 HTTP ${response.status}을(를) 반환했습니다.`,
       );
     }
     payload = await response.json();
@@ -117,26 +117,26 @@ export async function fetch_openrouter(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not reach the OpenRouter rankings endpoint: ${reason}`,
+      `OpenRouter 랭킹 엔드포인트에 연결하지 못했습니다: ${reason}`,
     );
   }
 
   try {
     if (typeof payload !== "object" || payload === null) {
-      return fallbackResult(SOURCE_ID, "OpenRouter returned a non-object body.");
+      return fallbackResult(SOURCE_ID, "OpenRouter가 객체가 아닌 본문을 반환했습니다.");
     }
     const outer = (payload as { data?: unknown }).data;
     if (typeof outer !== "object" || outer === null) {
       return fallbackResult(
         SOURCE_ID,
-        "OpenRouter payload is missing its `data` object.",
+        "OpenRouter 페이로드에 `data` 객체가 없습니다.",
       );
     }
     const rawBuckets = (outer as { data?: unknown }).data;
     if (!Array.isArray(rawBuckets)) {
       return fallbackResult(
         SOURCE_ID,
-        "OpenRouter payload is missing the weekly bucket array.",
+        "OpenRouter 페이로드에 주 단위 버킷 배열이 없습니다.",
       );
     }
 
@@ -144,7 +144,7 @@ export async function fetch_openrouter(): Promise<LeaderboardResult> {
     if (buckets.length === 0) {
       return fallbackResult(
         SOURCE_ID,
-        "OpenRouter returned no weekly buckets in the expected shape.",
+        "OpenRouter가 예상한 형태의 주 단위 버킷을 반환하지 않았습니다.",
       );
     }
 
@@ -152,7 +152,7 @@ export async function fetch_openrouter(): Promise<LeaderboardResult> {
     if (!week) {
       return fallbackResult(
         SOURCE_ID,
-        "OpenRouter has no completed week in its chart data yet.",
+        "OpenRouter 차트 데이터에 아직 완료된 주가 없습니다.",
       );
     }
 
@@ -176,7 +176,7 @@ export async function fetch_openrouter(): Promise<LeaderboardResult> {
     if (entries.length === 0) {
       return fallbackResult(
         SOURCE_ID,
-        "OpenRouter's most recent complete week contained no model rows.",
+        "OpenRouter의 가장 최근 완료된 주에 모델 행이 없습니다.",
       );
     }
 
@@ -201,7 +201,7 @@ export async function fetch_openrouter(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not parse the OpenRouter rankings payload: ${reason}`,
+      `OpenRouter 랭킹 페이로드를 해석하지 못했습니다: ${reason}`,
     );
   }
 }

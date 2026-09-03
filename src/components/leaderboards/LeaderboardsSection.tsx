@@ -58,7 +58,7 @@ export function LeaderboardsSection({
       {conflicts.length > 0 && !activeSource ? (
         <Card className="border-warn/30 p-4">
           <h2 className="text-sm font-semibold text-fg">
-            Who benefits from these rankings
+            이 순위로 이득을 보는 쪽
           </h2>
           <ul className="mt-2 space-y-1.5 text-xs leading-5 text-fg-muted">
             {conflicts.map(({ source }) => (
@@ -77,7 +77,7 @@ export function LeaderboardsSection({
       ) : null}
 
       {visible.length === 0 ? (
-        <Empty>No source matches that filter.</Empty>
+        <Empty>그 필터에 해당하는 출처가 없습니다.</Empty>
       ) : (
         <div className="space-y-10">
           {visible.map(({ source, result }) => (

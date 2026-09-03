@@ -49,7 +49,7 @@ export function TrendingFilters({
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-xs uppercase tracking-wide text-fg-subtle">
-          Window
+          기간
         </span>
         {TRENDING_WINDOWS.map((w) => (
           <Pill key={w} active={w === window} to={href(w, language)}>
@@ -59,10 +59,10 @@ export function TrendingFilters({
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-xs uppercase tracking-wide text-fg-subtle">
-          Language
+          언어
         </span>
         <Pill active={language === null} to={href(window, null)}>
-          All
+          전체
         </Pill>
         {LANGUAGES.map((lang) => (
           <Pill

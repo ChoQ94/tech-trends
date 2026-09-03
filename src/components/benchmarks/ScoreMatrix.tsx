@@ -28,8 +28,8 @@ function SourceDot({ source }: { source: "vendor" | "independent" }) {
   return (
     <span
       role="img"
-      aria-label={vendor ? "vendor-reported" : "independently measured"}
-      title={vendor ? "Vendor-reported" : "Independently measured"}
+      aria-label={vendor ? "벤더 자체 발표 점수" : "독립 측정 점수"}
+      title={vendor ? "벤더 자체 발표 점수" : "독립 측정 점수"}
       className={`inline-block h-2 w-2 shrink-0 rounded-full ${
         vendor ? "border border-warn bg-transparent" : "bg-cyan"
       }`}
@@ -41,20 +41,20 @@ export function SourceLegend() {
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-fg-subtle">
       <span className="inline-flex items-center gap-1.5">
-        <SourceDot source="vendor" /> vendor-reported (hollow)
+        <SourceDot source="vendor" /> 벤더 자체 발표 (빈 원)
       </span>
       <span className="inline-flex items-center gap-1.5">
-        <SourceDot source="independent" /> independently measured (filled)
+        <SourceDot source="independent" /> 독립 측정 (채운 원)
       </span>
       <span className="inline-flex items-center gap-1.5">
         <span aria-hidden className="font-mono text-fg-subtle">
           {DASH}
         </span>{" "}
-        no published score
+        공개된 점수 없음
       </span>
       <span className="inline-flex items-center gap-1.5">
-        <Badge tone="warn">saturated</Badge>
-        <Badge tone="bad">retired</Badge> not a live signal
+        <Badge tone="warn">포화</Badge>
+        <Badge tone="bad">은퇴</Badge> 현재 신호로 쓸 수 없음
       </span>
     </div>
   );
@@ -67,8 +67,8 @@ export async function ScoreMatrix({ matrix }: { matrix: Matrix }) {
     <div className="scroll-thin w-full overflow-x-auto rounded-xl border border-border bg-surface">
       <table className="w-full min-w-[640px] border-separate border-spacing-0 text-sm">
         <caption className="sr-only">
-          Benchmark scores by model. Cells are shaded by rank within each
-          benchmark column.
+          모델별 벤치마크 점수입니다. 각 칸의 음영은 해당 벤치마크 열 안에서의
+          순위를 나타냅니다.
         </caption>
         <thead>
           <tr>
@@ -76,7 +76,7 @@ export async function ScoreMatrix({ matrix }: { matrix: Matrix }) {
               scope="col"
               className="sticky left-0 z-20 min-w-[180px] border-b border-border bg-surface-2 px-3 py-2 text-left text-[10px] font-medium uppercase tracking-wide text-fg-subtle"
             >
-              Model
+              모델
             </th>
             {matrix.benchmarks.map((b) => {
               const status = benchmarkStatus(b);

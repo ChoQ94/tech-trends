@@ -260,6 +260,13 @@ function successorName(id: string): string {
 
 export type BenchmarkStatus = "current" | "saturated" | "retired";
 
+/** Display label per lifecycle state. The enum value itself is unchanged. */
+const BENCHMARK_STATUS_LABEL: Record<BenchmarkStatus, string> = {
+  current: "현역",
+  saturated: "포화",
+  retired: "은퇴",
+};
+
 export interface BenchmarkStatusMeta {
   status: BenchmarkStatus;
   /** Badge label; null when the benchmark is current and needs no marking. */
@@ -276,7 +283,7 @@ export function benchmarkStatus(b: Benchmark): BenchmarkStatusMeta {
   const sentences: string[] = [b.description];
   if (status !== "current") {
     sentences.push(
-      `Kept for continuity only — a ${status} benchmark is not a comparable signal next to a current one.`,
+      `연속성을 위해 남겨둔 것뿐입니다 — ${BENCHMARK_STATUS_LABEL[status]} 벤치마크는 현역 벤치마크와 나란히 놓을 수 있는 비교 신호가 아닙니다.`,
     );
   }
   if (b.statusNote) sentences.push(b.statusNote);
@@ -285,13 +292,13 @@ export function benchmarkStatus(b: Benchmark): BenchmarkStatusMeta {
     // Skip the boilerplate when the note already names the successor itself,
     // where it is written with the successor's real punctuation.
     if (!squash(b.statusNote ?? "").includes(squash(successor))) {
-      sentences.push(`Superseded by ${successor}.`);
+      sentences.push(`후속 벤치마크는 ${successor}입니다.`);
     }
   }
 
   return {
     status,
-    label: status === "current" ? null : status,
+    label: status === "current" ? null : BENCHMARK_STATUS_LABEL[status],
     tone: status === "retired" ? "bad" : "warn",
     title: sentences.join(" "),
   };

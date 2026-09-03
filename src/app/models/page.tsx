@@ -16,9 +16,9 @@ import { getAllModels, getCatalog, getProviders } from "@/lib/models";
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
-  title: "Models",
+  title: "모델",
   description:
-    "Every model OpenRouter lists, fetched live: provider, listing date, context window, max output, OpenRouter's price per million tokens and whether weights appear to be published.",
+    "OpenRouter가 등재한 모든 모델을 실시간으로 가져옵니다. 프로바이더, 등재일, 컨텍스트 윈도우, 최대 출력, OpenRouter의 100만 토큰당 가격, 그리고 가중치가 공개된 것으로 보이는지 여부를 담았습니다.",
 };
 
 export default async function ModelsPage() {
@@ -31,10 +31,10 @@ export default async function ModelsPage() {
     <div className="space-y-10">
       <header className="space-y-3">
         <h1 className="text-2xl font-semibold tracking-tight text-fg">
-          Model catalog
+          모델 카탈로그
         </h1>
         <p className="max-w-3xl text-sm leading-6 text-fg-muted">
-          {all.length} models across {providers.length} providers, fetched from{" "}
+          프로바이더 {providers.length}곳의 모델 {all.length}개를{" "}
           <a
             href={CATALOG_ENDPOINT}
             target="_blank"
@@ -42,70 +42,67 @@ export default async function ModelsPage() {
             className="font-mono text-xs text-accent hover:underline"
           >
             openrouter.ai/api/v1/models
-          </a>{" "}
-          and cached for six hours. A dash means the figure is not published,
-          never a guess.
+          </a>
+          에서 가져와 6시간 동안 캐시합니다. 대시는 수치가 공개되지 않았다는
+          뜻이지, 추측한 값이 아닙니다.
         </p>
 
-        <Callout label="Where these numbers come from" tone="warn">
-          Every figure here has a source that is{" "}
-          <span className="text-fg">not the vendor</span>, and each is weaker
-          than it looks:{" "}
-          <span className="text-fg">the date is OpenRouter&rsquo;s listing
-          date</span>
-          , not the vendor&rsquo;s announcement — they differ by days;{" "}
-          <span className="text-fg">the price is OpenRouter&rsquo;s</span> price
-          to route the model, not the vendor&rsquo;s list price;{" "}
-          <span className="text-fg">open weights is inferred</span> from a
-          HuggingFace id on the listing rather than read off a licence; and
-          OpenRouter publishes{" "}
-          <span className="text-fg">no lifecycle field at all</span>, so status
-          is <span className="text-fg">unclassified</span> unless a real
-          retirement date says otherwise. Nothing here is ranked, because no
-          source we hold ranks it.
+        <Callout label="이 수치들의 출처" tone="warn">
+          여기 모든 수치에는 출처가 있고, 그 출처는{" "}
+          <span className="text-fg">벤더가 아닙니다</span>. 그리고 하나같이
+          보이는 것보다 약합니다.{" "}
+          <span className="text-fg">날짜는 OpenRouter의 등재일</span>이지,
+          벤더가 발표한 날짜가 아닙니다 — 둘은 며칠씩 차이가 납니다.{" "}
+          <span className="text-fg">가격은 OpenRouter가</span> 이 모델을
+          라우팅하는 가격이지, 벤더의 정가가 아닙니다.{" "}
+          <span className="text-fg">가중치 공개 여부는 추정</span>으로, 등재
+          정보에 HuggingFace id가 있는지로 판단한 것이지 라이선스를 확인한
+          결과가 아닙니다. 게다가 OpenRouter는{" "}
+          <span className="text-fg">수명주기 필드를 전혀 제공하지 않아서</span>,
+          실제 종료 날짜가 따로 있지 않은 한 상태는{" "}
+          <span className="text-fg">미분류</span>입니다. 여기서는 순위를 매기지
+          않습니다. 우리가 가진 어떤 출처도 순위를 매기지 않기 때문입니다.
         </Callout>
 
         {catalog.live ? (
           <p className="text-xs text-fg-subtle">
-            Retrieved{" "}
+            가져온 시각{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {formatDate(catalog.retrievedAt)}
             </span>{" "}
-            ({relativeTime(catalog.retrievedAt)}) ·{" "}
+            ({relativeTime(catalog.retrievedAt)}) · 응답{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {counts.listed}
-            </span>{" "}
-            rows returned, of which{" "}
+            </span>
+            행 중 <span className="font-mono">:free</span>/
+            <span className="font-mono">:batch</span> 과금 변형{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {counts.variantsFolded}
-            </span>{" "}
-            <span className="font-mono">:free</span>/
-            <span className="font-mono">:batch</span> billing variants were
-            folded into the model they price and{" "}
+            </span>
+            건은 가격의 기준이 되는 모델에 합쳤고,{" "}
+            <span className="font-mono">~vendor/*-latest</span> 이동 포인터{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {counts.aliasPointers}
-            </span>{" "}
-            <span className="font-mono">~vendor/*-latest</span> moving pointers
-            were set aside, because each resolves to whichever model the vendor
-            currently points it at ·{" "}
+            </span>
+            건은 따로 뺐습니다. 각각 벤더가 그때그때 가리키는 모델로 해석되기
+            때문입니다 · OpenRouter가 다루지 않는 모델{" "}
             <span className="font-mono tabular-nums text-fg-muted">
               {counts.supplement}
-            </span>{" "}
-            models OpenRouter does not carry are added by hand and marked{" "}
-            <span className="text-warn">manual</span>.
+            </span>
+            개는 손으로 추가하고 <span className="text-warn">수동</span>으로
+            표시했습니다.
           </p>
         ) : (
-          <Callout label="The live catalog could not be fetched" tone="bad">
-            {catalog.error} What is shown below is not the catalog: it is the
-            identity table from{" "}
-            <span className="font-mono">data/model-id-map.json</span> plus the{" "}
-            {counts.supplement} hand-recorded models, so that{" "}
+          <Callout label="실시간 카탈로그를 가져오지 못했습니다" tone="bad">
+            {catalog.error} 아래에 보이는 것은 카탈로그가 아닙니다.{" "}
+            <span className="font-mono">data/model-id-map.json</span>의 식별
+            테이블에 손으로 기록한 모델 {counts.supplement}개를 더한 것으로,{" "}
             <Link href="/benchmarks" className="text-accent hover:underline">
               /benchmarks
-            </Link>{" "}
-            still resolves its scores. Every specification and price on this
-            page is blank because we do not have one, not because the model
-            lacks one.
+            </Link>
+            가 점수를 그대로 연결할 수 있게 하기 위한 것입니다. 이 페이지의 사양과
+            가격이 모두 비어 있는 이유는 우리가 그 값을 갖고 있지 않기 때문이지,
+            모델에 그 값이 없기 때문이 아닙니다.
           </Callout>
         )}
       </header>

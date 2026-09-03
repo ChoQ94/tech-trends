@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui";
 import { ProviderLabel } from "@/components/models/ProviderLabel";
 import { DASH, formatDate, formatTokens, formatUSD } from "@/lib/format";
-import { STATUS_MEANING, statusTone } from "@/lib/model-query";
+import { STATUS_LABEL, STATUS_MEANING, statusTone } from "@/lib/model-query";
 import type { Model, ModelVariant } from "@/lib/types";
 
 const TH =
@@ -18,9 +18,9 @@ const NUM = `${TD} text-right font-mono tabular-nums`;
  */
 function variantTitle(v: ModelVariant): string {
   const price = v.pricing
-    ? `${formatUSD(v.pricing.input)} in / ${formatUSD(v.pricing.output)} out per 1M`
-    : "no price published";
-  return `${v.id} — ${price}. Same model, different billing; folded into this row rather than listed separately.`;
+    ? `1M당 입력 ${formatUSD(v.pricing.input)} / 출력 ${formatUSD(v.pricing.output)}`
+    : "가격 미공개";
+  return `${v.id} — ${price}. 같은 모델이고 과금만 다릅니다. 따로 표시하지 않고 이 행에 합쳤습니다.`;
 }
 
 /** Dense catalog table. Wrapped in a horizontal scroller by the caller. */
@@ -32,58 +32,58 @@ export function ModelTable({ models }: { models: Model[] }) {
     <div className="scroll-thin w-full overflow-x-auto rounded-xl border border-border bg-surface">
       <table className="w-full min-w-[880px] border-collapse text-sm">
         <caption className="sr-only">
-          AI models with provider, the date OpenRouter listed them, lifecycle
-          status, context window, max output, OpenRouter&rsquo;s price per
-          million tokens, and whether weights appear to be published.
+          AI 모델 목록. 프로바이더, OpenRouter가 등재한 날짜, 수명주기 상태,
+          컨텍스트 윈도우, 최대 출력, OpenRouter의 100만 토큰당 가격, 그리고
+          가중치가 공개된 것으로 보이는지 여부를 담고 있습니다.
         </caption>
         <thead className="border-b border-border bg-surface-2">
           <tr>
             <th scope="col" className={TH}>
-              Model
+              모델
             </th>
             <th scope="col" className={TH}>
-              Provider
+              프로바이더
             </th>
             <th
               scope="col"
               className={TH}
-              title="The date OpenRouter listed the model, which is not the date the vendor announced it. The two differ by days."
+              title="OpenRouter가 이 모델을 등재한 날짜이지, 벤더가 발표한 날짜가 아닙니다. 둘은 며칠씩 차이가 납니다."
             >
-              Listed
+              등재
             </th>
             <th
               scope="col"
               className={TH}
-              title="OpenRouter publishes no lifecycle field, so almost every row is unclassified."
+              title="OpenRouter가 수명주기 필드를 제공하지 않아서 거의 모든 행이 미분류입니다."
             >
-              Status
+              상태
             </th>
             <th scope="col" className={`${TH} text-right`}>
-              Context
+              컨텍스트
             </th>
             <th scope="col" className={`${TH} text-right`}>
-              Max out
+              최대 출력
             </th>
             <th
               scope="col"
               className={`${TH} text-right`}
-              title="OpenRouter's price to route this model, which is not necessarily the vendor's list price."
+              title="OpenRouter가 이 모델을 라우팅하는 가격이며, 벤더의 정가와 반드시 같지는 않습니다."
             >
-              In / 1M
+              입력/1M
             </th>
             <th
               scope="col"
               className={`${TH} text-right`}
-              title="OpenRouter's price to route this model, which is not necessarily the vendor's list price."
+              title="OpenRouter가 이 모델을 라우팅하는 가격이며, 벤더의 정가와 반드시 같지는 않습니다."
             >
-              Out / 1M
+              출력/1M
             </th>
             <th
               scope="col"
               className={`${TH} text-center`}
-              title="Inferred from the presence of a HuggingFace id on the OpenRouter listing. A signal, not a licence check."
+              title="OpenRouter 등재 정보에 HuggingFace id가 있는지로 추정합니다. 라이선스를 확인한 것이 아니라 하나의 신호일 뿐입니다."
             >
-              Weights
+              가중치
             </th>
           </tr>
         </thead>
@@ -125,7 +125,7 @@ export function ModelTable({ models }: { models: Model[] }) {
                           :{v.suffix}
                         </span>
                       ))}
-                      {manual ? <Badge tone="warn">manual</Badge> : null}
+                      {manual ? <Badge tone="warn">수동</Badge> : null}
                     </span>
                     {m.notes ? (
                       <span className="mt-1 text-[11px] leading-4 text-fg-muted">
@@ -144,12 +144,14 @@ export function ModelTable({ models }: { models: Model[] }) {
                 </td>
                 <td className={TD}>
                   <span title={STATUS_MEANING[m.status]}>
-                    <Badge tone={statusTone(m.status)}>{m.status}</Badge>
+                    <Badge tone={statusTone(m.status)}>
+                      {STATUS_LABEL[m.status]}
+                    </Badge>
                   </span>
                   {m.retiresOn ? (
                     <span
                       className="ml-1.5 font-mono text-[10px] tabular-nums text-bad"
-                      title={`OpenRouter lists a retirement date of ${m.retiresOn} for this model.`}
+                      title={`OpenRouter에 등재된 이 모델의 종료 날짜는 ${m.retiresOn}입니다.`}
                     >
                       {m.retiresOn}
                     </span>
@@ -172,22 +174,22 @@ export function ModelTable({ models }: { models: Model[] }) {
                     <span
                       title={
                         manual
-                          ? "Recorded by hand."
-                          : "Inferred: the OpenRouter listing carries a HuggingFace id."
+                          ? "수동으로 기록했습니다."
+                          : "추정: OpenRouter 등재 정보에 HuggingFace id가 있습니다."
                       }
                     >
-                      <Badge tone="good">open</Badge>
+                      <Badge tone="good">공개</Badge>
                     </span>
                   ) : (
                     <span
                       className="text-fg-subtle"
                       title={
                         manual
-                          ? "Recorded by hand."
-                          : "No HuggingFace id on the OpenRouter listing — which is weaker evidence than a published licence."
+                          ? "수동으로 기록했습니다."
+                          : "OpenRouter 등재 정보에 HuggingFace id가 없습니다 — 공개된 라이선스보다 약한 근거입니다."
                       }
                     >
-                      closed
+                      비공개
                     </span>
                   )}
                 </td>
@@ -197,24 +199,24 @@ export function ModelTable({ models }: { models: Model[] }) {
         </tbody>
       </table>
       <p className="border-t border-border bg-surface-2/60 px-3 py-2 text-[11px] leading-5 text-fg-muted">
-        <span className="text-fg">Listed</span> is the date OpenRouter listed
-        the model, not the date the vendor announced it.{" "}
-        <span className="text-fg">Prices</span> are OpenRouter&rsquo;s, not the
-        vendor&rsquo;s list price. <span className="text-fg">Weights</span> is
-        inferred from a HuggingFace id on the listing, not from a licence.
+        <span className="text-fg">등재</span>는 OpenRouter가 모델을 등재한
+        날짜이지, 벤더가 발표한 날짜가 아닙니다.{" "}
+        <span className="text-fg">가격</span>은 OpenRouter의 가격이지, 벤더의
+        정가가 아닙니다. <span className="text-fg">가중치</span>는 등재 정보에
+        HuggingFace id가 있는지로 추정한 것이지, 라이선스를 확인한 결과가
+        아닙니다.
         {anyVariant ? (
           <>
             {" "}
-            A <span className="font-mono text-fg">:suffix</span> chip is a
-            billing variant of the same model — hover it for that
-            variant&rsquo;s own price.
+            <span className="font-mono text-fg">:suffix</span> 칩은 같은 모델의
+            과금 변형입니다 — 마우스를 올리면 그 변형의 가격을 볼 수 있습니다.
           </>
         ) : null}
         {anyManual ? (
           <>
             {" "}
-            Rows marked <span className="text-warn">manual</span> are typed by
-            hand because OpenRouter does not list them; nothing refreshes them.
+            <span className="text-warn">수동</span>으로 표시된 행은 OpenRouter가
+            등재하지 않아 손으로 입력한 것이며, 자동으로 갱신되지 않습니다.
           </>
         ) : null}
       </p>

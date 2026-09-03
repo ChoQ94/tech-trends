@@ -48,11 +48,11 @@ export function formatUSD(n: number | null | undefined): string {
   return `$${n.toFixed(digits)}`;
 }
 
-/** "2025-09-29" -> "Sep 29, 2025" */
+/** "2025-09-29" -> "2025년 9월 29일" */
 export function formatDate(input: string | null | undefined): string {
   const d = toDate(input);
   if (!d) return DASH;
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -60,7 +60,7 @@ export function formatDate(input: string | null | undefined): string {
   }).format(d);
 }
 
-/** "2025-09-29" -> "11 months ago" (relative to `now`, default: today) */
+/** "2025-09-29" -> "11개월 전" (relative to `now`, default: today) */
 export function relativeTime(
   input: string | null | undefined,
   now: Date = new Date(),
@@ -68,7 +68,14 @@ export function relativeTime(
   const d = toDate(input);
   if (!d) return DASH;
   const seconds = Math.round((d.getTime() - now.getTime()) / 1000);
-  const fmt = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  // The English original leaned on `numeric: "auto"`, but in Korean that
+  // yields 어제 / 그저께 / 지난주 / 작년 — colloquial and, on a staleness
+  // readout, less precise than the elapsed count. "always" keeps every value
+  // in the same uniform N-unit-ago shape; only the just-now case, which
+  // "auto" rendered as "now" and "always" renders as an odd "0초 전", is
+  // special-cased back.
+  if (Math.abs(seconds) < 5) return "방금 전";
+  const fmt = new Intl.RelativeTimeFormat("ko-KR", { numeric: "always" });
   const steps: [number, Intl.RelativeTimeFormatUnit][] = [
     [60, "second"],
     [3600, "minute"],

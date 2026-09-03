@@ -91,7 +91,7 @@ export async function fetch_epoch(): Promise<LeaderboardResult> {
     if (!response.ok) {
       return fallbackResult(
         SOURCE_ID,
-        `Epoch AI's ECI CSV returned HTTP ${response.status}.`,
+        `Epoch AI의 ECI CSV가 HTTP ${response.status}을(를) 반환했습니다.`,
       );
     }
     lastModified = response.headers.get("last-modified");
@@ -100,7 +100,7 @@ export async function fetch_epoch(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not download Epoch AI's ECI CSV: ${reason}`,
+      `Epoch AI의 ECI CSV를 내려받지 못했습니다: ${reason}`,
     );
   }
 
@@ -109,7 +109,7 @@ export async function fetch_epoch(): Promise<LeaderboardResult> {
     if (rows.length < 2) {
       return fallbackResult(
         SOURCE_ID,
-        "Epoch AI's ECI CSV had a header but no data rows.",
+        "Epoch AI의 ECI CSV에 헤더만 있고 데이터 행이 없습니다.",
       );
     }
 
@@ -119,7 +119,7 @@ export async function fetch_epoch(): Promise<LeaderboardResult> {
     if (missing.length > 0) {
       return fallbackResult(
         SOURCE_ID,
-        `Epoch AI's ECI CSV is missing expected column(s): ${missing.join(", ")}.`,
+        `Epoch AI의 ECI CSV에 필요한 열이 없습니다: ${missing.join(", ")}.`,
       );
     }
 
@@ -148,7 +148,7 @@ export async function fetch_epoch(): Promise<LeaderboardResult> {
     if (parsed.length === 0) {
       return fallbackResult(
         SOURCE_ID,
-        "Epoch AI's ECI CSV parsed to zero scored models.",
+        "Epoch AI의 ECI CSV를 해석했지만 점수가 있는 모델이 하나도 없습니다.",
       );
     }
 
@@ -182,7 +182,7 @@ export async function fetch_epoch(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not parse Epoch AI's ECI CSV: ${reason}`,
+      `Epoch AI의 ECI CSV를 해석하지 못했습니다: ${reason}`,
     );
   }
 }

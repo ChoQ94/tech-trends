@@ -17,8 +17,8 @@ export function RepoList({
       {result.repos.length === 0 ? (
         <Empty>
           {result.error
-            ? "No repositories to show while the GitHub API is unavailable."
-            : "No repositories matched this window and language."}
+            ? "GitHub API를 사용할 수 없어 표시할 저장소가 없습니다."
+            : "이 기간과 언어에 해당하는 저장소가 없습니다."}
         </Empty>
       ) : (
         <Card>

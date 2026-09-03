@@ -209,7 +209,7 @@ function parseBoard(
   const head = section(html, "thead");
   const body = section(html, "tbody");
   if (!head || !body) {
-    return { ok: false, why: `no leaderboard table on ${spec.url}` };
+    return { ok: false, why: `${spec.url}에 리더보드 표가 없습니다` };
   }
 
   const headers = cellsOf(head, "th").map((c) => textOf(c).toLowerCase());
@@ -221,7 +221,7 @@ function parseBoard(
   if (modelCol < 0 || scoreCol < 0) {
     return {
       ok: false,
-      why: `${spec.url} no longer has "Model" and "${spec.scoreHeader}" columns (found: ${headers.join(", ") || "none"})`,
+      why: `${spec.url}에 더 이상 "Model"과 "${spec.scoreHeader}" 열이 없습니다 (발견된 열: ${headers.join(", ") || "없음"})`,
     };
   }
 
@@ -232,7 +232,7 @@ function parseBoard(
     if (cells.length !== headers.length) {
       return {
         ok: false,
-        why: `a row on ${spec.url} has ${cells.length} cells against ${headers.length} headers`,
+        why: `${spec.url}의 한 행에 헤더 ${headers.length}개에 대해 셀이 ${cells.length}개입니다`,
       };
     }
 
@@ -243,14 +243,14 @@ function parseBoard(
     const titled = modelCell.match(/\btitle="([^"]+)"/);
     const rawName = titled ? decodeEntities(titled[1]).trim() : "";
     if (!rawName) {
-      return { ok: false, why: `a row on ${spec.url} carries no model name` };
+      return { ok: false, why: `${spec.url}의 한 행에 모델 이름이 없습니다` };
     }
 
     const score = leadingNumber(textOf(cells[scoreCol]));
     if (score === null || score < spec.min || score > spec.max) {
       return {
         ok: false,
-        why: `"${rawName}" on ${spec.url} has an unreadable or out-of-range ${spec.scoreHeader} (${textOf(cells[scoreCol]) || "empty"})`,
+        why: `${spec.url}의 "${rawName}"에 읽을 수 없거나 범위를 벗어난 ${spec.scoreHeader} 값이 있습니다 (${textOf(cells[scoreCol]) || "비어 있음"})`,
       };
     }
 
@@ -273,7 +273,7 @@ function parseBoard(
   if (entries.length < spec.minEntries) {
     return {
       ok: false,
-      why: `only ${entries.length} rows parsed from ${spec.url}, expected at least ${spec.minEntries}`,
+      why: `${spec.url}에서 ${entries.length}행만 해석했습니다. 최소 ${spec.minEntries}행을 기대했습니다`,
     };
   }
 
@@ -304,18 +304,18 @@ async function loadBoard(
       next: { revalidate: DATA_TTL_SECONDS },
     });
     if (!res.ok) {
-      return { ok: false, why: `${spec.url} returned HTTP ${res.status}` };
+      return { ok: false, why: `${spec.url}이(가) HTTP ${res.status}을(를) 반환했습니다` };
     }
     html = await res.text();
   } catch (cause) {
     const reason = cause instanceof Error ? cause.message : "unknown error";
-    return { ok: false, why: `could not reach ${spec.url} (${reason})` };
+    return { ok: false, why: `${spec.url}에 연결하지 못했습니다 (${reason})` };
   }
   try {
     return parseBoard(spec, html, index);
   } catch (cause) {
     const reason = cause instanceof Error ? cause.message : "unknown error";
-    return { ok: false, why: `could not read ${spec.url} (${reason})` };
+    return { ok: false, why: `${spec.url}을(를) 읽지 못했습니다 (${reason})` };
   }
 }
 
@@ -337,7 +337,7 @@ export async function fetch_arena(): Promise<LeaderboardResult> {
   if (failures.length) {
     return fallbackResult(
       SOURCE_ID,
-      `Could not read the Arena leaderboard tables — ${failures.join("; ")}. arena.ai markup may have changed.`,
+      `Arena 리더보드 표를 읽지 못했습니다 — ${failures.join("; ")}. arena.ai 마크업이 바뀌었을 수 있습니다.`,
     );
   }
 

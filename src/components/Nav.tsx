@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { href: "/", label: "Overview" },
-  { href: "/models", label: "Models" },
-  { href: "/benchmarks", label: "Benchmarks" },
-  { href: "/leaderboards", label: "Leaderboards" },
+  { href: "/", label: "개요" },
+  { href: "/models", label: "모델" },
+  { href: "/benchmarks", label: "벤치마크" },
+  { href: "/leaderboards", label: "리더보드" },
   { href: "/github", label: "GitHub" },
-  { href: "/sources", label: "Sources" },
+  { href: "/sources", label: "출처" },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {
@@ -37,7 +37,7 @@ export function Nav() {
         </Link>
 
         <nav
-          aria-label="Primary"
+          aria-label="주요 메뉴"
           className="scroll-thin -mx-1 flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto px-1"
         >
           {LINKS.map((link) => {

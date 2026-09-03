@@ -52,7 +52,7 @@ async function fetchAllUncached(): Promise<LeaderboardResult[]> {
       outcome.reason instanceof Error
         ? outcome.reason.message
         : "unknown error";
-    return fallbackResult(sourceId, `Fetcher threw: ${reason}`);
+    return fallbackResult(sourceId, `수집기에서 오류가 발생했습니다: ${reason}`);
   });
 }
 
@@ -83,11 +83,11 @@ export async function fetchLeaderboard(
   sourceId: string,
 ): Promise<LeaderboardResult> {
   const fn = FETCHERS[sourceId];
-  if (!fn) return fallbackResult(sourceId, "No fetcher registered.");
+  if (!fn) return fallbackResult(sourceId, "등록된 수집기가 없습니다.");
   try {
     return { ...(await fn()), sourceId };
   } catch (cause) {
     const reason = cause instanceof Error ? cause.message : "unknown error";
-    return fallbackResult(sourceId, `Fetcher threw: ${reason}`);
+    return fallbackResult(sourceId, `수집기에서 오류가 발생했습니다: ${reason}`);
   }
 }

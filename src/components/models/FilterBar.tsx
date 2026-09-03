@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { STATUS_MEANING } from "@/lib/model-query";
+import { STATUS_LABEL, STATUS_MEANING } from "@/lib/model-query";
 import type { ModelStatus, Provider } from "@/lib/types";
 
 export function buildModelsHref(next: {
@@ -83,7 +83,7 @@ export function FilterBar({
   const unclassified = statusCounts.get("unclassified") ?? 0;
   return (
     <div className="flex flex-col gap-3">
-      <FilterRow label="Provider">
+      <FilterRow label="프로바이더">
         <Chip
           href={buildModelsHref({
             status: activeStatus,
@@ -92,7 +92,7 @@ export function FilterBar({
           active={!activeProvider}
           count={total}
         >
-          All
+          전체
         </Chip>
         {providers.map((p) => (
           <Chip
@@ -110,7 +110,7 @@ export function FilterBar({
         ))}
       </FilterRow>
 
-      <FilterRow label="Status">
+      <FilterRow label="상태">
         <Chip
           href={buildModelsHref({
             provider: activeProvider,
@@ -118,7 +118,7 @@ export function FilterBar({
           })}
           active={!activeStatus}
         >
-          All
+          전체
         </Chip>
         {statuses.map((s) => (
           <Chip
@@ -132,12 +132,12 @@ export function FilterBar({
             count={statusCounts.get(s)}
             title={STATUS_MEANING[s]}
           >
-            {s}
+            {STATUS_LABEL[s]}
           </Chip>
         ))}
       </FilterRow>
 
-      <FilterRow label="Weights">
+      <FilterRow label="가중치">
         <Chip
           href={buildModelsHref({
             provider: activeProvider,
@@ -146,7 +146,7 @@ export function FilterBar({
           active={!activeOpenWeights}
           count={total}
         >
-          Any
+          전체
         </Chip>
         <Chip
           href={buildModelsHref({
@@ -156,24 +156,25 @@ export function FilterBar({
           })}
           active={activeOpenWeights}
           count={openWeightsCount}
-          title="Inferred from the presence of a HuggingFace id on the OpenRouter listing — a signal, not a licence check."
+          title="OpenRouter 등재 정보에 HuggingFace id가 있는지로 추정합니다 — 라이선스를 확인한 것이 아니라 하나의 신호일 뿐입니다."
         >
-          open
+          공개
         </Chip>
       </FilterRow>
 
       {unclassified > 0 ? (
         <p className="text-[11px] leading-4 text-fg-subtle sm:pl-[4.75rem]">
+          모델{" "}
+          <span className="font-mono tabular-nums text-fg-muted">{total}</span>
+          개 중{" "}
           <span className="font-mono tabular-nums text-fg-muted">
             {unclassified}
-          </span>{" "}
-          of{" "}
-          <span className="font-mono tabular-nums text-fg-muted">{total}</span>{" "}
-          models are <span className="text-fg-muted">unclassified</span>:
-          OpenRouter publishes no lifecycle field, so nothing here claims a
-          model is a flagship, current or superseded. The only status derivable
-          from the feed is <span className="text-bad">deprecated</span>, set
-          when OpenRouter publishes a real retirement date.
+          </span>
+          개가 <span className="text-fg-muted">미분류</span>입니다. OpenRouter가
+          수명주기 필드를 제공하지 않아서, 여기서는 어떤 모델도 대표라거나,
+          현행이라거나, 대체되었다고 주장하지 않습니다. 피드에서 도출할 수 있는
+          유일한 상태는 <span className="text-bad">지원 종료</span>이며,
+          OpenRouter가 실제 종료 날짜를 게시할 때만 붙습니다.
         </p>
       ) : null}
     </div>

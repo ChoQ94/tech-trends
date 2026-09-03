@@ -34,7 +34,7 @@
     {
       "id": "frontiercode-1-1",
       "name": "FrontierCode 1.1",
-      "description": "Held-out competitive and real-world code generation tasks used in Google's current model cards.",
+      "description": "따로 떼어 둔 경진 프로그래밍 및 실무 코드 생성 과제로, Google의 현행 모델 카드에 쓰입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -42,7 +42,7 @@
     {
       "id": "deepswe-v1-1",
       "name": "DeepSWE v1.1",
-      "description": "Agentic software-engineering benchmark that has largely displaced SWE-bench Verified in 2026 vendor reporting.",
+      "description": "에이전트 소프트웨어 엔지니어링 벤치마크입니다. 2026년 벤더 보고에서 SWE-bench Verified를 상당 부분 밀어냈습니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -50,27 +50,27 @@
     {
       "id": "terminal-bench-2-1",
       "name": "Terminal-Bench 2.1",
-      "description": "Command-line agent tasks in a real terminal; the widely reported, now near-saturated version.",
+      "description": "실제 터미널에서 수행하는 명령줄 에이전트 과제입니다. 널리 보고되지만 지금은 거의 포화된 버전입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "saturated",
       "supersededBy": "terminal-bench-3-0",
-      "statusNote": "Near-saturated and two versions behind: Terminal-Bench went 2.1 to 3.0 (2026-07-30) to 4.0 (2026-08-28) in under four months, so 2.1 scores are continuity only, not a live signal."
+      "statusNote": "거의 포화된 데다 두 버전이나 뒤처졌습니다. Terminal-Bench는 넉 달도 안 되는 사이에 2.1에서 3.0(2026-07-30), 다시 4.0(2026-08-28)까지 나아갔습니다. 그래서 2.1 점수는 연속성을 위한 것일 뿐, 현재 신호가 아닙니다."
     },
     {
       "id": "terminal-bench-3-0",
       "name": "Terminal-Bench 3.0",
-      "description": "Much harder successor to Terminal-Bench 2.1, where frontier models still score under 25%.",
+      "description": "Terminal-Bench 2.1의 훨씬 어려운 후속 버전으로, 프런티어 모델도 아직 25%를 넘기지 못합니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "saturated",
       "supersededBy": "terminal-bench-4-0",
-      "statusNote": "Superseded by Terminal-Bench 4.0, released 2026-08-28, which is not itself in this dataset yet. Note also that 3.0 shipped first as Frontier-Bench v0.1 and was renamed, so older model cards report the same benchmark under that name."
+      "statusNote": "2026-08-28에 나온 Terminal-Bench 4.0으로 대체되었으나, 그 4.0은 아직 이 데이터셋에 들어 있지 않습니다. 또한 3.0은 처음에 Frontier-Bench v0.1이라는 이름으로 나왔다가 이름이 바뀌었습니다. 그래서 오래된 모델 카드들은 같은 벤치마크를 그 이름으로 보고합니다."
     },
     {
       "id": "automationbench",
       "name": "AutomationBench",
-      "description": "End-to-end business workflow automation tasks executed by tool-using agents.",
+      "description": "도구를 쓰는 에이전트가 처음부터 끝까지 수행하는 업무 워크플로 자동화 과제입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -78,7 +78,7 @@
     {
       "id": "osworld-2-0",
       "name": "OSWorld 2.0",
-      "description": "Computer-use benchmark measuring real desktop GUI task completion.",
+      "description": "실제 데스크톱 GUI 과제 완수를 측정하는 컴퓨터 사용 벤치마크입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -86,7 +86,7 @@
     {
       "id": "gdpval-aa-v2",
       "name": "GDPval-AA v2",
-      "description": "Elo-rated head-to-head evaluation on economically valuable knowledge work.",
+      "description": "경제적 가치가 있는 지식 노동을 두고 겨루는 일대일 평가이며, Elo로 점수를 매깁니다.",
       "unit": "Elo",
       "higherIsBetter": true,
       "status": "current"
@@ -94,7 +94,7 @@
     {
       "id": "code-arena-webdev",
       "name": "Code Arena (Web Development)",
-      "description": "Human-preference Elo for web development coding tasks.",
+      "description": "웹 개발 코딩 과제에 대한 사람 선호도 Elo입니다.",
       "unit": "Elo",
       "higherIsBetter": true,
       "status": "current"
@@ -102,16 +102,16 @@
     {
       "id": "hle-verified",
       "name": "HLE-Verified",
-      "description": "Verified subset of Humanity's Last Exam, a very hard closed-ended academic exam.",
+      "description": "매우 어려운 폐쇄형 학술 시험인 Humanity's Last Exam의 검증된 부분집합입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current",
-      "statusNote": "The verified rebuild of Humanity's Last Exam, after roughly 30% of the original chemistry and biology answer keys were judged wrong; original-HLE scores are not comparable to these."
+      "statusNote": "원본의 화학·생물 정답지 가운데 약 30%가 틀렸다는 판정이 나온 뒤 검증을 거쳐 다시 만든 Humanity's Last Exam입니다. 원본 HLE 점수는 이 점수와 견줄 수 없습니다."
     },
     {
       "id": "agents-last-exam",
       "name": "Agent's Last Exam",
-      "description": "Long-horizon agentic reasoning benchmark, the agent-era counterpart to HLE.",
+      "description": "긴 호흡의 에이전트 추론 벤치마크로, 에이전트 시대의 HLE에 해당합니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -119,7 +119,7 @@
     {
       "id": "gdm-mrcr-v2",
       "name": "GDM-MRCR v2",
-      "description": "Multi-round coreference resolution stress test for very long context windows.",
+      "description": "매우 긴 컨텍스트 윈도를 겨냥한 다회차 상호참조 해소 스트레스 테스트입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -127,7 +127,7 @@
     {
       "id": "lvbench",
       "name": "LVBench",
-      "description": "Long-form video understanding benchmark.",
+      "description": "긴 영상 이해 벤치마크입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -135,7 +135,7 @@
     {
       "id": "charxiv",
       "name": "CharXiv",
-      "description": "Chart and figure understanding drawn from arXiv papers (no-tools setting).",
+      "description": "arXiv 논문에서 가져온 차트·도표 이해 과제입니다(도구 미사용 설정).",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -143,7 +143,7 @@
     {
       "id": "harvey-lab-aa",
       "name": "Harvey LAB-AA",
-      "description": "Legal analysis benchmark built with Harvey.",
+      "description": "Harvey와 함께 만든 법률 분석 벤치마크입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -151,7 +151,7 @@
     {
       "id": "labbench2",
       "name": "LABBench2",
-      "description": "Laboratory and life-sciences reasoning benchmark.",
+      "description": "실험실 및 생명과학 추론 벤치마크입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -159,7 +159,7 @@
     {
       "id": "biomysterybench",
       "name": "BioMysteryBench",
-      "description": "Biological reasoning puzzles; the human-solvable split is reported here.",
+      "description": "생물학 추론 퍼즐입니다. 여기서는 사람이 풀 수 있는 스플릿을 보고합니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -167,17 +167,17 @@
     {
       "id": "arc-agi-2",
       "name": "ARC-AGI-2",
-      "description": "Abstract reasoning benchmark from the ARC Prize Foundation; now near-saturated, with frontier models above 84%.",
+      "description": "ARC Prize Foundation이 만든 추상 추론 벤치마크입니다. 프런티어 모델이 84%를 넘어서면서 이제 거의 포화되었습니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "saturated",
       "supersededBy": "arc-agi-3",
-      "statusNote": "Saturated: on ARC Prize's own semi-private leaderboard (generated 2026-08-21) the top ten span 92.5% down to 84.6%, against a human panel reference of 100%."
+      "statusNote": "포화되었습니다. ARC Prize 자체의 일부만 공개된(semi-private) 리더보드(2026-08-21 생성)에서 상위 10개가 92.5%부터 84.6%까지 분포하며, 사람 패널 기준선은 100%입니다."
     },
     {
       "id": "imo-2025",
       "name": "IMO 2025",
-      "description": "International Mathematical Olympiad 2025 problem set.",
+      "description": "International Mathematical Olympiad 2025 문제 세트입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -185,7 +185,7 @@
     {
       "id": "ipho-2025",
       "name": "IPhO 2025",
-      "description": "International Physics Olympiad 2025 problem set.",
+      "description": "International Physics Olympiad 2025 문제 세트입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -193,7 +193,7 @@
     {
       "id": "icho-2025",
       "name": "IChO 2025",
-      "description": "International Chemistry Olympiad 2025 problem set.",
+      "description": "International Chemistry Olympiad 2025 문제 세트입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -201,7 +201,7 @@
     {
       "id": "codeforces-elo",
       "name": "Codeforces",
-      "description": "Competitive programming rating on Codeforces problems.",
+      "description": "Codeforces 문제로 매기는 경진 프로그래밍 레이팅입니다.",
       "unit": "Elo",
       "higherIsBetter": true,
       "status": "current"
@@ -209,7 +209,7 @@
     {
       "id": "arc-agi-3",
       "name": "ARC-AGI-3",
-      "description": "Interactive successor to ARC-AGI-2 where frontier models still score under one third; the current ARC Prize frontier.",
+      "description": "ARC-AGI-2의 대화형 후속 벤치마크로, 프런티어 모델도 아직 3분의 1을 넘기지 못합니다. 현재 ARC Prize의 최전선입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"
@@ -217,7 +217,7 @@
     {
       "id": "aa-coding-agent-index",
       "name": "AA Coding Agent Index v1.1",
-      "description": "Artificial Analysis composite of DeepSWE, Terminal-Bench 2.1 and SWE-Atlas-QnA.",
+      "description": "DeepSWE, Terminal-Bench 2.1, SWE-Atlas-QnA를 묶은 Artificial Analysis 종합 지표입니다.",
       "unit": "index",
       "higherIsBetter": true,
       "status": "current"
@@ -225,7 +225,7 @@
     {
       "id": "aa-briefcase-rubric",
       "name": "AA-Briefcase (rubric)",
-      "description": "Artificial Analysis rubric score for long-form analytical business deliverables.",
+      "description": "긴 분량의 분석형 비즈니스 산출물에 대한 Artificial Analysis 루브릭 점수입니다.",
       "unit": "%",
       "higherIsBetter": true,
       "status": "current"

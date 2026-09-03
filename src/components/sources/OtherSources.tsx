@@ -26,55 +26,55 @@ export function GitHubTrendingEntry() {
       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold tracking-tight text-fg">
-            GitHub trending repositories
+            GitHub 트렌딩 저장소
           </h3>
           <p className="mt-1 max-w-2xl text-xs leading-5 text-fg-muted">
-            New and fast-moving public repositories, used by{" "}
+            새로 생겼거나 빠르게 커지는 공개 저장소입니다.{" "}
             <Link href="/github" className="text-accent hover:underline">
               /github
             </Link>
-            .
+            에서 씁니다.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
           <Badge tone="neutral">
             <span className="font-mono">json-api</span>
           </Badge>
-          <Badge tone="good">live</Badge>
+          <Badge tone="good">실시간</Badge>
         </div>
       </div>
 
       <dl className="mt-3 divide-y divide-border border-t border-border">
-        <Field label="Endpoint we call" mono>
+        <Field label="호출하는 엔드포인트" mono>
           <span className="break-all text-fg">
             https://api.github.com/search/repositories
           </span>
         </Field>
-        <Field label="Method">
+        <Field label="메서드">
           <span className="font-mono text-fg">GET</span>
         </Field>
-        <Field label="Auth">
-          Not required. Unauthenticated calls are capped at{" "}
-          <span className="font-mono tabular-nums text-fg">60</span> requests per
-          hour per IP; setting <span className="font-mono">GITHUB_TOKEN</span>{" "}
-          raises that to{" "}
-          <span className="font-mono tabular-nums text-fg">5,000</span>. A
-          classic token with no scopes at all is enough — the route reads only
-          public repository data.
+        <Field label="인증">
+          필요 없습니다. 인증 없는 호출은 IP당 시간당{" "}
+          <span className="font-mono tabular-nums text-fg">60</span>건으로
+          제한되고, <span className="font-mono">GITHUB_TOKEN</span>을 설정하면{" "}
+          <span className="font-mono tabular-nums text-fg">5,000</span>건까지
+          늘어납니다. 스코프를 하나도 주지 않은 classic 토큰이면 충분합니다. 이
+          경로는 공개 저장소 데이터만 읽습니다.
         </Field>
-        <Field label="Freshness">
-          Fetched per request, out of a six-hour cache.
+        <Field label="최신성">
+          요청마다 가져오되, 6시간 캐시를 거칩니다.
         </Field>
       </dl>
 
       <div className="mt-3">
-        <Callout label="Limitation" tone="warn">
-          GitHub publishes no official trending API. This approximates one by
-          ranking repositories on <span className="text-fg">total stars</span>{" "}
-          within a creation or push window. Per-window star deltas — the thing
-          GitHub&rsquo;s own trending page actually sorts on — are not exposed by
-          the API, so they are not shown here and no figure is invented for them.
-          Read the ordering as a proxy.
+        <Callout label="한계" tone="warn">
+          GitHub은 공식 트렌딩 API를 제공하지 않습니다. 여기서는 생성 시점이나
+          푸시 시점으로 구간을 잡고 그 안의 저장소를{" "}
+          <span className="text-fg">총 스타 수</span>로 정렬해 비슷하게 흉내 낸
+          것입니다. 구간별 스타 증가분은 GitHub 자체 트렌딩 페이지가 실제로
+          정렬 기준으로 쓰는 값이지만 API로 노출되지 않습니다. 그래서 여기에
+          표시하지 않고, 그 자리에 지어낸 수치를 넣지도 않습니다. 이 순서는
+          대리 지표로 읽어야 합니다.
         </Callout>
       </div>
     </Card>
@@ -87,56 +87,54 @@ export function ModelCatalogEntry() {
       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold tracking-tight text-fg">
-            Model catalog
+            모델 카탈로그
           </h3>
           <p className="mt-1 max-w-2xl text-xs leading-5 text-fg-muted">
-            Everything on{" "}
             <Link href="/models" className="text-accent hover:underline">
               /models
             </Link>
-            , and the model names, providers and links used on{" "}
+            에 있는 모든 것, 그리고{" "}
             <Link href="/benchmarks" className="text-accent hover:underline">
               /benchmarks
-            </Link>{" "}
-            and{" "}
+            </Link>
+            와{" "}
             <Link href="/leaderboards" className="text-accent hover:underline">
               /leaderboards
             </Link>
-            .
+            에서 쓰는 모델 이름, 프로바이더, 링크입니다.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
           <Badge tone="neutral">
             <span className="font-mono">json-api</span>
           </Badge>
-          <Badge tone="good">live</Badge>
+          <Badge tone="good">실시간</Badge>
         </div>
       </div>
 
       <dl className="mt-3 divide-y divide-border border-t border-border">
-        <Field label="Endpoint we call" mono>
+        <Field label="호출하는 엔드포인트" mono>
           <span className="break-all text-fg">{CATALOG_ENDPOINT}</span>
         </Field>
-        <Field label="Method">
+        <Field label="메서드">
           <span className="font-mono text-fg">GET</span>
         </Field>
-        <Field label="Auth">
-          Not required. No key is sent and none is needed.
+        <Field label="인증">
+          필요 없습니다. 키를 보내지도 않고, 필요하지도 않습니다.
         </Field>
-        <Field label="Freshness">
-          Fetched once every{" "}
+        <Field label="최신성">
           <span className="font-mono tabular-nums text-fg">
             {CATALOG_TTL_SECONDS / 60}
-          </span>{" "}
-          minutes and shared by every visitor, so a public deployment does not
-          call OpenRouter once per page view. The catalog page prints the moment
-          of the real fetch, not of the cache read.
+          </span>
+          분에 한 번 가져와 모든 방문자가 함께 씁니다. 그래서 공개 배포본이
+          페이지를 볼 때마다 OpenRouter를 호출하지는 않습니다. 카탈로그 페이지에
+          찍히는 시각은 캐시를 읽은 시점이 아니라 실제로 가져온 시점입니다.
         </Field>
-        <Field label="Licence">
-          Unstated on the endpoint. Treat the figures as OpenRouter&rsquo;s, and
-          attribute them.
+        <Field label="라이선스">
+          엔드포인트에 명시되어 있지 않습니다. 이 수치는 OpenRouter의 것으로
+          보고 출처를 밝혀야 합니다.
         </Field>
-        <Field label="What is hand-maintained" mono>
+        <Field label="직접 관리하는 파일" mono>
           <span className="text-fg">data/model-id-map.json</span>
           <span className="text-fg-subtle"> · </span>
           <span className="text-fg">data/models-supplement.json</span>
@@ -144,59 +142,60 @@ export function ModelCatalogEntry() {
       </dl>
 
       <div className="mt-3 space-y-2">
-        <Callout label="This is not the vendor speaking" tone="warn">
-          Four fields on /models look like vendor facts and are not.{" "}
-          <span className="text-fg">The date</span> is when OpenRouter listed
-          the model, not when the vendor announced it — they differ by days.{" "}
-          <span className="text-fg">The price</span> is what OpenRouter charges
-          to route the model, which need not match the vendor&rsquo;s list
-          price. <span className="text-fg">Open weights</span> is inferred from
-          the presence of a HuggingFace id on the listing, which is a reasonable
-          signal and not a licence check.{" "}
-          <span className="text-fg">Lifecycle status</span> is not published at
-          all, so almost every model reads{" "}
-          <span className="font-mono">unclassified</span>; the sole exception is
-          a real future <span className="font-mono">expiration_date</span>,
-          which we render as deprecated. Sentinel values are discarded — several
-          z-ai rows carry <span className="font-mono">2098-12-31</span> to mean
-          &ldquo;no expiry&rdquo;.
+        <Callout label="벤더가 하는 말이 아닙니다" tone="warn">
+          /models의 네 필드는 벤더가 밝힌 사실처럼 보이지만 아닙니다.{" "}
+          <span className="text-fg">날짜</span>는 OpenRouter가 그 모델을 등재한
+          시점이지, 벤더가 발표한 시점이 아닙니다. 둘은 며칠씩 차이가 납니다.{" "}
+          <span className="text-fg">가격</span>은 OpenRouter가 그 모델을
+          라우팅하며 받는 값이라, 벤더의 정가와 일치할 이유가 없습니다.{" "}
+          <span className="text-fg">가중치 공개 여부</span>는 등재 정보에
+          HuggingFace id가 있는지로 추정한 것입니다. 합리적인 신호이기는 하지만
+          라이선스를 확인한 결과는 아닙니다.{" "}
+          <span className="text-fg">수명주기 상태</span>는 아예 공개되지 않아서
+          거의 모든 모델이 <span className="text-fg">미분류</span>로
+          표시됩니다. 유일한 예외는 실제 미래 시점이 담긴{" "}
+          <span className="font-mono">expiration_date</span>이고, 이때만 지원
+          종료로 표시합니다. 자리표시용 값은 버립니다. 일부 z-ai 행은
+          &ldquo;만료 없음&rdquo;을 뜻하려고{" "}
+          <span className="font-mono">2098-12-31</span>을 넣어 둡니다.
         </Callout>
-        <Callout label="What replacing the curated catalog cost" tone="warn">
-          The old catalog was 45 models typed by hand, each with an editorial{" "}
-          <span className="font-mono">status</span> (flagship / current /
-          preview / legacy / deprecated) and a prose{" "}
-          <span className="font-mono">note</span>. Neither exists in the API, so
-          both are gone: there is no flagship view on this site any more, and
-          the price-caveat marker that those notes drove was removed rather than
-          left as a marker that never fires. What was gained is a catalog that
-          changes when the world does, and several hundred models instead of 45.
+        <Callout label="수동 카탈로그를 대체하며 치른 값" tone="warn">
+          예전 카탈로그는 손으로 입력한 45개 모델이었고, 각 모델에 편집자가 정한{" "}
+          <span className="font-mono">status</span>(flagship / current /
+          preview / legacy / deprecated)와 서술형{" "}
+          <span className="font-mono">note</span>가 붙어 있었습니다. API에는 둘
+          다 없어서 둘 다 사라졌습니다. 이제 이 사이트에 대표 모델 화면은 없고,
+          그 note가 작동시키던 가격 주의 표시는 영영 켜지지 않을 표시로 남겨
+          두는 대신 아예 없앴습니다. 대신 얻은 것은 세상이 바뀌면 같이 바뀌는
+          카탈로그, 그리고 45개가 아니라 수백 개의 모델입니다.
         </Callout>
-        <Callout label="Ids are mapped, not renamed" tone="neutral">
-          The catalog is keyed by OpenRouter slugs now, but{" "}
-          <span className="font-mono text-fg">data/benchmarks.json</span> holds
-          scores and leaderboard rows keyed by the{" "}
+        <Callout label="id는 개명이 아니라 매핑입니다" tone="neutral">
+          이제 카탈로그의 키는 OpenRouter slug입니다. 하지만{" "}
+          <span className="font-mono text-fg">data/benchmarks.json</span>은 예전
+          수동 정리 id{" "}
           <span className="font-mono tabular-nums text-fg">
             {getIdMapSize()}
-          </span>{" "}
-          former curated ids, and eight live fetchers resolve board names
-          against the same table. Those joins survive because{" "}
-          <span className="font-mono text-fg">data/model-id-map.json</span>{" "}
-          carries every old id and name forward as an alias. It was generated
-          once by matching the old catalog against this endpoint and reviewed by
-          hand; deleting a row from it silently empties part of /benchmarks.
+          </span>
+          개를 키로 점수와 리더보드 행을 담고 있고, 실시간 수집기 여덟 개도 같은
+          표에 대고 보드 이름을 맞춥니다. 이 연결이 유지되는 것은{" "}
+          <span className="font-mono text-fg">data/model-id-map.json</span>이 옛
+          id와 이름을 전부 별칭으로 넘겨 주기 때문입니다. 이 파일은 예전
+          카탈로그를 이 엔드포인트와 대조해 한 번 생성한 뒤 사람이 검토한
+          것입니다. 여기서 행을 하나 지우면 /benchmarks의 일부가 조용히 비어
+          버립니다.
         </Callout>
-        <Callout label="Five models OpenRouter does not carry" tone="warn">
-          {SUPPLEMENT_MODELS.length} models are restricted-access or retired and
-          have no OpenRouter listing:{" "}
+        <Callout label="OpenRouter에 없는 다섯 모델" tone="warn">
+          {SUPPLEMENT_MODELS.length}개 모델은 접근이 제한되었거나 은퇴해서
+          OpenRouter 등재가 없습니다:{" "}
           <span className="text-fg">
             {SUPPLEMENT_MODELS.map((m) => m.name).join(", ")}
           </span>
-          . Dropping them would have deleted Google&rsquo;s flagship reasoning
-          model from the site entirely, so they are kept in{" "}
-          <span className="font-mono text-fg">data/models-supplement.json</span>{" "}
-          and marked <Badge tone="warn">manual</Badge> wherever they appear.
-          Nothing refreshes them, and they carry no status they did not earn
-          from a recorded retirement date.
+          . 이들을 빼면 Google의 대표 추론 모델이 사이트에서 통째로 사라지기
+          때문에,{" "}
+          <span className="font-mono text-fg">data/models-supplement.json</span>
+          에 남겨 두고 나타나는 곳마다 <Badge tone="warn">수동</Badge>으로
+          표시합니다. 이 모델들은 아무것도 갱신해 주지 않고, 기록된 은퇴
+          날짜에서 얻은 것 말고는 어떤 상태 표시도 붙이지 않습니다.
         </Callout>
       </div>
     </Card>
@@ -209,67 +208,66 @@ export function CuratedDataEntry() {
       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold tracking-tight text-fg">
-            Benchmark scores
+            벤치마크 점수
           </h3>
           <p className="mt-1 max-w-2xl text-xs leading-5 text-fg-muted">
-            The comparison matrix and the two static leaderboards on{" "}
             <Link href="/benchmarks" className="text-accent hover:underline">
               /benchmarks
             </Link>
-            . The model names beside them come from the live catalog above; the
-            numbers do not.
+            의 비교 매트릭스와 정적 리더보드 두 개입니다. 그 옆에 붙는 모델
+            이름은 위의 실시간 카탈로그에서 오지만, 숫자는 그렇지 않습니다.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
           <Badge tone="warn">
-            <span className="font-mono">hand-curated</span>
+            <span className="font-mono">수동 정리</span>
           </Badge>
-          <Badge tone="bad">not live</Badge>
+          <Badge tone="bad">실시간 아님</Badge>
         </div>
       </div>
 
       <dl className="mt-3 divide-y divide-border border-t border-border">
-        <Field label="Endpoint we call">
+        <Field label="호출하는 엔드포인트">
           <span className="text-warn">
-            None. Nothing is fetched — there is no request behind these numbers.
+            없습니다. 아무것도 가져오지 않습니다. 이 숫자들 뒤에는 요청이
+            없습니다.
           </span>
         </Field>
-        <Field label="Where it lives" mono>
+        <Field label="위치" mono>
           <span className="text-fg">data/benchmarks.json</span>
         </Field>
-        <Field label="Captured">
+        <Field label="캡처 시점">
           <span className="font-mono tabular-nums text-fg">
             {formatDate(CURATED_CAPTURED_AT)}
           </span>
           <span className="text-fg-subtle">
             {" "}
-            — and unchanged since, unless someone has edited the files.
+            — 이후로는 누가 파일을 고치지 않는 한 그대로입니다.
           </span>
         </Field>
-        <Field label="Cadence">
-          Whenever a person edits the JSON and rebuilds. There is no schedule
-          and no automation.
+        <Field label="갱신 주기">
+          사람이 JSON을 고치고 다시 빌드할 때마다입니다. 정해진 일정도 자동화도
+          없습니다.
         </Field>
       </dl>
 
       <div className="mt-3 space-y-2">
-        <Callout label="Read this before quoting a number" tone="bad">
-          This file is transcribed by hand and committed to the repository. It
-          is a snapshot, not a feed, and it goes stale silently: nothing on that
-          page will tell you a score was revised yesterday. Do not assume any
-          figure there is current — check the source before you rely on it. The
-          model catalog beside it <span className="text-fg">is</span> fetched
-          live, which makes the contrast easy to miss; the scores are the half
-          that is typed.
+        <Callout label="숫자를 인용하기 전에 읽으십시오" tone="bad">
+          이 파일은 사람이 손으로 옮겨 적어 저장소에 커밋한 것입니다. 피드가
+          아니라 스냅샷이고, 조용히 낡습니다. 어제 점수가 수정되었더라도 그
+          페이지는 알려 주지 않습니다. 거기 있는 어떤 수치도 최신이라고 가정하지
+          말고, 기대기 전에 원 출처를 확인해야 합니다. 옆에 있는 모델 카탈로그는{" "}
+          <span className="text-fg">실시간으로</span> 가져오기 때문에 이 차이를
+          놓치기 쉽습니다. 손으로 입력한 쪽은 점수입니다.
         </Callout>
-        <Callout label="Why there is no API" tone="warn">
-          No public API publishes benchmark scores. Vendors put their benchmark
-          tables in launch-post images, or behind pages that refuse automated
-          fetching, and they revise them without notice. Hand transcription is
-          the honest option available; pretending it is a feed would not be.
-          Model <span className="text-fg">specifications</span> were in the same
-          position until OpenRouter&rsquo;s catalog replaced them — which is why
-          the entry above exists and this one still does not.
+        <Callout label="왜 API가 없는가" tone="warn">
+          벤치마크 점수를 공개하는 공용 API가 없습니다. 벤더는 벤치마크 표를
+          출시 글의 이미지에 넣거나 자동 수집을 막는 페이지 뒤에 두고, 예고 없이
+          수정합니다. 이 상황에서 고를 수 있는 정직한 선택지는 손으로 옮겨 적는
+          것입니다. 이것을 피드인 척하는 쪽이 정직하지 않습니다. 모델{" "}
+          <span className="text-fg">사양</span>도 OpenRouter 카탈로그가 대신하기
+          전까지는 같은 처지였습니다. 위 항목에는 엔드포인트가 생겼고 이 항목에는
+          아직 없는 이유가 그것입니다.
         </Callout>
       </div>
     </Card>

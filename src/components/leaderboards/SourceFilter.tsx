@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { HealthDot, HEALTH_TITLE } from "@/components/leaderboards/HealthNote";
+import {
+  HealthDot,
+  HEALTH_LABEL,
+  HEALTH_TITLE,
+} from "@/components/leaderboards/HealthNote";
 import type { LeaderboardSource, SourceHealth } from "@/lib/types";
 
 /**
@@ -24,11 +28,11 @@ export function SourceFilter({
   return (
     <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-3">
       <span className="w-16 shrink-0 text-[10px] uppercase tracking-wide text-fg-subtle">
-        Source
+        출처
       </span>
       <div className="flex flex-wrap items-center gap-1.5">
         <Chip href="/leaderboards" active={!activeSource} count={totalBoards}>
-          All boards
+          전체 보드
         </Chip>
         {sources.map((s) => (
           <Chip
@@ -76,10 +80,10 @@ function Chip({
         // thing saying whether these numbers were fetched today.
         <span
           className="inline-flex items-center"
-          title={`${health} — ${HEALTH_TITLE[health]}`}
+          title={`${HEALTH_LABEL[health]} — ${HEALTH_TITLE[health]}`}
         >
           <HealthDot health={health} className="h-2 w-2" />
-          <span className="sr-only">{health}: </span>
+          <span className="sr-only">{HEALTH_LABEL[health]}: </span>
         </span>
       ) : null}
       <span>{children}</span>

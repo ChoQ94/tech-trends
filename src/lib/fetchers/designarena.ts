@@ -247,7 +247,7 @@ async function fetchDesignArenaUncached(): Promise<LeaderboardResult> {
     if (failures.length > 0 || boards.length !== CATEGORIES.length) {
       return fallbackResult(
         SOURCE_ID,
-        failures.join(" ") || "Design Arena returned no usable boards.",
+        failures.join(" ") || "Design Arena가 쓸 수 있는 보드를 반환하지 않았습니다.",
       );
     }
 
@@ -259,7 +259,7 @@ async function fetchDesignArenaUncached(): Promise<LeaderboardResult> {
     const reason = cause instanceof Error ? cause.message : "unknown error";
     return fallbackResult(
       SOURCE_ID,
-      `Could not parse the Design Arena leaderboard payload: ${reason}`,
+      `Design Arena 리더보드 페이로드를 해석하지 못했습니다: ${reason}`,
     );
   }
 }
