@@ -1,15 +1,10 @@
 import Link from "next/link";
-import { Badge, Card, Empty, SectionHeader, Stat } from "@/components/ui";
+import { Badge, Callout, Card, Empty, SectionHeader } from "@/components/ui";
 import { LeaderboardCard } from "@/components/benchmarks/LeaderboardCard";
 import { ModelCard } from "@/components/models/ModelCard";
 import { ProviderLabel } from "@/components/models/ProviderLabel";
-import {
-  getBenchmarkCount,
-  getPrimaryLeaderboard,
-  getScores,
-  getUpdatedAt,
-} from "@/lib/benchmarks";
-import { formatDate, relativeTime } from "@/lib/format";
+import { getPrimaryLeaderboard, getUpdatedAt } from "@/lib/benchmarks";
+import { formatDate } from "@/lib/format";
 import { CATALOG_ENDPOINT } from "@/lib/model-catalog";
 import {
   getCatalog,
@@ -30,7 +25,6 @@ export default async function OverviewPage() {
   const retiring = await getRetiring();
   const primary = getPrimaryLeaderboard();
   const updatedAt = getUpdatedAt();
-  const scoreCount = (await getScores()).length;
 
   return (
     <div className="space-y-12">
@@ -39,26 +33,15 @@ export default async function OverviewPage() {
           rather than leaving the landing page headingless. */}
       <h1 className="sr-only">지금 나와 있는 것들</h1>
 
-      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-        <Stat
-          label="벤치마크"
-          value={getBenchmarkCount()}
-          hint={`공개된 점수 ${scoreCount}건`}
-        />
-        <Stat
-          label="카탈로그 수집"
-          value={
-            <span className="text-lg">
-              {catalog.live ? formatDate(catalog.retrievedAt) : "—"}
-            </span>
-          }
-          hint={
-            catalog.live
-              ? relativeTime(catalog.retrievedAt)
-              : "실시간 수집 실패 — 식별 정보만 표시합니다"
-          }
-        />
-      </section>
+      {/* The stat tiles are gone, and with them the only place this page
+          admitted a failed catalog fetch. Without this the cards below would
+          render every figure as an em dash with nothing saying why. */}
+      {catalog.live ? null : (
+        <Callout label="수집 실패" tone="bad">
+          OpenRouter에서 카탈로그를 가져오지 못했습니다. 아래 모델은 식별
+          정보만 표시되며 컨텍스트, 가격, 등재일은 비어 있습니다.
+        </Callout>
+      )}
 
       <section>
         <SectionHeader
