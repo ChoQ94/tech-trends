@@ -5,7 +5,7 @@
         "id": "openrouter-weekly-tokens",
         "name": "Tokens processed — week of 2026-08-31",
         "url": "https://openrouter.ai/rankings",
-        "updatedAt": "2026-09-10T09:06:21.857Z",
+        "updatedAt": "2026-09-11T09:17:32.791Z",
         "entries": [
           {
             "rank": 1,
@@ -64,8 +64,8 @@
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-09-10T09:06:21.857Z",
-    "capturedAt": "2026-09-10T09:53:20.996Z"
+    "upstreamUpdatedAt": "2026-09-11T09:17:32.791Z",
+    "capturedAt": "2026-09-11T09:52:23.157Z"
   },
   "arc-prize": {
     "boards": [
@@ -710,7 +710,7 @@
       }
     ],
     "upstreamUpdatedAt": "2026-09-04T14:38:06.319Z",
-    "capturedAt": "2026-09-10T09:53:20.996Z"
+    "capturedAt": "2026-09-11T09:52:23.157Z"
   },
   "epoch-eci": {
     "boards": [
@@ -718,7 +718,7 @@
         "id": "epoch-eci",
         "name": "Epoch Capabilities Index — top 25",
         "url": "https://epoch.ai/data/ai-benchmarking-dashboard",
-        "updatedAt": "2026-09-10T09:53:20.304Z",
+        "updatedAt": "2026-09-11T09:52:22.031Z",
         "entries": [
           {
             "rank": 1,
@@ -974,7 +974,7 @@
       }
     ],
     "upstreamUpdatedAt": null,
-    "capturedAt": "2026-09-10T09:53:20.996Z"
+    "capturedAt": "2026-09-11T09:52:23.157Z"
   },
   "design-arena": {
     "boards": [
@@ -982,307 +982,307 @@
         "id": "design-arena-website",
         "name": "Web Dev (non-agentic) — Website",
         "url": "https://www.designarena.ai/",
-        "updatedAt": "2026-09-10T08:06:34.303694+00:00",
+        "updatedAt": "2026-09-11T08:06:07.431072+00:00",
         "entries": [
           {
             "rank": 1,
             "modelId": "meta/muse-spark-1.3",
             "modelName": "Muse Spark 1.3 (xhigh)",
-            "score": 1361
+            "score": 1359
           },
           {
             "rank": 2,
             "modelId": "moonshotai/kimi-k3",
             "modelName": "Kimi K3",
-            "score": 1356
+            "score": 1355
           },
           {
             "rank": 3,
-            "modelId": "openai/gpt-5.6-sol",
-            "modelName": "GPT-5.6 Sol (xhigh)",
-            "score": 1334
+            "modelId": "meta/muse-spark-1.3",
+            "modelName": "Muse Spark 1.3 Max",
+            "score": 1354
           },
           {
             "rank": 4,
             "modelId": "openai/gpt-5.6-sol",
-            "modelName": "GPT-5.6 Sol (Medium)",
-            "score": 1325
+            "modelName": "GPT-5.6 Sol (xhigh)",
+            "score": 1331
           },
           {
             "rank": 5,
-            "modelId": "meta/muse-spark-1.2",
-            "modelName": "Muse Spark 1.2",
-            "score": 1322
+            "modelId": "openai/gpt-5.6-sol",
+            "modelName": "GPT-5.6 Sol (Medium)",
+            "score": 1324
           },
           {
             "rank": 6,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1",
-            "score": 1321
+            "score": 1322
           },
           {
             "rank": 7,
+            "modelId": "meta/muse-spark-1.2",
+            "modelName": "Muse Spark 1.2",
+            "score": 1322
+          },
+          {
+            "rank": 8,
             "modelId": "anthropic/claude-opus-5",
             "modelName": "Claude Opus 5",
             "score": 1321
           },
           {
-            "rank": 8,
+            "rank": 9,
             "modelId": "z-ai/glm-5.3",
             "modelName": "GLM-5.3",
-            "score": 1320
+            "score": 1319
           },
           {
-            "rank": 9,
+            "rank": 10,
             "modelId": "google/gemini-3.7-flash",
             "modelName": "Gemini 3.7 Flash",
             "score": 1315
           },
           {
-            "rank": 10,
+            "rank": 11,
             "modelId": "google/gemini-3.8-flash",
             "modelName": "Gemini 3.8 Flash",
             "score": 1315
           },
           {
-            "rank": 11,
+            "rank": 12,
             "modelId": "google/gemini-3.6-flash",
             "modelName": "Gemini 3.6 Flash",
             "score": 1313
           },
           {
-            "rank": 12,
+            "rank": 13,
             "modelId": "anthropic/claude-fable-5",
             "modelName": "Claude Fable 5",
-            "score": 1311
-          },
-          {
-            "rank": 13,
-            "modelId": "z-ai/glm-5.2",
-            "modelName": "GLM 5.2",
-            "score": 1309
+            "score": 1310
           },
           {
             "rank": 14,
-            "modelId": "x-ai/grok-4.6",
-            "modelName": "Grok 4.6",
+            "modelId": "z-ai/glm-5.2",
+            "modelName": "GLM 5.2",
             "score": 1307
           },
           {
             "rank": 15,
+            "modelId": "x-ai/grok-4.6",
+            "modelName": "Grok 4.6",
+            "score": 1306
+          },
+          {
+            "rank": 16,
             "modelId": "anthropic/claude-opus-4.6",
             "modelName": "Claude Opus 4.6",
             "score": 1304
           },
           {
-            "rank": 16,
+            "rank": 17,
             "modelId": null,
             "modelName": "Claude Opus 4.6 (Thinking)",
             "score": 1299
           },
           {
-            "rank": 17,
+            "rank": 18,
             "modelId": "anthropic/claude-sonnet-4.6",
             "modelName": "Claude Sonnet 4.6",
-            "score": 1298
-          },
-          {
-            "rank": 18,
-            "modelId": "x-ai/grok-4.5",
-            "modelName": "Grok 4.5",
             "score": 1297
           },
           {
             "rank": 19,
-            "modelId": null,
-            "modelName": "Qwen3.8 Max",
-            "score": 1295
+            "modelId": "x-ai/grok-4.5",
+            "modelName": "Grok 4.5",
+            "score": 1296
           },
           {
             "rank": 20,
             "modelId": null,
-            "modelName": "Deca 2.5 Mini",
-            "score": 1292
+            "modelName": "Qwen3.8 Max",
+            "score": 1294
           },
           {
             "rank": 21,
-            "modelId": "z-ai/glm-5.3-flash",
-            "modelName": "GLM-5.3-Flash",
-            "score": 1292
+            "modelId": null,
+            "modelName": "Deca 2.5 Mini",
+            "score": 1291
           },
           {
             "rank": 22,
-            "modelId": "anthropic/claude-sonnet-5",
-            "modelName": "Claude Sonnet 5",
-            "score": 1290
+            "modelId": "z-ai/glm-5.3-flash",
+            "modelName": "GLM-5.3-Flash",
+            "score": 1291
           },
           {
             "rank": 23,
-            "modelId": null,
-            "modelName": "Deca 2.6 Ultra",
+            "modelId": "anthropic/claude-sonnet-5",
+            "modelName": "Claude Sonnet 5",
             "score": 1289
           },
           {
             "rank": 24,
             "modelId": "xiaomi/mimo-v2.5-pro",
             "modelName": "MiMo-V2.5-Pro",
-            "score": 1287
+            "score": 1286
           },
           {
             "rank": 25,
+            "modelId": null,
+            "modelName": "Deca 2.6 Ultra",
+            "score": 1285
+          },
+          {
+            "rank": 26,
             "modelId": "qwen/qwen3.7-max",
             "modelName": "Qwen3.7 Max",
             "score": 1285
           },
           {
-            "rank": 26,
-            "modelId": "moonshotai/kimi-k2.6",
-            "modelName": "Kimi K2.6",
-            "score": 1283
+            "rank": 27,
+            "modelId": "deepseek/deepseek-v4.1-flash",
+            "modelName": "DeepSeek-V4.1-Flash",
+            "score": 1284
           },
           {
-            "rank": 27,
+            "rank": 28,
             "modelId": null,
             "modelName": "Deca 2.5 Ultra",
             "score": 1282
           },
           {
-            "rank": 28,
+            "rank": 29,
             "modelId": "meta/muse-spark-1.1",
             "modelName": "Muse Spark 1.1",
             "score": 1282
           },
           {
-            "rank": 29,
-            "modelId": "openai/gpt-5.6-terra",
-            "modelName": "GPT-5.6 Terra",
+            "rank": 30,
+            "modelId": "moonshotai/kimi-k2.6",
+            "modelName": "Kimi K2.6",
             "score": 1282
           },
           {
-            "rank": 30,
+            "rank": 31,
             "modelId": "qwen/qwen3.7-plus",
             "modelName": "Qwen3.7 Plus",
             "score": 1282
           },
           {
-            "rank": 31,
-            "modelId": "moonshotai/kimi-k2.7-code",
-            "modelName": "Kimi K2.7 Code",
-            "score": 1280
-          },
-          {
             "rank": 32,
-            "modelId": "xiaomi/mimo-v2.5",
-            "modelName": "MiMo-V2.5",
-            "score": 1280
+            "modelId": "openai/gpt-5.6-terra",
+            "modelName": "GPT-5.6 Terra",
+            "score": 1281
           },
           {
             "rank": 33,
-            "modelId": "z-ai/glm-5.1",
-            "modelName": "GLM 5.1",
-            "score": 1279
-          },
-          {
-            "rank": 34,
             "modelId": "z-ai/glm-5-turbo",
             "modelName": "GLM 5 Turbo",
             "score": 1279
           },
           {
+            "rank": 34,
+            "modelId": "moonshotai/kimi-k2.7-code",
+            "modelName": "Kimi K2.7 Code",
+            "score": 1279
+          },
+          {
             "rank": 35,
+            "modelId": "xiaomi/mimo-v2.5",
+            "modelName": "MiMo-V2.5",
+            "score": 1279
+          },
+          {
+            "rank": 36,
+            "modelId": "z-ai/glm-5.1",
+            "modelName": "GLM 5.1",
+            "score": 1278
+          },
+          {
+            "rank": 37,
             "modelId": "google/gemini-3.5-flash",
             "modelName": "Gemini 3.5 Flash",
             "score": 1275
           },
           {
-            "rank": 36,
+            "rank": 38,
             "modelId": "muse-spark-1-0",
             "modelName": "Muse Spark",
             "score": 1274
           },
           {
-            "rank": 37,
+            "rank": 39,
             "modelId": "minimax/minimax-m3",
             "modelName": "MiniMax M3",
-            "score": 1272
+            "score": 1271
           },
           {
-            "rank": 38,
+            "rank": 40,
             "modelId": "openai/gpt-5.5",
             "modelName": "GPT-5.5",
-            "score": 1270
+            "score": 1269
           },
           {
-            "rank": 39,
+            "rank": 41,
             "modelId": "openai/gpt-5.6-luna",
             "modelName": "GPT-5.6 Luna",
             "score": 1269
           },
           {
-            "rank": 40,
+            "rank": 42,
             "modelId": "anthropic/claude-opus-4.8",
             "modelName": "Claude Opus 4.8",
-            "score": 1268
-          },
-          {
-            "rank": 41,
-            "modelId": null,
-            "modelName": "Gemini 3 Pro Preview",
-            "score": 1266
-          },
-          {
-            "rank": 42,
-            "modelId": "moonshotai/kimi-k2.5",
-            "modelName": "Kimi K2.5 (Thinking)",
-            "score": 1262
+            "score": 1267
           },
           {
             "rank": 43,
-            "modelId": "z-ai/glm-5",
-            "modelName": "GLM 5",
-            "score": 1261
+            "modelId": null,
+            "modelName": "Gemini 3 Pro Preview",
+            "score": 1265
           },
           {
             "rank": 44,
-            "modelId": "anthropic/claude-opus-4.5",
-            "modelName": "Claude Opus 4.5",
-            "score": 1260
+            "modelId": "moonshotai/kimi-k2.5",
+            "modelName": "Kimi K2.5 (Thinking)",
+            "score": 1261
           },
           {
             "rank": 45,
+            "modelId": "z-ai/glm-5",
+            "modelName": "GLM 5",
+            "score": 1260
+          },
+          {
+            "rank": 46,
+            "modelId": "anthropic/claude-opus-4.5",
+            "modelName": "Claude Opus 4.5",
+            "score": 1259
+          },
+          {
+            "rank": 47,
             "modelId": "minimax/minimax-m2.7",
             "modelName": "MiniMax M2.7",
             "score": 1258
           },
           {
-            "rank": 46,
+            "rank": 48,
             "modelId": "qwen/qwen3.6-plus",
             "modelName": "Qwen3.6 Plus",
-            "score": 1254
-          },
-          {
-            "rank": 47,
-            "modelId": "deepseek/deepseek-v4-flash-0731",
-            "modelName": "DeepSeek-V4-Flash-0731",
-            "score": 1252
-          },
-          {
-            "rank": 48,
-            "modelId": "deepseek/deepseek-v4-pro",
-            "modelName": "DeepSeek-V4-Pro",
-            "score": 1248
+            "score": 1253
           },
           {
             "rank": 49,
-            "modelId": "thinkingmachines/inkling",
-            "modelName": "Inkling",
-            "score": 1247
+            "modelId": "deepseek/deepseek-v4-flash-0731",
+            "modelName": "DeepSeek-V4-Flash-0731",
+            "score": 1251
           },
           {
             "rank": 50,
-            "modelId": "google/gemini-3.1-pro-preview",
-            "modelName": "Gemini 3.1 Pro Preview",
-            "score": 1246
+            "modelId": "deepseek/deepseek-v4-pro",
+            "modelName": "DeepSeek-V4-Pro",
+            "score": 1248
           }
         ]
       },
@@ -1290,109 +1290,109 @@
         "id": "design-arena-fullstack",
         "name": "Web Dev (agentic) — Full-Stack",
         "url": "https://www.designarena.ai/",
-        "updatedAt": "2026-09-10T08:43:34.563711+00:00",
+        "updatedAt": "2026-09-11T08:40:56.978616+00:00",
         "entries": [
           {
             "rank": 1,
-            "modelId": "anthropic/claude-opus-5",
-            "modelName": "Claude Opus 5",
-            "score": 1333
+            "modelId": "anthropic/claude-fable-5.1",
+            "modelName": "Claude Fable 5.1",
+            "score": 1344
           },
           {
             "rank": 2,
-            "modelId": "moonshotai/kimi-k3",
-            "modelName": "Kimi K3",
-            "score": 1332
+            "modelId": "anthropic/claude-opus-5",
+            "modelName": "Claude Opus 5",
+            "score": 1331
           },
           {
             "rank": 3,
+            "modelId": "moonshotai/kimi-k3",
+            "modelName": "Kimi K3",
+            "score": 1331
+          },
+          {
+            "rank": 4,
             "modelId": "meta/muse-spark-1.3",
             "modelName": "Muse Spark 1.3 (xhigh)",
             "score": 1314
           },
           {
-            "rank": 4,
+            "rank": 5,
             "modelId": null,
             "modelName": "Qwen3.8 Max",
             "score": 1312
           },
           {
-            "rank": 5,
+            "rank": 6,
             "modelId": "anthropic/claude-fable-5",
             "modelName": "Claude Fable 5",
             "score": 1281
           },
           {
-            "rank": 6,
+            "rank": 7,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "GPT-5.6 Sol (xhigh)",
-            "score": 1278
-          },
-          {
-            "rank": 7,
-            "modelId": "x-ai/grok-4.6",
-            "modelName": "Grok 4.6",
-            "score": 1275
+            "score": 1277
           },
           {
             "rank": 8,
-            "modelId": "anthropic/claude-sonnet-5",
-            "modelName": "Claude Sonnet 5",
-            "score": 1260
+            "modelId": "x-ai/grok-4.6",
+            "modelName": "Grok 4.6",
+            "score": 1274
           },
           {
             "rank": 9,
-            "modelId": "x-ai/grok-4.5",
-            "modelName": "Grok 4.5",
-            "score": 1260
+            "modelId": "anthropic/claude-sonnet-5",
+            "modelName": "Claude Sonnet 5",
+            "score": 1261
           },
           {
             "rank": 10,
-            "modelId": "anthropic/claude-opus-4.8",
-            "modelName": "Claude Opus 4.8",
+            "modelId": "x-ai/grok-4.5",
+            "modelName": "Grok 4.5",
             "score": 1259
           },
           {
             "rank": 11,
+            "modelId": "anthropic/claude-opus-4.8",
+            "modelName": "Claude Opus 4.8",
+            "score": 1258
+          },
+          {
+            "rank": 12,
             "modelId": "z-ai/glm-5.2",
             "modelName": "GLM 5.2",
             "score": 1248
           },
           {
-            "rank": 12,
+            "rank": 13,
             "modelId": "anthropic/claude-opus-4.6",
             "modelName": "Claude Opus 4.6",
-            "score": 1229
+            "score": 1228
           },
           {
-            "rank": 13,
+            "rank": 14,
             "modelId": "anthropic/claude-sonnet-4.6",
             "modelName": "Claude Sonnet 4.6",
             "score": 1222
           },
           {
-            "rank": 14,
+            "rank": 15,
             "modelId": "meta/muse-spark-1.2",
             "modelName": "Muse Spark 1.2",
             "score": 1222
           },
           {
-            "rank": 15,
+            "rank": 16,
             "modelId": "meta/muse-spark-1.1",
             "modelName": "Muse Spark 1.1",
-            "score": 1217
-          },
-          {
-            "rank": 16,
-            "modelId": "google/gemini-3.7-flash",
-            "modelName": "Gemini 3.7 Flash",
-            "score": 1214
+            "score": 1218
           },
           {
             "rank": 17,
-            "modelId": "minimax/minimax-m3",
-            "modelName": "MiniMax M3",
-            "score": 1208
+            "modelId": "google/gemini-3.7-flash",
+            "modelName": "Gemini 3.7 Flash",
+            "score": 1215
           },
           {
             "rank": 18,
@@ -1402,39 +1402,39 @@
           },
           {
             "rank": 19,
+            "modelId": "minimax/minimax-m3",
+            "modelName": "MiniMax M3",
+            "score": 1207
+          },
+          {
+            "rank": 20,
             "modelId": "qwen/qwen3.7-max",
             "modelName": "Qwen3.7 Max",
             "score": 1199
           },
           {
-            "rank": 20,
+            "rank": 21,
             "modelId": "google/gemini-3.6-flash",
             "modelName": "Gemini 3.6 Flash",
             "score": 1195
           },
           {
-            "rank": 21,
+            "rank": 22,
             "modelId": "moonshotai/kimi-k2.7-code",
             "modelName": "Kimi K2.7 Code",
             "score": 1183
           },
           {
-            "rank": 22,
+            "rank": 23,
             "modelId": "z-ai/glm-5.1",
             "modelName": "GLM 5.1",
             "score": 1174
           },
           {
-            "rank": 23,
+            "rank": 24,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "GPT-5.6 Sol (Medium)",
             "score": 1168
-          },
-          {
-            "rank": 24,
-            "modelId": "anthropic/claude-opus-4.5",
-            "modelName": "Claude Opus 4.5",
-            "score": 1166
           },
           {
             "rank": 25,
@@ -1444,108 +1444,114 @@
           },
           {
             "rank": 26,
+            "modelId": "anthropic/claude-opus-4.5",
+            "modelName": "Claude Opus 4.5",
+            "score": 1165
+          },
+          {
+            "rank": 27,
             "modelId": "z-ai/glm-5v-turbo",
             "modelName": "GLM 5V Turbo",
             "score": 1158
           },
           {
-            "rank": 27,
+            "rank": 28,
             "modelId": "z-ai/glm-5",
             "modelName": "GLM 5",
-            "score": 1132
+            "score": 1131
           },
           {
-            "rank": 28,
+            "rank": 29,
             "modelId": "moonshotai/kimi-k2.5",
             "modelName": "Kimi K2.5 (Thinking)",
             "score": 1123
           },
           {
-            "rank": 29,
+            "rank": 30,
             "modelId": "openai/gpt-5.5",
             "modelName": "GPT-5.5",
             "score": 1099
           },
           {
-            "rank": 30,
+            "rank": 31,
             "modelId": null,
             "modelName": "Gemini 3 Pro Preview",
             "score": 1083
           },
           {
-            "rank": 31,
+            "rank": 32,
             "modelId": "google/gemini-3.1-pro-preview",
             "modelName": "Gemini 3.1 Pro Preview",
-            "score": 1079
+            "score": 1078
           },
           {
-            "rank": 32,
+            "rank": 33,
             "modelId": "google/gemini-3-flash-preview",
             "modelName": "Gemini 3 Flash Preview",
             "score": 1072
           },
           {
-            "rank": 33,
+            "rank": 34,
             "modelId": "openai/gpt-5.6-terra",
             "modelName": "GPT-5.6 Terra",
-            "score": 1072
-          },
-          {
-            "rank": 34,
-            "modelId": null,
-            "modelName": "Grok 4.20 Reasoning",
-            "score": 1063
+            "score": 1071
           },
           {
             "rank": 35,
+            "modelId": null,
+            "modelName": "Grok 4.20 Reasoning",
+            "score": 1062
+          },
+          {
+            "rank": 36,
             "modelId": "anthropic/claude-sonnet-4.5",
             "modelName": "Claude Sonnet 4.5",
             "score": 1059
           },
           {
-            "rank": 36,
+            "rank": 37,
             "modelId": "z-ai/glm-4.7",
             "modelName": "GLM 4.7",
-            "score": 1059
-          },
-          {
-            "rank": 37,
-            "modelId": "openai/gpt-5.2",
-            "modelName": "GPT 5.2",
-            "score": 1052
+            "score": 1058
           },
           {
             "rank": 38,
+            "modelId": "openai/gpt-5.2",
+            "modelName": "GPT 5.2",
+            "score": 1051
+          },
+          {
+            "rank": 39,
             "modelId": "z-ai/glm-4.6",
             "modelName": "GLM 4.6",
             "score": 1038
           },
           {
-            "rank": 39,
+            "rank": 40,
             "modelId": "openai/gpt-5.4",
             "modelName": "GPT-5.4",
             "score": 1026
           },
           {
-            "rank": 40,
+            "rank": 41,
             "modelId": null,
             "modelName": "Grok Code Fast 1",
             "score": 1018
           },
           {
-            "rank": 41,
+            "rank": 42,
             "modelId": "x-ai/grok-4.3",
             "modelName": "Grok 4.3",
             "score": 1014
           },
           {
-            "rank": 42,
+            "rank": 43,
             "modelId": "openai/gpt-5.2-codex",
             "modelName": "GPT-5.2 Codex",
-            "score": 1002
+            "score": 1001
           },
           {
-            "rank": 43,
+            "rank": 44,
             "modelId": "openai/gpt-5.3-codex",
             "modelName": "GPT-5.3 Codex",
             "score": 992
@@ -1556,313 +1562,313 @@
         "id": "design-arena-gamedev",
         "name": "Game Dev",
         "url": "https://www.designarena.ai/",
-        "updatedAt": "2026-09-10T08:05:51.611827+00:00",
+        "updatedAt": "2026-09-11T08:05:44.866636+00:00",
         "entries": [
           {
             "rank": 1,
             "modelId": "openai/gpt-6-astra",
             "modelName": "GPT-6 Astra (xhigh)",
-            "score": 1452
+            "score": 1457
           },
           {
             "rank": 2,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1",
-            "score": 1417
+            "score": 1416
           },
           {
             "rank": 3,
-            "modelId": "moonshotai/kimi-k3",
-            "modelName": "Kimi K3",
-            "score": 1404
+            "modelId": "openai/gpt-5.6-sol",
+            "modelName": "GPT-5.6 Sol (xhigh)",
+            "score": 1402
           },
           {
             "rank": 4,
-            "modelId": "openai/gpt-5.6-sol",
-            "modelName": "GPT-5.6 Sol (xhigh)",
+            "modelId": "moonshotai/kimi-k3",
+            "modelName": "Kimi K3",
             "score": 1398
           },
           {
             "rank": 5,
             "modelId": "z-ai/glm-5.3",
             "modelName": "GLM-5.3",
-            "score": 1376
+            "score": 1378
           },
           {
             "rank": 6,
-            "modelId": "anthropic/claude-fable-5",
-            "modelName": "Claude Fable 5",
-            "score": 1365
+            "modelId": "deepseek/deepseek-v4.1-flash",
+            "modelName": "DeepSeek-V4.1-Flash",
+            "score": 1367
           },
           {
             "rank": 7,
-            "modelId": "anthropic/claude-opus-5",
-            "modelName": "Claude Opus 5",
+            "modelId": "meta/muse-spark-1.3",
+            "modelName": "Muse Spark 1.3 Max",
             "score": 1365
           },
           {
             "rank": 8,
-            "modelId": "meta/muse-spark-1.3",
-            "modelName": "Muse Spark 1.3 (xhigh)",
-            "score": 1363
+            "modelId": "anthropic/claude-opus-5",
+            "modelName": "Claude Opus 5",
+            "score": 1364
           },
           {
             "rank": 9,
-            "modelId": "openai/gpt-5.6-sol",
-            "modelName": "GPT-5.6 Sol (Medium)",
-            "score": 1361
+            "modelId": "anthropic/claude-fable-5",
+            "modelName": "Claude Fable 5",
+            "score": 1362
           },
           {
             "rank": 10,
-            "modelId": "google/gemini-3.7-flash",
-            "modelName": "Gemini 3.7 Flash",
-            "score": 1343
+            "modelId": "meta/muse-spark-1.3",
+            "modelName": "Muse Spark 1.3 (xhigh)",
+            "score": 1362
           },
           {
             "rank": 11,
-            "modelId": "google/gemini-3.8-flash",
-            "modelName": "Gemini 3.8 Flash",
-            "score": 1341
+            "modelId": "openai/gpt-5.6-sol",
+            "modelName": "GPT-5.6 Sol (Medium)",
+            "score": 1358
           },
           {
             "rank": 12,
-            "modelId": "meta/muse-spark-1.2",
-            "modelName": "Muse Spark 1.2",
-            "score": 1329
+            "modelId": "google/gemini-3.7-flash",
+            "modelName": "Gemini 3.7 Flash",
+            "score": 1342
           },
           {
             "rank": 13,
-            "modelId": "z-ai/glm-5.3-flash",
-            "modelName": "GLM-5.3-Flash",
-            "score": 1326
+            "modelId": "google/gemini-3.8-flash",
+            "modelName": "Gemini 3.8 Flash",
+            "score": 1342
           },
           {
             "rank": 14,
-            "modelId": "x-ai/grok-4.6",
-            "modelName": "Grok 4.6",
-            "score": 1324
+            "modelId": "z-ai/glm-5.3-flash",
+            "modelName": "GLM-5.3-Flash",
+            "score": 1330
           },
           {
             "rank": 15,
-            "modelId": "openai/gpt-5.5",
-            "modelName": "GPT-5.5",
-            "score": 1322
+            "modelId": "meta/muse-spark-1.2",
+            "modelName": "Muse Spark 1.2",
+            "score": 1323
           },
           {
             "rank": 16,
             "modelId": null,
             "modelName": "Qwen3.8 Max",
-            "score": 1320
+            "score": 1323
           },
           {
             "rank": 17,
-            "modelId": "anthropic/claude-sonnet-5",
-            "modelName": "Claude Sonnet 5",
-            "score": 1316
+            "modelId": "x-ai/grok-4.6",
+            "modelName": "Grok 4.6",
+            "score": 1322
           },
           {
             "rank": 18,
-            "modelId": "z-ai/glm-5.2",
-            "modelName": "GLM 5.2",
-            "score": 1307
+            "modelId": "openai/gpt-5.5",
+            "modelName": "GPT-5.5",
+            "score": 1320
           },
           {
             "rank": 19,
-            "modelId": null,
-            "modelName": "Claude Opus 4.6 (Thinking)",
-            "score": 1303
+            "modelId": "anthropic/claude-sonnet-5",
+            "modelName": "Claude Sonnet 5",
+            "score": 1312
           },
           {
             "rank": 20,
-            "modelId": "meta/muse-spark-1.1",
-            "modelName": "Muse Spark 1.1",
-            "score": 1301
+            "modelId": "z-ai/glm-5.2",
+            "modelName": "GLM 5.2",
+            "score": 1304
           },
           {
             "rank": 21,
-            "modelId": "anthropic/claude-opus-4.6",
-            "modelName": "Claude Opus 4.6",
-            "score": 1297
+            "modelId": null,
+            "modelName": "Claude Opus 4.6 (Thinking)",
+            "score": 1301
           },
           {
             "rank": 22,
-            "modelId": "qwen/qwen3.7-max",
-            "modelName": "Qwen3.7 Max",
-            "score": 1296
+            "modelId": "meta/muse-spark-1.1",
+            "modelName": "Muse Spark 1.1",
+            "score": 1297
           },
           {
             "rank": 23,
-            "modelId": "x-ai/grok-4.5",
-            "modelName": "Grok 4.5",
-            "score": 1292
+            "modelId": "anthropic/claude-opus-4.6",
+            "modelName": "Claude Opus 4.6",
+            "score": 1295
           },
           {
             "rank": 24,
-            "modelId": "google/gemini-3.5-flash",
-            "modelName": "Gemini 3.5 Flash",
-            "score": 1289
+            "modelId": "qwen/qwen3.7-max",
+            "modelName": "Qwen3.7 Max",
+            "score": 1293
           },
           {
             "rank": 25,
-            "modelId": "qwen/qwen3.7-plus",
-            "modelName": "Qwen3.7 Plus",
-            "score": 1288
+            "modelId": "x-ai/grok-4.5",
+            "modelName": "Grok 4.5",
+            "score": 1289
           },
           {
             "rank": 26,
-            "modelId": null,
-            "modelName": "Deca 2.5 Mini",
-            "score": 1286
+            "modelId": "google/gemini-3.5-flash",
+            "modelName": "Gemini 3.5 Flash",
+            "score": 1287
           },
           {
             "rank": 27,
-            "modelId": null,
-            "modelName": "Deca 2.5 Ultra",
-            "score": 1286
+            "modelId": "google/gemini-3.6-flash",
+            "modelName": "Gemini 3.6 Flash",
+            "score": 1285
           },
           {
             "rank": 28,
-            "modelId": "google/gemini-3.6-flash",
-            "modelName": "Gemini 3.6 Flash",
-            "score": 1286
+            "modelId": "qwen/qwen3.7-plus",
+            "modelName": "Qwen3.7 Plus",
+            "score": 1285
           },
           {
             "rank": 29,
-            "modelId": "z-ai/glm-5.1",
-            "modelName": "GLM 5.1",
-            "score": 1285
+            "modelId": null,
+            "modelName": "Deca 2.5 Mini",
+            "score": 1284
           },
           {
             "rank": 30,
             "modelId": null,
-            "modelName": "Deca 2.6 Ultra",
-            "score": 1285
+            "modelName": "Deca 2.5 Ultra",
+            "score": 1284
           },
           {
             "rank": 31,
             "modelId": "xiaomi/mimo-v2.5-pro",
             "modelName": "MiMo-V2.5-Pro",
-            "score": 1285
-          },
-          {
-            "rank": 32,
-            "modelId": "anthropic/claude-sonnet-4.6",
-            "modelName": "Claude Sonnet 4.6",
             "score": 1284
           },
           {
+            "rank": 32,
+            "modelId": "z-ai/glm-5.1",
+            "modelName": "GLM 5.1",
+            "score": 1283
+          },
+          {
             "rank": 33,
-            "modelId": "anthropic/claude-opus-4.8",
-            "modelName": "Claude Opus 4.8",
-            "score": 1280
+            "modelId": "anthropic/claude-sonnet-4.6",
+            "modelName": "Claude Sonnet 4.6",
+            "score": 1282
           },
           {
             "rank": 34,
-            "modelId": "z-ai/glm-5-turbo",
-            "modelName": "GLM 5 Turbo",
-            "score": 1276
+            "modelId": null,
+            "modelName": "Deca 2.6 Ultra",
+            "score": 1282
           },
           {
             "rank": 35,
-            "modelId": "moonshotai/kimi-k2.6",
-            "modelName": "Kimi K2.6",
-            "score": 1276
+            "modelId": "anthropic/claude-opus-4.8",
+            "modelName": "Claude Opus 4.8",
+            "score": 1278
           },
           {
             "rank": 36,
-            "modelId": "xiaomi/mimo-v2.5",
-            "modelName": "MiMo-V2.5",
-            "score": 1270
+            "modelId": "z-ai/glm-5-turbo",
+            "modelName": "GLM 5 Turbo",
+            "score": 1275
           },
           {
             "rank": 37,
-            "modelId": "openai/gpt-5.4",
-            "modelName": "GPT-5.4 (Medium)",
-            "score": 1263
+            "modelId": "moonshotai/kimi-k2.6",
+            "modelName": "Kimi K2.6",
+            "score": 1274
           },
           {
             "rank": 38,
-            "modelId": "z-ai/glm-5",
-            "modelName": "GLM 5",
-            "score": 1259
+            "modelId": "xiaomi/mimo-v2.5",
+            "modelName": "MiMo-V2.5",
+            "score": 1268
           },
           {
             "rank": 39,
-            "modelId": "openai/gpt-5.6-terra",
-            "modelName": "GPT-5.6 Terra",
-            "score": 1255
+            "modelId": "openai/gpt-5.4",
+            "modelName": "GPT-5.4 (Medium)",
+            "score": 1261
           },
           {
             "rank": 40,
-            "modelId": "anthropic/claude-opus-4.5",
-            "modelName": "Claude Opus 4.5",
-            "score": 1254
+            "modelId": "z-ai/glm-5",
+            "modelName": "GLM 5",
+            "score": 1257
           },
           {
             "rank": 41,
-            "modelId": "deepseek/deepseek-v4-pro",
-            "modelName": "DeepSeek-V4-Pro",
+            "modelId": "openai/gpt-5.6-terra",
+            "modelName": "GPT-5.6 Terra",
             "score": 1253
           },
           {
             "rank": 42,
-            "modelId": null,
-            "modelName": "Nex N2 Pro",
-            "score": 1251
+            "modelId": "anthropic/claude-opus-4.5",
+            "modelName": "Claude Opus 4.5",
+            "score": 1252
           },
           {
             "rank": 43,
-            "modelId": "muse-spark-1-0",
-            "modelName": "Muse Spark",
-            "score": 1250
+            "modelId": "deepseek/deepseek-v4-pro",
+            "modelName": "DeepSeek-V4-Pro",
+            "score": 1251
           },
           {
             "rank": 44,
-            "modelId": "moonshotai/kimi-k2.7-code",
-            "modelName": "Kimi K2.7 Code",
-            "score": 1245
+            "modelId": null,
+            "modelName": "Nex N2 Pro",
+            "score": 1249
           },
           {
             "rank": 45,
-            "modelId": "z-ai/glm-5v-turbo",
-            "modelName": "GLM 5V Turbo",
-            "score": 1243
+            "modelId": "muse-spark-1-0",
+            "modelName": "Muse Spark",
+            "score": 1248
           },
           {
             "rank": 46,
-            "modelId": "deepseek/deepseek-v4-flash-0731",
-            "modelName": "DeepSeek-V4-Flash-0731",
-            "score": 1237
+            "modelId": "moonshotai/kimi-k2.7-code",
+            "modelName": "Kimi K2.7 Code",
+            "score": 1242
           },
           {
             "rank": 47,
-            "modelId": "minimax/minimax-m3",
-            "modelName": "MiniMax M3",
-            "score": 1236
+            "modelId": "z-ai/glm-5v-turbo",
+            "modelName": "GLM 5V Turbo",
+            "score": 1241
           },
           {
             "rank": 48,
-            "modelId": "qwen/qwen3.6-plus",
-            "modelName": "Qwen3.6 Plus",
-            "score": 1234
+            "modelId": "deepseek/deepseek-v4-flash-0731",
+            "modelName": "DeepSeek-V4-Flash-0731",
+            "score": 1235
           },
           {
             "rank": 49,
-            "modelId": "minimax/minimax-m2.7",
-            "modelName": "MiniMax M2.7",
-            "score": 1233
+            "modelId": "minimax/minimax-m3",
+            "modelName": "MiniMax M3",
+            "score": 1235
           },
           {
             "rank": 50,
-            "modelId": "moonshotai/kimi-k2.5",
-            "modelName": "Kimi K2.5 (Thinking)",
-            "score": 1231
+            "modelId": "qwen/qwen3.6-plus",
+            "modelName": "Qwen3.6 Plus",
+            "score": 1232
           }
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-09-10T08:05:51.611Z",
-    "capturedAt": "2026-09-10T09:53:20.996Z"
+    "upstreamUpdatedAt": "2026-09-11T08:05:44.866Z",
+    "capturedAt": "2026-09-11T09:52:23.157Z"
   },
   "terminal-bench": {
     "boards": [
@@ -1870,7 +1876,7 @@
         "id": "terminal-bench-4-0",
         "name": "Terminal-Bench 4.0",
         "url": "https://www.tbench.ai/",
-        "updatedAt": "2026-09-03T21:34:07.080Z",
+        "updatedAt": "2026-09-10T21:58:00.001Z",
         "entries": [
           {
             "rank": 1,
@@ -2055,8 +2061,8 @@
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-09-03T21:34:07.080Z",
-    "capturedAt": "2026-09-10T09:53:20.996Z"
+    "upstreamUpdatedAt": "2026-09-10T21:58:00.001Z",
+    "capturedAt": "2026-09-11T09:52:23.157Z"
   },
   "swe-bench": {
     "boards": [
@@ -4850,6 +4856,12 @@
           },
           {
             "rank": 14,
+            "modelId": "deepseek/deepseek-v4.1-flash",
+            "modelName": "deepseek-v4.1-flash-max",
+            "score": 1620
+          },
+          {
+            "rank": 14,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "gpt-5.6-sol-xhigh (codex-harness)",
             "score": 1617
@@ -5538,271 +5550,271 @@
         "id": "arena-agent",
         "name": "Arena — Agent (Net Improvement)",
         "url": "https://arena.ai/leaderboard/agent",
-        "updatedAt": "2026-09-08T00:00:00.000Z",
+        "updatedAt": "2026-09-09T00:00:00.000Z",
         "entries": [
           {
             "rank": 1,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1 (Max)",
-            "score": 14.51
+            "score": 13.85
           },
           {
             "rank": 2,
             "modelId": "openai/gpt-6-astra",
             "modelName": "GPT 6 Astra (Max)",
-            "score": 12.55
+            "score": 12.39
           },
           {
             "rank": 3,
             "modelId": "anthropic/claude-opus-5",
             "modelName": "Claude Opus 5 (High)",
-            "score": 11.42
+            "score": 11.06
           },
           {
             "rank": 4,
             "modelId": "anthropic/claude-opus-5",
             "modelName": "Claude Opus 5 (Max)",
-            "score": 10.79
+            "score": 10.8
           },
           {
             "rank": 5,
             "modelId": "anthropic/claude-fable-5",
             "modelName": "Claude Fable 5 (High)",
-            "score": 9.15
+            "score": 9.09
           },
           {
             "rank": 6,
-            "modelId": "openai/gpt-5.6-sol",
-            "modelName": "GPT 5.6 Sol (xHigh)",
-            "score": 7.75
+            "modelId": "anthropic/claude-opus-4.8",
+            "modelName": "Claude Opus 4.8 (High)",
+            "score": 7.57
           },
           {
             "rank": 7,
-            "modelId": "anthropic/claude-opus-4.8",
-            "modelName": "Claude Opus 4.8 (High)",
-            "score": 7.69
+            "modelId": "openai/gpt-5.6-sol",
+            "modelName": "GPT 5.6 Sol (xHigh)",
+            "score": 7.51
           },
           {
             "rank": 8,
             "modelId": "moonshotai/kimi-k3",
             "modelName": "Kimi K3 (Max)",
-            "score": 6.59
+            "score": 6.46
           },
           {
             "rank": 9,
             "modelId": "anthropic/claude-sonnet-5",
             "modelName": "Claude Sonnet 5 (High)",
-            "score": 6.31
+            "score": 5.88
           },
           {
             "rank": 10,
             "modelId": "tencent/hy4-preview",
             "modelName": "Hy4 preview",
-            "score": 5.37
+            "score": 5.23
           },
           {
             "rank": 11,
             "modelId": "openai/gpt-5.5",
             "modelName": "GPT 5.5 (xHigh)",
-            "score": 5.33
+            "score": 5.22
           },
           {
             "rank": 12,
             "modelId": "z-ai/glm-5.2",
             "modelName": "GLM 5.2 (Max)",
-            "score": 4.64
+            "score": 4.56
           },
           {
             "rank": 13,
-            "modelId": "deepseek/deepseek-v4-pro",
-            "modelName": "DeepSeek V4 Pro (High) (0813)",
-            "score": 4.43
+            "modelId": "meta/muse-spark-1.3",
+            "modelName": "Muse Spark 1.3 (Max)",
+            "score": 4.23
           },
           {
             "rank": 14,
-            "modelId": "google/gemini-3.8-flash",
-            "modelName": "Gemini 3.8 Flash (High)",
-            "score": 4.01
+            "modelId": "deepseek/deepseek-v4-pro",
+            "modelName": "DeepSeek V4 Pro (High) (0813)",
+            "score": 4.14
           },
           {
             "rank": 15,
-            "modelId": "x-ai/grok-4.5",
-            "modelName": "Grok 4.5",
-            "score": 3.93
+            "modelId": null,
+            "modelName": "Qwen3.8 Max",
+            "score": 3.97
           },
           {
             "rank": 16,
-            "modelId": null,
-            "modelName": "Qwen3.8 Max",
-            "score": 3.9
+            "modelId": "google/gemini-3.8-flash",
+            "modelName": "Gemini 3.8 Flash (High)",
+            "score": 3.84
           },
           {
             "rank": 17,
-            "modelId": "x-ai/grok-4.6",
-            "modelName": "Grok 4.6 (xHigh)",
-            "score": 3.24
+            "modelId": "x-ai/grok-4.5",
+            "modelName": "Grok 4.5",
+            "score": 3.83
           },
           {
             "rank": 18,
-            "modelId": "openai/gpt-5.5",
-            "modelName": "GPT 5.5",
-            "score": 2.95
+            "modelId": "x-ai/grok-4.6",
+            "modelName": "Grok 4.6 (xHigh)",
+            "score": 3.12
           },
           {
             "rank": 19,
-            "modelId": "z-ai/glm-5.3",
-            "modelName": "GLM 5.3 (Max)",
-            "score": 2.56
+            "modelId": "openai/gpt-5.5",
+            "modelName": "GPT 5.5",
+            "score": 2.8
           },
           {
             "rank": 20,
-            "modelId": "deepseek/deepseek-v4-flash",
-            "modelName": "Deepseek V4 Flash (High) (20260731)",
-            "score": 2.22
+            "modelId": "z-ai/glm-5.3",
+            "modelName": "GLM 5.3 (Max)",
+            "score": 2.62
           },
           {
             "rank": 21,
-            "modelId": "z-ai/glm-5.3-flash",
-            "modelName": "GLM 5.3 Flash",
-            "score": 2
+            "modelId": "deepseek/deepseek-v4-flash",
+            "modelName": "Deepseek V4 Flash (High) (20260731)",
+            "score": 2.17
           },
           {
             "rank": 22,
-            "modelId": "openai/gpt-5.4",
-            "modelName": "GPT 5.4 (High)",
-            "score": 1.57
+            "modelId": "z-ai/glm-5.3-flash",
+            "modelName": "GLM 5.3 Flash",
+            "score": 1.89
           },
           {
             "rank": 23,
-            "modelId": "openai/gpt-5.6-terra",
-            "modelName": "GPT 5.6 Terra (xHigh)",
-            "score": 1.47
+            "modelId": "openai/gpt-5.4",
+            "modelName": "GPT 5.4 (High)",
+            "score": 1.54
           },
           {
             "rank": 24,
-            "modelId": "openai/gpt-5.6-luna",
-            "modelName": "GPT 5.6 Luna (xHigh)",
-            "score": 1.11
+            "modelId": "openai/gpt-5.6-terra",
+            "modelName": "GPT 5.6 Terra (xHigh)",
+            "score": 1.46
           },
           {
             "rank": 25,
-            "modelId": null,
-            "modelName": "Qwen3.8 Flash Next",
-            "score": 0.81
+            "modelId": "openai/gpt-5.6-luna",
+            "modelName": "GPT 5.6 Luna (xHigh)",
+            "score": 0.73
           },
           {
             "rank": 26,
             "modelId": null,
-            "modelName": "Qwen 3.8 27B",
-            "score": 0.14
+            "modelName": "Qwen3.8 Flash Next",
+            "score": 0.4
           },
           {
             "rank": 27,
-            "modelId": "deepseek/deepseek-v4-pro",
-            "modelName": "DeepSeek V4 Pro",
-            "score": 0.42
+            "modelId": null,
+            "modelName": "Qwen 3.8 27B",
+            "score": 0.08
           },
           {
             "rank": 28,
-            "modelId": "anthropic/claude-sonnet-4.6",
-            "modelName": "Claude Sonnet 4.6",
-            "score": 1.05
+            "modelId": "deepseek/deepseek-v4-pro",
+            "modelName": "DeepSeek V4 Pro",
+            "score": 0.34
           },
           {
             "rank": 29,
-            "modelId": "meta/muse-spark-1.2",
-            "modelName": "Muse Spark 1.2 (xHigh)",
-            "score": 1.56
+            "modelId": "anthropic/claude-sonnet-4.6",
+            "modelName": "Claude Sonnet 4.6",
+            "score": 1.27
           },
           {
             "rank": 30,
-            "modelId": "meta/muse-spark-1.1",
-            "modelName": "Muse Spark 1.1",
-            "score": 2.65
+            "modelId": "meta/muse-spark-1.2",
+            "modelName": "Muse Spark 1.2 (xHigh)",
+            "score": 1.76
           },
           {
             "rank": 31,
-            "modelId": "qwen/qwen3.7-max",
-            "modelName": "Qwen3.7 Max",
-            "score": 3.09
+            "modelId": "meta/muse-spark-1.1",
+            "modelName": "Muse Spark 1.1",
+            "score": 2.97
           },
           {
             "rank": 32,
-            "modelId": "tencent/hy3",
-            "modelName": "Hy3",
-            "score": 4.22
+            "modelId": "qwen/qwen3.7-max",
+            "modelName": "Qwen3.7 Max",
+            "score": 3.12
           },
           {
             "rank": 33,
-            "modelId": "xiaomi/mimo-v2.5-pro",
-            "modelName": "Mimo V2.5 Pro",
-            "score": 5.08
+            "modelId": "tencent/hy3",
+            "modelName": "Hy3",
+            "score": 4.69
           },
           {
             "rank": 34,
-            "modelId": "qwen/qwen3.7-plus",
-            "modelName": "Qwen3.7 Plus",
-            "score": 5.2
+            "modelId": "minimax/minimax-m3",
+            "modelName": "Minimax M3",
+            "score": 5.38
           },
           {
             "rank": 35,
-            "modelId": "minimax/minimax-m3",
-            "modelName": "Minimax M3",
-            "score": 5.26
+            "modelId": "qwen/qwen3.7-plus",
+            "modelName": "Qwen3.7 Plus",
+            "score": 5.38
           },
           {
             "rank": 36,
             "modelId": "google/gemini-3.6-flash",
             "modelName": "Gemini 3.6 Flash (High)",
-            "score": 5.3
+            "score": 5.41
           },
           {
             "rank": 37,
-            "modelId": "google/gemini-3.1-pro-preview",
-            "modelName": "Gemini 3.1 Pro Preview",
-            "score": 5.34
+            "modelId": "xiaomi/mimo-v2.5-pro",
+            "modelName": "Mimo V2.5 Pro",
+            "score": 5.42
           },
           {
             "rank": 38,
-            "modelId": "thinkingmachines/inkling-small",
-            "modelName": "Inkling Small",
-            "score": 6.89
+            "modelId": "google/gemini-3.1-pro-preview",
+            "modelName": "Gemini 3.1 Pro Preview",
+            "score": 5.6
           },
           {
             "rank": 39,
-            "modelId": "thinkingmachines/inkling",
-            "modelName": "Inkling",
-            "score": 8.87
+            "modelId": "thinkingmachines/inkling-small",
+            "modelName": "Inkling Small",
+            "score": 7.09
           },
           {
             "rank": 40,
-            "modelId": "mistralai/mistral-medium-3-5",
-            "modelName": "Mistral Medium 3.5",
-            "score": 9.35
+            "modelId": "thinkingmachines/inkling",
+            "modelName": "Inkling",
+            "score": 9.12
           },
           {
             "rank": 41,
-            "modelId": "upstage/solar-pro4",
-            "modelName": "Solar Pro 4",
-            "score": 11.29
+            "modelId": "mistralai/mistral-medium-3-5",
+            "modelName": "Mistral Medium 3.5",
+            "score": 10.12
           },
           {
             "rank": 42,
             "modelId": "minimax/minimax-m2.7",
             "modelName": "Minimax M2.7",
-            "score": 13.01
+            "score": 13.22
           },
           {
             "rank": 43,
             "modelId": "google/gemini-3.5-flash-lite",
             "modelName": "Gemini 3.5 Flash Lite",
-            "score": 13.43
+            "score": 13.73
           }
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-09-08T00:00:00.000Z",
-    "capturedAt": "2026-09-10T09:53:20.996Z"
+    "upstreamUpdatedAt": "2026-09-09T00:00:00.000Z",
+    "capturedAt": "2026-09-11T09:52:23.157Z"
   },
   "scale-swe-bench-pro": {
     "boards": [
@@ -6058,6 +6070,6 @@
       }
     ],
     "upstreamUpdatedAt": "2026-07-09T18:05:36.000Z",
-    "capturedAt": "2026-09-10T09:53:20.996Z"
+    "capturedAt": "2026-09-11T09:52:23.157Z"
   }
 }
