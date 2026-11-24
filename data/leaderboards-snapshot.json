@@ -5,7 +5,7 @@
         "id": "openrouter-weekly-tokens",
         "name": "Tokens processed — week of 2026-11-16",
         "url": "https://openrouter.ai/rankings",
-        "updatedAt": "2026-11-23T15:47:10.557Z",
+        "updatedAt": "2026-11-24T15:41:42.412Z",
         "entries": [
           {
             "rank": 1,
@@ -15,21 +15,21 @@
           },
           {
             "rank": 2,
+            "modelId": "tencent/hy4-flash",
+            "modelName": "hy4-flash (tencent, 2026-11-16)",
+            "score": 18080272330475
+          },
+          {
+            "rank": 3,
             "modelId": "deepseek/deepseek-v4.1-flash",
             "modelName": "deepseek-v4.1-flash (2026-09-10)",
             "score": 15352008057795
           },
           {
-            "rank": 3,
+            "rank": 4,
             "modelId": "z-ai/glm-5.3-flash",
             "modelName": "glm-5.3-flash (z-ai, 2026-08-26)",
             "score": 12230807138540
-          },
-          {
-            "rank": 4,
-            "modelId": "tencent/hy4-flash",
-            "modelName": "hy4-flash (tencent, 2026-11-16)",
-            "score": 10214736573544
           },
           {
             "rank": 5,
@@ -64,8 +64,8 @@
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-11-23T15:47:10.557Z",
-    "capturedAt": "2026-11-23T16:15:55.307Z"
+    "upstreamUpdatedAt": "2026-11-24T15:41:42.412Z",
+    "capturedAt": "2026-11-24T16:03:02.770Z"
   },
   "arc-prize": {
     "boards": [
@@ -73,7 +73,7 @@
         "id": "arc-agi-2",
         "name": "ARC-AGI-2 (semi-private)",
         "url": "https://arcprize.org/leaderboard",
-        "updatedAt": "2026-11-20T16:14:09.211Z",
+        "updatedAt": "2026-11-24T14:51:18.628Z",
         "entries": [
           {
             "rank": 1,
@@ -133,297 +133,297 @@
           },
           {
             "rank": 9,
+            "modelId": "google/gemini-4-neon",
+            "modelName": "Gemini 4 Neon (Medium)",
+            "score": 93.75,
+            "costPerTask": 0.5537119999999998
+          },
+          {
+            "rank": 10,
+            "modelId": "google/gemini-4-neon",
+            "modelName": "Gemini 4 Neon (Low)",
+            "score": 93.75,
+            "costPerTask": 0.32222969999999995
+          },
+          {
+            "rank": 11,
             "modelId": "openai/gpt-6-astra",
             "modelName": "GPT-6 Astra (XHigh)",
             "score": 93.3333,
             "costPerTask": 0.8286855833333333
           },
           {
-            "rank": 10,
+            "rank": 12,
             "modelId": "anthropic/claude-opus-5.5",
             "modelName": "Claude Opus 5.5 (High)",
             "score": 93.3333,
             "costPerTask": 0.4078964666666667
           },
           {
-            "rank": 11,
+            "rank": 13,
             "modelId": "openai/gpt-6.2-astra",
             "modelName": "GPT-6.2 Astra (Medium)",
             "score": 93.3333,
             "costPerTask": 0.30885013333333333
           },
           {
-            "rank": 12,
+            "rank": 14,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "GPT-5.6 Sol (Max)",
             "score": 92.5,
             "costPerTask": 1.4403327916666666
           },
           {
-            "rank": 13,
+            "rank": 15,
             "modelId": "anthropic/claude-opus-5.5",
             "modelName": "Claude Opus 5.5 (XHigh)",
             "score": 92.5,
             "costPerTask": 0.6709066333333333
           },
           {
-            "rank": 14,
+            "rank": 16,
             "modelId": "anthropic/claude-fable-5.2",
             "modelName": "Claude Fable 5.2 (Max)",
             "score": 92.5,
             "costPerTask": 2.813521
           },
           {
-            "rank": 15,
+            "rank": 17,
             "modelId": "google/gemini-4-hydrogen",
             "modelName": "Gemini 4 Hydrogen (XHigh)",
             "score": 92.5,
             "costPerTask": 1.2632810375
           },
           {
-            "rank": 16,
+            "rank": 18,
             "modelId": "openai/gpt-6-astra",
             "modelName": "GPT-6 Astra (High)",
             "score": 92.0833,
             "costPerTask": 0.6680793333333334
           },
           {
-            "rank": 17,
+            "rank": 19,
             "modelId": "openai/gpt-6-astra",
             "modelName": "GPT-6 Astra (Medium)",
             "score": 92.0833,
             "costPerTask": 0.48009266666666667
           },
           {
-            "rank": 18,
+            "rank": 20,
             "modelId": "google/gemini-4-carbon",
             "modelName": "Gemini 4 Carbon (High)",
             "score": 92.0833,
             "costPerTask": 0.6838793166666667
           },
           {
-            "rank": 19,
+            "rank": 21,
             "modelId": "anthropic/claude-opus-5.5",
             "modelName": "Claude Opus 5.5 (Max)",
             "score": 91.6667,
             "costPerTask": 1.8517409666666667
           },
           {
-            "rank": 20,
+            "rank": 22,
             "modelId": "openai/gpt-6.1-sol",
             "modelName": "GPT-6.1 Sol (XHigh)",
             "score": 91.6667,
             "costPerTask": 0.1780897
           },
           {
-            "rank": 21,
+            "rank": 23,
             "modelId": "openai/gpt-6.1-sol",
             "modelName": "GPT-6.1 Sol (High)",
             "score": 91.6667,
             "costPerTask": 0.1346867
           },
           {
-            "rank": 22,
+            "rank": 24,
             "modelId": "openai/gpt-6.2-astra",
             "modelName": "GPT-6.2 Astra (Low)",
             "score": 91.6667,
             "costPerTask": 0.27486446666666664
           },
           {
-            "rank": 23,
+            "rank": 25,
             "modelId": "google/gemini-4-argon",
             "modelName": "Gemini 4 Argon (High)",
             "score": 91.25,
             "costPerTask": 0.3248761333333333
           },
           {
-            "rank": 24,
+            "rank": 26,
+            "modelId": "google/gemini-4-neon",
+            "modelName": "Gemini 4 Neon (High)",
+            "score": 90.8333,
+            "costPerTask": 0.8732658999999999
+          },
+          {
+            "rank": 27,
             "modelId": "anthropic/claude-opus-5",
             "modelName": "Claude Opus 5 (Max)",
             "score": 90.42,
             "costPerTask": 2.06
           },
           {
-            "rank": 25,
+            "rank": 28,
             "modelId": "anthropic/claude-fable-5.2",
             "modelName": "Claude Fable 5.2 (High)",
             "score": 90.4167,
             "costPerTask": 0.9076362666666666
           },
           {
-            "rank": 26,
+            "rank": 29,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "GPT-5.6 Sol (XHigh)",
             "score": 90,
             "costPerTask": 1.0419059583333334
           },
           {
-            "rank": 27,
+            "rank": 30,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1 (Max)",
             "score": 90,
             "costPerTask": 4.492348833333334
           },
           {
-            "rank": 28,
+            "rank": 31,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1 (XHigh)",
             "score": 90,
             "costPerTask": 3.120216916666669
           },
           {
-            "rank": 29,
+            "rank": 32,
             "modelId": "google/gemini-4-hydrogen",
             "modelName": "Gemini 4 Hydrogen (High)",
             "score": 90,
             "costPerTask": 0.45900425000000017
           },
           {
-            "rank": 30,
+            "rank": 33,
             "modelId": "openai/gpt-6-sol",
             "modelName": "GPT-6 Sol (Max)",
             "score": 89.5833,
             "costPerTask": 0.43889828333333336
           },
           {
-            "rank": 31,
+            "rank": 34,
             "modelId": "anthropic/claude-fable-5.2",
             "modelName": "Claude Fable 5.2 (Medium)",
             "score": 89.5833,
             "costPerTask": 0.6268079333333333
           },
           {
-            "rank": 32,
+            "rank": 35,
             "modelId": "anthropic/claude-fable-5",
             "modelName": "Claude Fable 5 (Max)",
             "score": 89.1667,
             "costPerTask": 5.449076000000001
           },
           {
-            "rank": 33,
+            "rank": 36,
             "modelId": "google/gemini-3.8-flash",
             "modelName": "Gemini 3.8 Flash (High)",
             "score": 89.1667,
             "costPerTask": 0.39972941250000005
           },
           {
-            "rank": 34,
+            "rank": 37,
             "modelId": "google/gemini-4-hydrogen",
             "modelName": "Gemini 4 Hydrogen (Medium)",
             "score": 89.1667,
             "costPerTask": 0.28389547499999995
           },
           {
-            "rank": 35,
+            "rank": 38,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1 (High)",
             "score": 88.75,
             "costPerTask": 1.6673061666666666
           },
           {
-            "rank": 36,
+            "rank": 39,
             "modelId": "anthropic/claude-fable-5",
             "modelName": "Claude Fable 5 (XHigh)",
             "score": 88.3333,
             "costPerTask": 3.0043564166666665
           },
           {
-            "rank": 37,
+            "rank": 40,
             "modelId": "anthropic/claude-opus-5",
             "modelName": "Claude Opus 5 (High)",
             "score": 88.33,
             "costPerTask": 1.45
           },
           {
-            "rank": 38,
+            "rank": 41,
             "modelId": "anthropic/claude-fable-5",
             "modelName": "Claude Fable 5 (High)",
             "score": 87.5,
             "costPerTask": 2.4358764166666664
           },
           {
-            "rank": 39,
+            "rank": 42,
             "modelId": "anthropic/claude-opus-5.5",
             "modelName": "Claude Opus 5.5 (Medium)",
             "score": 87.5,
             "costPerTask": 0.3369188
           },
           {
-            "rank": 40,
+            "rank": 43,
             "modelId": "google/gemini-4-argon",
             "modelName": "Gemini 4 Argon (Medium)",
             "score": 87.0833,
             "costPerTask": 0.13732313333333335
           },
           {
-            "rank": 41,
+            "rank": 44,
             "modelId": "openai/gpt-6.1-sol",
             "modelName": "GPT-6.1 Sol (Medium)",
             "score": 86.6667,
             "costPerTask": 0.10037736666666666
           },
           {
-            "rank": 42,
+            "rank": 45,
             "modelId": "anthropic/claude-fable-5.2",
             "modelName": "Claude Fable 5.2 (Low)",
             "score": 86.6667,
             "costPerTask": 0.5158499333333333
           },
           {
-            "rank": 43,
+            "rank": 46,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1 (Medium)",
             "score": 86.25,
             "costPerTask": 1.2239411666666673
           },
           {
-            "rank": 44,
+            "rank": 47,
             "modelId": "openai/gpt-6.2-sol",
             "modelName": "GPT-6.2 Sol (Max)",
             "score": 85.8333,
             "costPerTask": 0.2610862833333335
           },
           {
-            "rank": 45,
+            "rank": 48,
             "modelId": "openai/gpt-6.2-sol",
             "modelName": "GPT-6.2 Sol (XHigh)",
             "score": 85.8333,
             "costPerTask": 0.17421611666666667
           },
           {
-            "rank": 46,
+            "rank": 49,
             "modelId": "openai/gpt-6.2-sol",
             "modelName": "GPT-6.2 Sol (High)",
             "score": 85.8333,
             "costPerTask": 0.13255319999999998
           },
           {
-            "rank": 47,
+            "rank": 50,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "GPT-5.6 Sol (High)",
             "score": 85.42,
             "costPerTask": 0.73574025
-          },
-          {
-            "rank": 48,
-            "modelId": "openai/gpt-6-astra",
-            "modelName": "GPT-6 Astra (Low)",
-            "score": 85.4167,
-            "costPerTask": 0.4162418333333333
-          },
-          {
-            "rank": 49,
-            "modelId": "openai/gpt-5.5",
-            "modelName": "GPT-5.5 (XHigh)",
-            "score": 85,
-            "costPerTask": 1.87
-          },
-          {
-            "rank": 50,
-            "modelId": "google/gemini-3.7-flash",
-            "modelName": "Gemini 3.7 Flash (High)",
-            "score": 84.5833,
-            "costPerTask": 0.24944951875000002
           }
         ]
       },
@@ -786,8 +786,8 @@
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-11-20T16:14:09.211Z",
-    "capturedAt": "2026-11-23T16:15:55.307Z"
+    "upstreamUpdatedAt": "2026-11-24T14:51:18.628Z",
+    "capturedAt": "2026-11-24T16:03:02.770Z"
   },
   "epoch-eci": {
     "boards": [
@@ -795,7 +795,7 @@
         "id": "epoch-eci",
         "name": "Epoch Capabilities Index — top 25",
         "url": "https://epoch.ai/data/ai-benchmarking-dashboard",
-        "updatedAt": "2026-11-23T16:15:53.946Z",
+        "updatedAt": "2026-11-24T16:03:00.906Z",
         "entries": [
           {
             "rank": 1,
@@ -1051,7 +1051,7 @@
       }
     ],
     "upstreamUpdatedAt": null,
-    "capturedAt": "2026-11-23T16:15:55.307Z"
+    "capturedAt": "2026-11-24T16:03:02.770Z"
   },
   "design-arena": {
     "boards": [
@@ -1059,13 +1059,13 @@
         "id": "design-arena-website",
         "name": "Web Dev (non-agentic) — Website",
         "url": "https://www.designarena.ai/",
-        "updatedAt": "2026-11-23T16:04:37.543654+00:00",
+        "updatedAt": "2026-11-24T14:16:05.051072+00:00",
         "entries": [
           {
             "rank": 1,
             "modelId": "meta/muse-wonder",
             "modelName": "Muse Wonder (max)",
-            "score": 1427
+            "score": 1426
           },
           {
             "rank": 2,
@@ -1077,13 +1077,13 @@
             "rank": 3,
             "modelId": "openai/gpt-6.2-sol",
             "modelName": "GPT-6.2 Sol",
-            "score": 1405
+            "score": 1406
           },
           {
             "rank": 4,
             "modelId": "anthropic/claude-fable-5.2",
             "modelName": "Claude Fable 5.2",
-            "score": 1404
+            "score": 1405
           },
           {
             "rank": 5,
@@ -1105,21 +1105,21 @@
           },
           {
             "rank": 8,
+            "modelId": "moonshotai/kimi-k3",
+            "modelName": "Kimi K3",
+            "score": 1388
+          },
+          {
+            "rank": 9,
             "modelId": "openai/gpt-6-astra",
             "modelName": "GPT-6 Astra (max)",
             "score": 1387
           },
           {
-            "rank": 9,
+            "rank": 10,
             "modelId": "openai/gpt-6.2-astra",
             "modelName": "GPT-6.2 Astra",
-            "score": 1387
-          },
-          {
-            "rank": 10,
-            "modelId": "moonshotai/kimi-k3",
-            "modelName": "Kimi K3",
-            "score": 1387
+            "score": 1385
           },
           {
             "rank": 11,
@@ -1131,19 +1131,19 @@
             "rank": 12,
             "modelId": "google/gemini-4-carbon",
             "modelName": "Gemini 4 Carbon",
-            "score": 1379
+            "score": 1378
           },
           {
             "rank": 13,
-            "modelId": "google/gemini-4-hydrogen",
-            "modelName": "Gemini 4 Hydrogen",
+            "modelId": "meta/muse-ember",
+            "modelName": "Muse Ember",
             "score": 1378
           },
           {
             "rank": 14,
-            "modelId": "meta/muse-ember",
-            "modelName": "Muse Ember",
-            "score": 1378
+            "modelId": "google/gemini-4-hydrogen",
+            "modelName": "Gemini 4 Hydrogen",
+            "score": 1377
           },
           {
             "rank": 15,
@@ -1173,7 +1173,7 @@
             "rank": 19,
             "modelId": "openai/gpt-6.1-sol",
             "modelName": "GPT-6.1 Sol",
-            "score": 1365
+            "score": 1364
           },
           {
             "rank": 20,
@@ -1183,14 +1183,14 @@
           },
           {
             "rank": 21,
-            "modelId": "anthropic/claude-sonnet-5.5",
-            "modelName": "Claude Sonnet 5.5",
+            "modelId": "meta/muse-spark-1.2",
+            "modelName": "Muse Spark 1.2",
             "score": 1357
           },
           {
             "rank": 22,
-            "modelId": "meta/muse-spark-1.2",
-            "modelName": "Muse Spark 1.2",
+            "modelId": "anthropic/claude-sonnet-5.5",
+            "modelName": "Claude Sonnet 5.5",
             "score": 1357
           },
           {
@@ -1201,20 +1201,20 @@
           },
           {
             "rank": 24,
-            "modelId": "meta/muse-spark-open",
-            "modelName": "Muse Spark Open (xhigh)",
-            "score": 1353
-          },
-          {
-            "rank": 25,
             "modelId": "anthropic/claude-fable-5.1",
             "modelName": "Claude Fable 5.1",
             "score": 1353
           },
           {
-            "rank": 26,
+            "rank": 25,
             "modelId": "anthropic/claude-opus-5",
             "modelName": "Claude Opus 5",
+            "score": 1352
+          },
+          {
+            "rank": 26,
+            "modelId": "meta/muse-spark-open",
+            "modelName": "Muse Spark Open (xhigh)",
             "score": 1352
           },
           {
@@ -1231,14 +1231,14 @@
           },
           {
             "rank": 29,
-            "modelId": "deepseek/deepseek-v4.1-flash-1017",
-            "modelName": "DeepSeek-V4.1-Flash (1017)",
+            "modelId": "inclusionai/ling-3.1-flash",
+            "modelName": "Ling-3.1-flash",
             "score": 1341
           },
           {
             "rank": 30,
-            "modelId": "inclusionai/ling-3.1-flash",
-            "modelName": "Ling-3.1-flash",
+            "modelId": "deepseek/deepseek-v4.1-flash-1017",
+            "modelName": "DeepSeek-V4.1-Flash (1017)",
             "score": 1341
           },
           {
@@ -1257,7 +1257,7 @@
             "rank": 33,
             "modelId": "openai/gpt-6-sol",
             "modelName": "GPT-6 Sol",
-            "score": 1339
+            "score": 1338
           },
           {
             "rank": 34,
@@ -1281,7 +1281,7 @@
             "rank": 37,
             "modelId": null,
             "modelName": "Claude Opus 4.6 (Thinking)",
-            "score": 1327
+            "score": 1326
           },
           {
             "rank": 38,
@@ -1303,21 +1303,21 @@
           },
           {
             "rank": 41,
-            "modelId": "z-ai/glm-5.2",
-            "modelName": "GLM 5.2",
-            "score": 1325
-          },
-          {
-            "rank": 42,
             "modelId": "x-ai/grok-4.6",
             "modelName": "Grok 4.6",
             "score": 1325
           },
           {
-            "rank": 43,
+            "rank": 42,
             "modelId": null,
             "modelName": "Deca 2.5 Mini",
             "score": 1325
+          },
+          {
+            "rank": 43,
+            "modelId": "z-ai/glm-5.2",
+            "modelName": "GLM 5.2",
+            "score": 1324
           },
           {
             "rank": 44,
@@ -1333,15 +1333,15 @@
           },
           {
             "rank": 46,
-            "modelId": "anthropic/claude-sonnet-5",
-            "modelName": "Claude Sonnet 5",
-            "score": 1317
+            "modelId": "thinkingmachines/inkling-2-mini",
+            "modelName": "Inkling 2 Mini",
+            "score": 1319
           },
           {
             "rank": 47,
-            "modelId": "thinkingmachines/inkling-2-mini",
-            "modelName": "Inkling 2 Mini",
-            "score": 1317
+            "modelId": "anthropic/claude-sonnet-5",
+            "modelName": "Claude Sonnet 5",
+            "score": 1316
           },
           {
             "rank": 48,
@@ -1359,7 +1359,7 @@
             "rank": 50,
             "modelId": "openai/gpt-6-luna",
             "modelName": "GPT-6 Luna",
-            "score": 1315
+            "score": 1314
           }
         ]
       },
@@ -1367,7 +1367,7 @@
         "id": "design-arena-fullstack",
         "name": "Web Dev (agentic) — Full-Stack",
         "url": "https://www.designarena.ai/",
-        "updatedAt": "2026-11-23T16:10:57.633735+00:00",
+        "updatedAt": "2026-11-24T14:17:24.660914+00:00",
         "entries": [
           {
             "rank": 1,
@@ -1427,7 +1427,7 @@
             "rank": 10,
             "modelId": "anthropic/claude-opus-5",
             "modelName": "Claude Opus 5",
-            "score": 1355
+            "score": 1354
           },
           {
             "rank": 11,
@@ -1461,15 +1461,15 @@
           },
           {
             "rank": 16,
-            "modelId": "anthropic/claude-opus-4.8",
-            "modelName": "Claude Opus 4.8",
+            "modelId": "openai/gpt-6.1-sol",
+            "modelName": "GPT-6.1 Sol",
             "score": 1296
           },
           {
             "rank": 17,
-            "modelId": "openai/gpt-6.1-sol",
-            "modelName": "GPT-6.1 Sol",
-            "score": 1295
+            "modelId": "anthropic/claude-opus-4.8",
+            "modelName": "Claude Opus 4.8",
+            "score": 1296
           },
           {
             "rank": 18,
@@ -1529,7 +1529,7 @@
             "rank": 27,
             "modelId": "minimax/minimax-m3",
             "modelName": "MiniMax M3",
-            "score": 1248
+            "score": 1249
           },
           {
             "rank": 28,
@@ -1547,7 +1547,7 @@
             "rank": 30,
             "modelId": "qwen/qwen3.7-max",
             "modelName": "Qwen3.7 Max",
-            "score": 1241
+            "score": 1240
           },
           {
             "rank": 31,
@@ -1577,7 +1577,7 @@
             "rank": 35,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "GPT-5.6 Sol (Medium)",
-            "score": 1206
+            "score": 1205
           },
           {
             "rank": 36,
@@ -1675,19 +1675,19 @@
         "id": "design-arena-gamedev",
         "name": "Game Dev",
         "url": "https://www.designarena.ai/",
-        "updatedAt": "2026-11-23T16:03:56.91575+00:00",
+        "updatedAt": "2026-11-24T14:15:42.337392+00:00",
         "entries": [
           {
             "rank": 1,
             "modelId": "anthropic/claude-fable-5.2",
             "modelName": "Claude Fable 5.2",
-            "score": 1534
+            "score": 1539
           },
           {
             "rank": 2,
             "modelId": "openai/gpt-6.2-astra",
             "modelName": "GPT-6.2 Astra",
-            "score": 1503
+            "score": 1497
           },
           {
             "rank": 3,
@@ -1699,19 +1699,19 @@
             "rank": 4,
             "modelId": "openai/gpt-6-astra",
             "modelName": "GPT-6 Astra (xhigh)",
-            "score": 1446
+            "score": 1447
           },
           {
             "rank": 5,
             "modelId": "openai/gpt-6.2-sol",
             "modelName": "GPT-6.2 Sol",
-            "score": 1440
+            "score": 1442
           },
           {
             "rank": 6,
             "modelId": "anthropic/claude-opus-5.5",
             "modelName": "Claude Opus 5.5",
-            "score": 1436
+            "score": 1437
           },
           {
             "rank": 7,
@@ -1729,25 +1729,25 @@
             "rank": 9,
             "modelId": "google/gemini-4-carbon",
             "modelName": "Gemini 4 Carbon",
-            "score": 1410
-          },
-          {
-            "rank": 10,
-            "modelId": "qwen/qwen4-max",
-            "modelName": "Qwen4-Max",
             "score": 1402
           },
           {
-            "rank": 11,
+            "rank": 10,
             "modelId": "google/gemini-4-neon",
             "modelName": "Gemini 4 Neon",
-            "score": 1395
+            "score": 1397
           },
           {
-            "rank": 12,
+            "rank": 11,
             "modelId": "meta/muse-wonder",
             "modelName": "Muse Wonder (max)",
             "score": 1394
+          },
+          {
+            "rank": 12,
+            "modelId": "qwen/qwen4-max",
+            "modelName": "Qwen4-Max",
+            "score": 1389
           },
           {
             "rank": 13,
@@ -1765,7 +1765,7 @@
             "rank": 15,
             "modelId": "openai/gpt-5.6-sol",
             "modelName": "GPT-5.6 Sol (xhigh)",
-            "score": 1350
+            "score": 1349
           },
           {
             "rank": 16,
@@ -1783,13 +1783,13 @@
             "rank": 18,
             "modelId": "google/gemini-4-hydrogen",
             "modelName": "Gemini 4 Hydrogen",
-            "score": 1341
+            "score": 1340
           },
           {
             "rank": 19,
             "modelId": "moonshotai/kimi-k3",
             "modelName": "Kimi K3",
-            "score": 1339
+            "score": 1340
           },
           {
             "rank": 20,
@@ -1811,14 +1811,14 @@
           },
           {
             "rank": 23,
-            "modelId": "meta/muse-spark-1.3",
-            "modelName": "Muse Spark 1.3 (xhigh)",
+            "modelId": "meta/muse-ember",
+            "modelName": "Muse Ember",
             "score": 1314
           },
           {
             "rank": 24,
-            "modelId": "meta/muse-ember",
-            "modelName": "Muse Ember",
+            "modelId": "meta/muse-spark-1.3",
+            "modelName": "Muse Spark 1.3 (xhigh)",
             "score": 1314
           },
           {
@@ -1847,27 +1847,27 @@
           },
           {
             "rank": 29,
+            "modelId": "google/gemini-3.7-flash",
+            "modelName": "Gemini 3.7 Flash",
+            "score": 1295
+          },
+          {
+            "rank": 30,
             "modelId": "xiaomi/mimo-v2.6-pro",
             "modelName": "MiMo-V2.6-Pro",
             "score": 1295
           },
           {
-            "rank": 30,
+            "rank": 31,
             "modelId": null,
             "modelName": "Qwen3.8 Max",
-            "score": 1295
-          },
-          {
-            "rank": 31,
-            "modelId": "google/gemini-3.7-flash",
-            "modelName": "Gemini 3.7 Flash",
             "score": 1295
           },
           {
             "rank": 32,
             "modelId": "minimax/minimax-m3.1-flash",
             "modelName": "MiniMax M3.1 Flash",
-            "score": 1294
+            "score": 1295
           },
           {
             "rank": 33,
@@ -1885,7 +1885,7 @@
             "rank": 35,
             "modelId": "openai/gpt-6-sol",
             "modelName": "GPT-6 Sol",
-            "score": 1288
+            "score": 1287
           },
           {
             "rank": 36,
@@ -1943,15 +1943,15 @@
           },
           {
             "rank": 45,
-            "modelId": "xiaomi/mimo-v2.5-pro",
+            "modelId": null,
             "modelName": "MiMo-V2.5-Pro",
-            "score": 1249
+            "score": 1250
           },
           {
             "rank": 46,
             "modelId": "tencent/hy4",
             "modelName": "Hy4",
-            "score": 1249
+            "score": 1250
           },
           {
             "rank": 47,
@@ -1963,13 +1963,13 @@
             "rank": 48,
             "modelId": "meta/muse-spark-open",
             "modelName": "Muse Spark Open (xhigh)",
-            "score": 1244
+            "score": 1243
           },
           {
             "rank": 49,
             "modelId": "deepseek/deepseek-v4.1-flash-1017",
             "modelName": "DeepSeek-V4.1-Flash (1017)",
-            "score": 1241
+            "score": 1242
           },
           {
             "rank": 50,
@@ -1980,8 +1980,8 @@
         ]
       }
     ],
-    "upstreamUpdatedAt": "2026-11-23T16:03:56.915Z",
-    "capturedAt": "2026-11-23T16:15:55.307Z"
+    "upstreamUpdatedAt": "2026-11-24T14:15:42.337Z",
+    "capturedAt": "2026-11-24T16:03:02.770Z"
   },
   "terminal-bench": {
     "boards": [
@@ -2665,7 +2665,7 @@
       }
     ],
     "upstreamUpdatedAt": "2026-11-20T16:07:10.159Z",
-    "capturedAt": "2026-11-23T16:15:55.307Z"
+    "capturedAt": "2026-11-24T16:03:02.770Z"
   },
   "swe-bench": {
     "boards": [
@@ -6961,6 +6961,6 @@
       }
     ],
     "upstreamUpdatedAt": "2026-07-09T18:04:14.000Z",
-    "capturedAt": "2026-11-23T16:15:55.307Z"
+    "capturedAt": "2026-11-24T16:03:02.770Z"
   }
 }
